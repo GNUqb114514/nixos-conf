@@ -1,1 +1,3 @@
 command = "i3status-rs config-default.toml"
+
+font = "monospace 12"
