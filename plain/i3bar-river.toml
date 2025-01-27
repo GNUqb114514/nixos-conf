@@ -1,1 +1,1 @@
-command = "i3blocks"
+command = "i3status-rs config-default.toml"

@@ -33,7 +33,6 @@
     alacritty
     fuzzel
     i3bar-river
-    i3blocks
   ];
 
   programs.git = {
