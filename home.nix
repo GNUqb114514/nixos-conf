@@ -32,6 +32,7 @@
     # GUI
     alacritty
     fuzzel
+    i3bar-river
   ];
 
   programs.git = {
