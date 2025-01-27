@@ -1,0 +1,55 @@
+{
+  description = "My NixOS config";
+
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    home-manager = {
+      url = "github:nix-community/home-manager/release-24.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixvim = {
+        url = "github:nix-community/nixvim";
+        # If using a stable channel you can use `url = "github:nix-community/nixvim/nixos-<version>"`
+        inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    founder-overlay.url = "github:brsvh/chinese-fonts-overlay/main";
+    
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
+
+  outputs = {self, nixpkgs, nur, home-manager, ...}@inputs: {
+    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        nur.modules.nixos.default
+
+        ({ pkgs, ...}: {
+	  nixpkgs.overlays = [
+	    inputs.founder-overlay.overlays.default
+	  ];
+	})
+
+        ./configuration.nix
+
+	home-manager.nixosModules.home-manager {
+	  home-manager.backupFileExtension = "backup";
+	  home-manager.useGlobalPkgs = true;
+	  home-manager.useUserPackages = true;
+	  home-manager.users.qb114514 = import ./home.nix;
+	}
+
+	./fonts.nix
+
+	./im.nix
+
+	./software-config/firefox-systemwide.nix
+      ];
+    };
+  };
+}
