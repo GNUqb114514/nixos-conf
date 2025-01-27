@@ -76,7 +76,15 @@
       ];
       settings = {
         "extensions.autoDisableScopes" = 0;
+	"toolkit.legacyUserProfileCustomizations.stylesheets" = true;
       };
+      userContent = ''
+      p { font-family: sans-serif; }
+      .markdown-body p { font-family: sans-serif !important; }
+      @-moz-document domain("github.com") {
+        a { font-family: sans-serif !important; }
+      }
+      '';
       search.default = "Bing";
       search.engines = {
       };
