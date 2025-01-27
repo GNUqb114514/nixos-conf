@@ -48,5 +48,6 @@
   imports = [
     software-config/alacritty.nix
     software-config/firefox.nix
+    software-config/gui.nix
   ];
 }
