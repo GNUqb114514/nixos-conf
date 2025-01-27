@@ -71,6 +71,7 @@
   users.users.qb114514 = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    shell = pkgs.fish;
   };
 
   programs.firefox.enable = true;
