@@ -3,22 +3,6 @@
 
   programs.firefox.languagePacks = [ "en-US" "zh_CN" ];
 
-  programs.firefox.policies = {
-    ExtensionSettings = let
-        external-extension = url: uuid: {
-	  name = uuid;
-	  value = {
-	    install_url = url;
-            installation_mode = "force_installed";
-	  };
-	};
-	extension = shortId: uuid: external-extension "https://addons.mozilla.org/en-US/firefox/downloads/latest/${shortId}" uuid;
-      in builtins.listToAttrs [
-        (extension "sidebery" "{3c078156-979c-498b-8990-85f7987dd929}")
-	(external-extension "https://github.com/mkaply/queryamoid/releases/download/v0.1/query_amo_addon_id-0.1-fx.xpi" "queryamoid@kaply.com")
-      ];
-  };
-
   programs.firefox.profiles = {
     default = {
       id = 0;
@@ -26,7 +10,7 @@
       isDefault = true;
       bookmarks = [
         {
-          name = "Refrences";
+          name = "References";
           bookmarks = [
             {
               name = "Git submodules";
@@ -47,6 +31,15 @@
             }
           ];
         }
+	{
+	  name = "Tutorials";
+	  bookmarks = [
+	    {
+	      name = "Nix and flakes";
+	      url = "https://nixos-and-flakes.thiscute.world";
+	    }
+	  ];
+	}
         {
 	  name = "Toolbar";
 	  toolbar = true;
@@ -87,6 +80,59 @@
       '';
       search.default = "Bing";
       search.engines = {
+        "Nix Packages" = {
+	  id = "nix-packages";
+	  description = "Search for nixpkgs packages";
+          urls = [{
+            template = "https://search.nixos.org/packages";
+            params = [
+              { name = "type"; value = "packages"; }
+              { name = "query"; value = "{searchTerms}"; }
+            ];
+          }];
+          icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+          definedAliases = [ "@nix-packages" ];
+        };
+
+        "Nix Options" = {
+	  id = "nix-options";
+	  description = "Search for nix options";
+          urls = [{
+            template = "https://search.nixos.org/options";
+            params = [
+              { name = "type"; value = "packages"; }
+              { name = "query"; value = "{searchTerms}"; }
+            ];
+          }];
+          icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+          definedAliases = [ "@nix-options" ];
+        };
+
+        "Mycroft" = {
+	  id = "mycroft";
+	  description = "Search search engines in Mycroft project";
+          urls = [{
+	    template = "https://mycroftproject.com/search-engines.html";
+	    params = [
+	      { name = "name"; value = "{searchTerms}"; }
+	    ];
+	  }];
+          definedAliases = [ "@mycroft" ];
+	  iconURL = "https://mycroftproject.com/favicon.ico";
+        };
+
+	"Bilibili" = {
+	  id = "bilibili";
+	  description = "Search things on bilibili";
+	  urls = [{
+	    template = "https://search.bilibili.com/all";
+	    params = [
+	      { name = "keyword"; value = "{searchTerms}"; }
+	    ];
+	  }];
+	  definedAliases = [ "@bilibili" ];
+	  iconURL = "https://i0.hdslb.com/bfs/static/jinkela/long/images/favicon.ico";
+	};
       };
       #      extensions = with pkgs; [
       # nur.repos.rycee.firefox-addons.sidebery
