@@ -80,7 +80,7 @@
       };
       userContent = ''
       p { font-family: sans-serif; }
-      .markdown-body p { font-family: sans-serif !important; }
+      .markdown-body p,li { font-family: sans-serif !important; }
       @-moz-document domain("github.com") {
         a { font-family: sans-serif !important; }
       }
