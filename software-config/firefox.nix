@@ -75,10 +75,7 @@
       p { font-family: sans-serif; }
       .markdown-body p,li { font-family: sans-serif !important; }
       @-moz-document domain("github.com") {
-        a { font-family: sans-serif !important; }
-	div.d-flex > :nth-child(2) * {
-	  font-family: sans-serif !important;
-	}
+        a.Link--primary { font-family: sans-serif !important; }
       }
       '';
       search.default = "Bing";
@@ -135,6 +132,19 @@
 	  }];
 	  definedAliases = [ "@bilibili" ];
 	  iconURL = "https://i0.hdslb.com/bfs/static/jinkela/long/images/favicon.ico";
+	};
+
+	"Noogle" = {
+	  id = "noogle";
+	  description = "Search nix functions";
+	  urls = [{
+	    template = "https://noogle.dev/q";
+	    params = [
+	      { name = "term"; value = "{searchTerms}"; }
+	    ];
+	  }];
+	  definedAliases = [ "@noogle" ];
+          icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
 	};
       };
     };
