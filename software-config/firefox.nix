@@ -88,6 +88,7 @@
             params = [
               { name = "type"; value = "packages"; }
               { name = "query"; value = "{searchTerms}"; }
+              { name = "channel"; value = "unstable"; }
             ];
           }];
           icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
@@ -100,7 +101,8 @@
           urls = [{
             template = "https://search.nixos.org/options";
             params = [
-              { name = "type"; value = "packages"; }
+              { name = "type"; value = "options"; }
+              { name = "channel"; value = "unstable"; }
               { name = "query"; value = "{searchTerms}"; }
             ];
           }];
