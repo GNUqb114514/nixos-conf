@@ -76,6 +76,9 @@
       .markdown-body p,li { font-family: sans-serif !important; }
       @-moz-document domain("github.com") {
         a { font-family: sans-serif !important; }
+	div.d-flex > :nth-child(2) * {
+	  font-family: sans-serif !important;
+	}
       }
       '';
       search.default = "Bing";
@@ -134,9 +137,6 @@
 	  iconURL = "https://i0.hdslb.com/bfs/static/jinkela/long/images/favicon.ico";
 	};
       };
-      #      extensions = with pkgs; [
-      # nur.repos.rycee.firefox-addons.sidebery
-      #      ];
     };
   };
 }
