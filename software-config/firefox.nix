@@ -72,8 +72,10 @@
 	"toolkit.legacyUserProfileCustomizations.stylesheets" = true;
       };
       userContent = ''
-      p { font-family: sans-serif; }
-      .markdown-body p,li { font-family: sans-serif !important; }
+      @-moz-document domain("bing.com") {
+        h1,h2,h3,h4,h5,h6 { font-family: sans-serif !important; }
+      }
+      p,li { font-family: sans-serif !important; }
       @-moz-document domain("github.com") {
         a.Link--primary { font-family: sans-serif !important; }
       }
