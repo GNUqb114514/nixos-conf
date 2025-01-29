@@ -1,4 +1,4 @@
-{config, pkgs, ...}: {
+{config, pkgs, inputs, ...}: {
   home.username = "qb114514";
   home.homeDirectory = "/home/qb114514";
 
@@ -46,8 +46,10 @@
   programs.home-manager.enable = true;
 
   imports = [
+    inputs.nixvim.homeManagerModules.nixvim
     software-config/alacritty.nix
     software-config/firefox.nix
     software-config/gui.nix
+    software-config/nvim.nix
   ];
 }
