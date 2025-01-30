@@ -34,27 +34,39 @@ in {
       showmode = false;
     };
     keymaps = [
-    {
-      options.desc = "Hide highlight for search predicate";
-      action = "<Cmd>nohlsearch<CR>";
-      key = "<Leader>nh";
-      mode = [ "n" ];
-      options.silent = true;
-    }
-    {
-      options.desc = "Go to next buffer";
-      action = "<cmd>bnext<CR>";
-      key = "<Leader>lb";
-      mode = [ "n" ];
-      options.silent = true;
-    }
-    {
-      options.desc = "Go to prev buffer";
-      action = "<cmd>bprev<CR>";
-      key = "<Leader>hb";
-      mode = [ "n" ];
-      options.silent = true;
-    }
+      {
+        options.desc = "Hide highlight for search predicate";
+        action = "<Cmd>nohlsearch<CR>";
+        key = "<Leader>nh";
+        mode = [ "n" ];
+        options.silent = true;
+      }
+      {
+        options.desc = "Go to next buffer";
+        action = "<cmd>bnext<CR>";
+        key = "<Leader>lb";
+        mode = [ "n" ];
+        options.silent = true;
+      }
+      {
+        options.desc = "Go to prev buffer";
+        action = "<cmd>bprev<CR>";
+        key = "<Leader>hb";
+        mode = [ "n" ];
+        options.silent = true;
+      }
+      {
+        options.desc = "Lspsaga: Rename symbols";
+        action = "<cmd>Lspsaga rename ++project<CR>";
+        key = "<Leader>cn";
+        mode = [ "n" ];
+      }
+      {
+        options.desc = "Lspsaga: Apply code actions";
+        action = "<cmd>Lspsaga code_action<CR>";
+        key = "<Leader>aa";
+        mode = [ "n" ];
+      }
     ];
     globals = {
       mapleader = " ";
@@ -118,5 +130,6 @@ in {
         };
       };
     };
+    plugins.lspsaga.enable = true;
   };
 }
