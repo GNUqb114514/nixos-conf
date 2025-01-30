@@ -13,6 +13,10 @@
   # Enable flakes
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
+  nix.settings.trusted-users = [ "qb114514" ];
+
+  nix.settings.substituters = [ "https://mirrors.ustc.edu.cn/nix-channels/store" ];
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
