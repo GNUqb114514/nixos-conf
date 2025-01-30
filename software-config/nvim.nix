@@ -36,25 +36,28 @@ in {
     keymaps = [
     {
       options.desc = "Hide highlight for search predicate";
-      action = "<cmd>nohlsearch<CR>";
+      action = "<Cmd>nohlsearch<CR>";
       key = "<Leader>nh";
+      mode = [ "n" ];
       options.silent = true;
     }
     {
       options.desc = "Go to next buffer";
       action = "<cmd>bnext<CR>";
       key = "<Leader>lb";
+      mode = [ "n" ];
       options.silent = true;
     }
     {
       options.desc = "Go to prev buffer";
       action = "<cmd>bprev<CR>";
       key = "<Leader>hb";
+      mode = [ "n" ];
       options.silent = true;
     }
     ];
     globals = {
-      mapleader = "<Space>";
+      mapleader = " ";
     };
     withRuby = false;
     colorschemes.tokyonight.enable = true;
@@ -84,6 +87,8 @@ in {
     plugins.indent-blankline.enable = true;
     plugins.lualine.enable = true;
     plugins.neogit.enable = true;
+    plugins.web-devicons.enable = true;
+    plugins.fidget.enable = true;
     plugins.treesitter = {
       enable = true;
       grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
@@ -100,5 +105,18 @@ in {
       ];
     };
     plugins.trouble.enable = true;
+    plugins.lsp = {
+      enable = true;
+      inlayHints = true;
+      servers = {
+        rust_analyzer = {
+          enable = true;
+          package = null;
+          installCargo = false;
+          installRustc = false;
+          installRustfmt = false;
+        };
+      };
+    };
   };
 }
