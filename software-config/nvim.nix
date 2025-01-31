@@ -33,37 +33,39 @@ in {
       splitright = true;
       showmode = false;
     };
-    keymaps = [
+    keymaps = let
+      command = cmd: "<cmd>${cmd}<CR>";
+    in [
       {
         options.desc = "Hide highlight for search predicate";
-        action = "<Cmd>nohlsearch<CR>";
+        action = command "nohlsearch";
         key = "<Leader>nh";
         mode = [ "n" ];
         options.silent = true;
       }
       {
         options.desc = "Go to next buffer";
-        action = "<cmd>bnext<CR>";
+        action = command "bnext";
         key = "<Leader>lb";
         mode = [ "n" ];
         options.silent = true;
       }
       {
         options.desc = "Go to prev buffer";
-        action = "<cmd>bprev<CR>";
+        action = command "bprev";
         key = "<Leader>hb";
         mode = [ "n" ];
         options.silent = true;
       }
       {
         options.desc = "Lspsaga: Rename symbols";
-        action = "<cmd>Lspsaga rename ++project<CR>";
+        action = command "Lspsaga rename ++project";
         key = "<Leader>cn";
         mode = [ "n" ];
       }
       {
         options.desc = "Lspsaga: Apply code actions";
-        action = "<cmd>Lspsaga code_action<CR>";
+        action = command "Lspsaga code_action";
         key = "<Leader>aa";
         mode = [ "n" ];
       }
