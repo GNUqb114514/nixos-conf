@@ -79,7 +79,7 @@ in {
       settings.sources = let
         pplugin = name: { inherit name; };
       in [
-        (pplugin "nvim-lsp")
+        (pplugin "nvim_lsp")
         (pplugin "async-path")
         (pplugin "buffer")
         (pplugin "calc")
