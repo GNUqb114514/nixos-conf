@@ -21,6 +21,11 @@
     ripgrep
     jq
     fzf
+    gh
+
+    # Printers
+    bat
+    delta
 
     # TUI
     fastfetch
