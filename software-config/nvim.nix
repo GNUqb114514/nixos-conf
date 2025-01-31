@@ -89,6 +89,13 @@ in {
         (pplugin "emoji")
         (pplugin "spell")
       ];
+      settings.mapping = {
+        "<CR>" = "cmp.mapping.confirm({ select = True })";
+        "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+        "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+        "<C-d>" = "cmp.mapping.scroll_docs(-4)";
+        "<C-f>" = "cmp.mapping.scroll_docs(4)";
+      };
     };
     plugins.compiler.enable = true;
     plugins.fzf-lua.enable = true;
