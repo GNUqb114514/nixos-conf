@@ -57,8 +57,8 @@
   # Virtual machine in VBox
   virtualisation.virtualbox.guest.enable = true;
   
-  # Trying fish...
-  programs.fish.enable = true;
+  # No, zsh.
+  programs.zsh.enable = true;
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -82,7 +82,7 @@
   users.users.qb114514 = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    shell = pkgs.fish;
+    shell = pkgs.zsh;
   };
 
   programs.firefox.enable = true;
