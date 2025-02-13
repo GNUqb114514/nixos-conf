@@ -143,6 +143,9 @@ in {
           installRustc = false;
           installRustfmt = false;
         };
+        nixd = {
+          enable = true;
+        };
       };
     };
     plugins.lspsaga.enable = true;
