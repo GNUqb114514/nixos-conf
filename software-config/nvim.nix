@@ -1,5 +1,5 @@
 { config, pkgs, ... }: let
-helpers = config.lib.nixvim;
+  helpers = config.lib.nixvim;
 in {
   programs.nixvim = {
     enable = true;
@@ -32,6 +32,10 @@ in {
       wrap = false;
       splitright = true;
       showmode = false;
+    };
+    files."ftplugin/nix.lua".opts = {
+      softtabstop = 2;
+      shiftwidth = 2;
     };
     keymaps = let
       command = cmd: "<cmd>${cmd}<CR>";
