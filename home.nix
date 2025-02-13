@@ -30,6 +30,7 @@
     # TUI
     fastfetch
     yazi
+    starship
 
     # Bridge between T/GUI
     wl-clipboard
@@ -56,5 +57,6 @@
     software-config/firefox.nix
     software-config/gui.nix
     software-config/nvim.nix
+    software-config/shell.nix
   ];
 }
