@@ -39,6 +39,7 @@
     alacritty
     fuzzel
     i3bar-river
+    ironbar
   ];
 
   programs.git = {
@@ -53,10 +54,12 @@
 
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
+    inputs.ironbar.homeManagerModules.default
     software-config/alacritty.nix
     software-config/firefox.nix
     software-config/gui.nix
     software-config/nvim.nix
     software-config/shell.nix
+    software-config/bar.nix
   ];
 }
