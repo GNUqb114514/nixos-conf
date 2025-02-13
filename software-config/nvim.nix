@@ -69,6 +69,12 @@ in {
         key = "<Leader>aa";
         mode = [ "n" ];
       }
+      {
+        options.desc = "Activate Yazi";
+        action = command "Yazi";
+        key = "<Leader>e";
+        mode = [ "n" ];
+      }
     ];
     globals = {
       mapleader = " ";
@@ -140,5 +146,6 @@ in {
       };
     };
     plugins.lspsaga.enable = true;
+    plugins.yazi.enable = true;
   };
 }
