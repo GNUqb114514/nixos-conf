@@ -39,7 +39,6 @@
     alacritty
     fuzzel
     i3bar-river
-    ironbar
   ];
 
   programs.git = {
