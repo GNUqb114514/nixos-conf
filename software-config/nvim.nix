@@ -85,7 +85,7 @@ in {
     };
     withRuby = false;
     colorschemes.tokyonight.enable = true;
-    colorscheme = "tokyonight-night";
+    colorscheme = "tokyonight-storm";
     plugins.cmp = {
       enable = true;
       settings.sources = let
