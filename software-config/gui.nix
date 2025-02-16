@@ -7,6 +7,12 @@
     default = {
       blocks = [
         {
+          block = "custom";
+          command = "nix shell nixpkgs#python313 --command python3 ${../script/get-fcitx-im-label.py}";
+          interval = "once";
+          signal = 4;
+        }
+        {
           alert = 10.0;
           block = "disk_space";
           info_type = "available";
@@ -41,4 +47,6 @@
       theme = "native";
     };
   };
+
+  home.file.".local/share/fcitx5/lua/imeapi/extensions/emit-signal-to-bar.lua".source = ../script/emit-signal-to-bar.lua;
 }

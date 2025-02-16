@@ -8,6 +8,7 @@
       fcitx5-gtk
       fcitx5-chinese-addons
       fcitx5-rime
+      fcitx5-lua
       libsForQt5.fcitx5-configtool
     ];
     waylandFrontend = true;
