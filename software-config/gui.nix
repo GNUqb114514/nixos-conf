@@ -38,6 +38,7 @@
         }
       ];
       icons = "material-nf";
+      theme = "native";
     };
   };
 }
