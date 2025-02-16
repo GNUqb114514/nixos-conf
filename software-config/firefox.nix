@@ -12,21 +12,25 @@
       {
         name = "References";
         bookmarks = [
-        {
-          name = "Git submodules";
-          url = "https://zhuanlan.zhihu.com/p/87053283";
-        }
-        {
-          name = "Python style guides";
-          bookmarks = [
           {
-            name = "PEP 8 (coding)";
-            url = "https://peps.python.org/pep-0008/";
+            name = "about:config reference";
+            url = "http://kb.mozillazine.org/About:config_entries";
           }
           {
-            name = "PEP 257 (documenting)";
-            url = "https://peps.python.org/pep-0257/";
+            name = "Git submodules";
+            url = "https://zhuanlan.zhihu.com/p/87053283";
           }
+          {
+            name = "Python style guides";
+            bookmarks = [
+            {
+              name = "PEP 8 (coding)";
+              url = "https://peps.python.org/pep-0008/";
+            }
+            {
+              name = "PEP 257 (documenting)";
+              url = "https://peps.python.org/pep-0257/";
+            }
           ];
         }
         ];
@@ -70,6 +74,7 @@
       settings = {
         "extensions.autoDisableScopes" = 0;
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+        "browser.startup.page" = 3;
       };
       userContent = ''
         @-moz-document domain("bing.com") {
