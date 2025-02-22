@@ -20,6 +20,10 @@
     (nrml-plugin "Aloxaf" "fzf-tab" "6aced3f35def61c5edf9d790e945e8bb4fe7b305" "sha256-EWMeslDgs/DWVaDdI9oAS46hfZtp4LHTRY8TclKTNK8=")
   ];
 
+  programs.zsh.initExtra = ''
+    nh completions --shell zsh
+  '';
+
   programs.starship.enable = true;
   programs.starship.enableZshIntegration = true;
 }

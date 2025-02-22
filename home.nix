@@ -22,6 +22,7 @@
     jq
     fzf
     gh
+    nh
 
     # Printers
     bat
