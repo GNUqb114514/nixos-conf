@@ -33,5 +33,9 @@
         foreground = "#a9b1d6";
       };
     };
+
+    window = {
+      decorations = "None";
+    };
   };
 }
