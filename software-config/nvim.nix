@@ -129,6 +129,18 @@ in {
       lazyLoad.settings.cmd = "Neogit";
       enable = true;
     };
+    # Required by neogit
+    plugins.diffview = {
+      enable = true;
+      keymaps.filePanel = [
+        {
+          action = "<cmd>tabclose<CR>";
+          description = "Close diffview";
+          key = "q";
+          mode = "n";
+        }
+      ];
+    };
     plugins.web-devicons.enable = true;
     plugins.fidget.enable = true;
     plugins.treesitter = {
