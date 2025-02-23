@@ -26,8 +26,6 @@
       modules = [
         nur.modules.nixos.default
 
-        nixvim.nixosModules.nixvim
-
         ./configuration.nix
 
         home-manager.nixosModules.home-manager {
@@ -43,8 +41,6 @@
         ./software-config/im.nix
 
         ./software-config/firefox-systemwide.nix
-
-        ./software-config/nvim.nix
       ];
     };
   };

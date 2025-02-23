@@ -1,6 +1,11 @@
 { config, pkgs, ... }: let
   helpers = config.lib.nixvim;
 in {
+  home.packages = with pkgs; [
+    # Clipboard provider
+    wl-clipboard
+  ];
+
   programs.nixvim = {
     enable = true;
     defaultEditor = true;

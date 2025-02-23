@@ -2,46 +2,6 @@
   home.username = "qb114514";
   home.homeDirectory = "/home/qb114514";
 
-  home.packages = with pkgs; [
-    # Zipping
-    zip
-    xz 
-    unzip
-
-    # Monitors
-    iftop
-    btop
-    htop
-    iotop
-
-    # Utils
-    file
-    which
-    tree
-    ripgrep
-    jq
-    fzf
-    gh
-    nh
-
-    # Printers
-    bat
-    delta
-
-    # TUI
-    fastfetch
-    yazi
-    starship
-
-    # Bridge between T/GUI
-    wl-clipboard
-    
-    # GUI
-    alacritty
-    fuzzel
-    i3bar-river
-  ];
-
   programs.git = {
     enable = true;
     userName = "qb114514";

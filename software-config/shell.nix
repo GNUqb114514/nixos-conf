@@ -1,4 +1,34 @@
 { pkgs, ... }: {
+  home.packages = with pkgs; [
+    # Zipping
+    zip
+    xz 
+    unzip
+
+    # Monitors
+    iftop
+    btop
+    htop
+    iotop
+
+    # Utils
+    file
+    which
+    tree
+    ripgrep
+    jq
+    gh
+    nh
+
+    # Printers
+    bat
+    delta
+
+    # TUI
+    fastfetch
+    yazi
+  ];
+
   programs.zsh.enable = true;
 
   programs.zsh.plugins = let
