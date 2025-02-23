@@ -84,8 +84,6 @@ in {
       mapleader = " ";
     };
     withRuby = false;
-    colorschemes.tokyonight.enable = true;
-    colorscheme = "tokyonight-storm";
     plugins.cmp = {
       enable = true;
       settings.sources = let

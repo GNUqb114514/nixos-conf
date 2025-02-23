@@ -59,5 +59,6 @@
     software-config/gui.nix
     software-config/nvim.nix
     software-config/shell.nix
+    colorschemes/tokyonight.nix
   ];
 }

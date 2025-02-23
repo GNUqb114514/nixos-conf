@@ -22,4 +22,14 @@
 
   programs.starship.enable = true;
   programs.starship.enableZshIntegration = true;
+
+  programs.fzf.enable = true;
+
+  programs.fzf.defaultOptions = [
+    "--layout reverse"
+  ];
+
+  programs.fzf.historyWidgetOptions = [
+    "--layout reverse"
+  ];
 }
