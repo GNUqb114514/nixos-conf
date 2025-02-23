@@ -107,17 +107,30 @@ in {
         "<C-f>" = "cmp.mapping.scroll_docs(4)";
       };
     };
-    plugins.compiler.enable = true;
-    plugins.fzf-lua.enable = true;
+    plugins.lz-n.enable = true;
+    plugins.fzf-lua = {
+      enable = true;
+      lazyLoad.settings.cmd = "FzfLua";
+    };
     plugins.git-conflict.enable = true;
     plugins.gitblame = {
       enable = true;
       settings.enabled = false;
+      lazyLoad.settings.event = "BufRead";
     };
-    plugins.gitsigns.enable = true;
-    plugins.indent-blankline.enable = true;
+    plugins.gitsigns = {
+      lazyLoad.settings.event = "BufRead";
+      enable = true;
+    };
+    plugins.indent-blankline = {
+      lazyLoad.settings.event = "BufRead";
+      enable = true;
+    };
     plugins.lualine.enable = true;
-    plugins.neogit.enable = true;
+    plugins.neogit = {
+      lazyLoad.settings.cmd = "Neogit";
+      enable = true;
+    };
     plugins.web-devicons.enable = true;
     plugins.fidget.enable = true;
     plugins.treesitter = {
@@ -135,7 +148,10 @@ in {
           python
       ];
     };
-    plugins.trouble.enable = true;
+    plugins.trouble = {
+      enable = true;
+      lazyLoad.settings.cmd = "Trouble";
+    };
     plugins.lsp = {
       enable = true;
       inlayHints = true;
@@ -153,6 +169,9 @@ in {
       };
     };
     plugins.lspsaga.enable = true;
-    plugins.yazi.enable = true;
+    plugins.yazi = {
+      lazyLoad.settings.cmd = "Yazi";
+      enable = true;
+    };
   };
 }
