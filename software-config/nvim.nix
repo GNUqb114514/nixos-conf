@@ -131,7 +131,6 @@ in {
     };
     plugins.lualine.enable = true;
     plugins.neogit = {
-      lazyLoad.settings.cmd = "Neogit";
       enable = true;
     };
     # Required by neogit
