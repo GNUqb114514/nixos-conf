@@ -20,7 +20,7 @@
     };
   };
 
-  outputs = {self, nixpkgs, nur, home-manager, nixvim, ...}@inputs: {
+  outputs = {nixpkgs, nur, home-manager, ...}@inputs: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
@@ -40,7 +40,7 @@
 
         ./software-config/im.nix
 
-        ./software-config/firefox-systemwide.nix
+        ./software-config/firefox/systemwide.nix
       ];
     };
   };

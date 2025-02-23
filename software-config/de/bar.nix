@@ -1,16 +1,10 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
-    niri
-
-    # Bar
     i3bar-river
-
-    # Launcher
-    fuzzel
   ];
 
-  home.file.".config/niri/config.kdl".source = ../plain/niri.kdl;
-  home.file.".config/i3bar-river/config.toml".source = ../plain/i3bar-river.toml;
+  # i3bar configuration is not provided by home manager.
+  home.file.".config/i3bar-river/config.toml".source = ../../plain/i3bar-river.toml;
 
   programs.i3status-rust.enable = true;
   programs.i3status-rust.bars = {
@@ -18,7 +12,7 @@
       blocks = [
         {
           block = "custom";
-          command = "nix shell nixpkgs#python313 --command python3 ${../script/get-fcitx-im-label.py}";
+          command = "nix shell nixpkgs#python313 --command python3 ${../../script/get-fcitx-im-label.py}";
           interval = "once";
           signal = 4;
         }
@@ -64,5 +58,6 @@
     };
   };
 
-  home.file.".local/share/fcitx5/lua/imeapi/extensions/emit-signal-to-bar.lua".source = ../script/emit-signal-to-bar.lua;
+  # Fcitx5 side for auto-updating
+  home.file.".local/share/fcitx5/lua/imeapi/extensions/emit-signal-to-bar.lua".source = ../../script/emit-signal-to-bar.lua;
 }

@@ -14,11 +14,7 @@
 
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
-    software-config/alacritty.nix
-    software-config/firefox.nix
-    software-config/gui.nix
-    software-config/nvim.nix
-    software-config/shell.nix
+    ./software-config
     colorschemes/tokyonight.nix
   ];
 }
