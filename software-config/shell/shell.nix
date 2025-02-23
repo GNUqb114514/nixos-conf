@@ -20,6 +20,17 @@
     (nrml-plugin "Aloxaf" "fzf-tab" "6aced3f35def61c5edf9d790e945e8bb4fe7b305" "sha256-EWMeslDgs/DWVaDdI9oAS46hfZtp4LHTRY8TclKTNK8=")
   ];
 
+  programs.zsh.initExtraFirst = ''
+    ABBR_SET_EXPANSION_CURSOR=1
+    ABBR_SET_LINE_CURSOR=1
+  '';
+
+  programs.zsh.zsh-abbr.enable = true;
+  programs.zsh.zsh-abbr.abbreviations = {
+    rebuild = "nh os % .";
+    neogit = "nvim '+lua require(\"neogit\").open({kind=\"replace\"})' '+lua vim.api.nvim_buf_set_keymap(0, \"n\", \"q\", \"<cmd>q<cr>\", {})'";
+  };
+
   programs.starship.enable = true;
   programs.starship.enableZshIntegration = true;
 
