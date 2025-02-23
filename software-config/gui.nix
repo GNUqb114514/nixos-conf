@@ -13,6 +13,12 @@
           signal = 4;
         }
         {
+          block = "custom";
+          command = "sleep 1 && niri msg -j focused-window | jq 'if .==null then halt elif .app_id==\"Alacritty\" and (.title | test(\"^\\\\d+ --client-id \\\\d+ - \\\\(term://.+//\\\\d+:yazi .+ --chooser-file .+\\\\) - NVIM$\")) then \"Yazi on NVIM\" elif .app_id==\"firefox\" then \"Firefox\" else .title end' -r";
+          interval = 3;
+          hide_when_empty = true;
+        }
+        {
           alert = 10.0;
           block = "disk_space";
           info_type = "available";
