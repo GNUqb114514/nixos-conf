@@ -14,15 +14,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    founder-overlay.url = "github:brsvh/chinese-fonts-overlay/main";
-
     nur = {
       url = "github:nix-community/NUR";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    ironbar = {
-      url = "github:JakeStanger/ironbar";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -34,12 +27,6 @@
         nur.modules.nixos.default
 
         nixvim.nixosModules.nixvim
-
-        ({ pkgs, ...}: {
-          nixpkgs.overlays = [
-          inputs.founder-overlay.overlays.default
-          ];
-        })
 
         ./configuration.nix
 
