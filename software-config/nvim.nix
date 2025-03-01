@@ -101,7 +101,7 @@ in {
         pplugin = name: { inherit name; };
       in [
         (pplugin "nvim_lsp")
-        (pplugin "async-path")
+        (pplugin "path")
         (pplugin "buffer")
         (pplugin "calc")
         (pplugin "conventionalcommits")
