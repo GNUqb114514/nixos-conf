@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ lib, pkgs, ... }: {
   programs.zsh.enable = true;
 
   programs.zsh.plugins = let
@@ -15,9 +15,11 @@
       };
     };
     nrml-plugin = owner: repo: rev: sha256: gh-plugin owner repo rev sha256 repo;
+    users-plugin = name: rev: sha256: gh-plugin "zsh-users" "zsh-${name}" rev sha256 "zsh-${name}";
   in [
     (nrml-plugin "jeffreytse" "zsh-vi-mode" "cd730cd347dcc0d8ce1697f67714a90f07da26ed" "sha256-EWMeslDgs/DWVaDdI9oAS46hfZtp4LHTRY8TclKTNK8=")
     (nrml-plugin "Aloxaf" "fzf-tab" "6aced3f35def61c5edf9d790e945e8bb4fe7b305" "sha256-EWMeslDgs/DWVaDdI9oAS46hfZtp4LHTRY8TclKTNK8=")
+    (users-plugin "autosuggestions" "0e810e5afa27acbd074398eefbe28d13005dbc15" "sha256-85aw9OM2pQPsWklXjuNOzp9El1MsNb+cIiZQVHUzBnk=")
   ];
 
   programs.zsh.initExtraFirst = ''
