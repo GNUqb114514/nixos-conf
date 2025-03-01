@@ -7,6 +7,10 @@ in {
   ];
 
   programs.nixvim = {
+    extraConfigLuaPost = ''
+      require('lzn-auto-require').enable()
+    '';
+
     enable = true;
     defaultEditor = true;
     opts = {
@@ -90,6 +94,8 @@ in {
     };
     withRuby = false;
     plugins.cmp = {
+      lazyLoad.settings.event = "BufRead";
+      autoLoad = false;
       enable = true;
       settings.sources = let
         pplugin = name: { inherit name; };
@@ -132,6 +138,7 @@ in {
     plugins.lualine.enable = true;
     plugins.neogit = {
       enable = true;
+      lazyLoad.settings.cmd = "Neogit";
     };
     # Required by neogit
     plugins.diffview = {
@@ -161,12 +168,14 @@ in {
           rust
           python
       ];
+      lazyLoad.settings.event = "BufRead";
     };
     plugins.trouble = {
       enable = true;
       lazyLoad.settings.cmd = "Trouble";
     };
     plugins.lsp = {
+      lazyLoad.settings.event = "BufRead";
       enable = true;
       inlayHints = true;
       servers = {
@@ -182,10 +191,15 @@ in {
         };
       };
     };
-    plugins.lspsaga.enable = true;
+    plugins.lspsaga = {
+      enable = true;
+    };
     plugins.yazi = {
       lazyLoad.settings.cmd = "Yazi";
       enable = true;
     };
+    extraPlugins = with pkgs.vimPlugins; [
+      lzn-auto-require
+    ];
   };
 }
