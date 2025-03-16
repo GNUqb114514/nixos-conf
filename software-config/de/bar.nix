@@ -14,6 +14,7 @@
           block = "custom";
           command = "cat /sys/class/leds/input1::capslock/brightness | jq 'if .==1 then \"󰪛 \" else halt end' -r";
           interval = 0.5;
+          hide_when_empty = true;
         }
         {
           block = "custom";
