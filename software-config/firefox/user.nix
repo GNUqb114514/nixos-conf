@@ -14,7 +14,7 @@
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
         "browser.startup.page" = 3;
       };
-      userContent = builtins.readFile ../../plain/userChrome.css;
+      userContent = builtins.readFile ./userChrome.css;
       search.force = true;
       search.default = "Bing";
       search.engines = import ./search-engines.nix pkgs;

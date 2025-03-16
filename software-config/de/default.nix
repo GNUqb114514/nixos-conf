@@ -6,7 +6,7 @@
     fuzzel
   ];
 
-  home.file.".config/niri/config.kdl".source = ../../plain/niri.kdl;
+  home.file.".config/niri/config.kdl".source = ./niri.kdl;
 
   imports = [
     ./bar.nix

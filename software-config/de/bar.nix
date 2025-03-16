@@ -4,7 +4,7 @@
   ];
 
   # i3bar configuration is not provided by home manager.
-  home.file.".config/i3bar-river/config.toml".source = ../../plain/i3bar-river.toml;
+  home.file.".config/i3bar-river/config.toml".source = ./i3bar-river.toml;
 
   programs.i3status-rust.enable = true;
   programs.i3status-rust.bars = {
@@ -12,7 +12,7 @@
       blocks = [
         {
           block = "custom";
-          command = "nix shell nixpkgs#python313 --command python3 ${../../script/get-fcitx-im-label.py}";
+          command = "nix shell nixpkgs#python313 --command python3 ${./get-fcitx-im-label.py}";
           interval = "once";
           signal = 4;
         }
@@ -59,5 +59,5 @@
   };
 
   # Fcitx5 side for auto-updating
-  home.file.".local/share/fcitx5/lua/imeapi/extensions/emit-signal-to-bar.lua".source = ../../script/emit-signal-to-bar.lua;
+  home.file.".local/share/fcitx5/lua/imeapi/extensions/emit-signal-to-bar.lua".source = ./emit-signal-to-bar.lua;
 }
