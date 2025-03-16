@@ -12,6 +12,11 @@
       blocks = [
         {
           block = "custom";
+          command = "cat /sys/class/leds/input1::capslock/brightness | jq 'if .==1 then \"󰪛 \" else halt end' -r";
+          interval = 0.5;
+        }
+        {
+          block = "custom";
           command = "nix shell nixpkgs#python313 --command python3 ${./get-fcitx-im-label.py}";
           interval = "once";
           signal = 4;
