@@ -18,9 +18,11 @@
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    stylix.url = "github:danth/stylix";
   };
 
-  outputs = { self, nixpkgs, nur, nixvim, home-manager, ... }@inputs: {
+  outputs = { self, nixpkgs, nur, nixvim, home-manager, stylix, ... }@inputs: {
     nixosConfigurations.vm = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
@@ -30,16 +32,18 @@
 
         home-manager.nixosModules.home-manager
 
-	{
+        {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = { inherit inputs; };
           home-manager.users.qb114514 = import ./home.nix;
         }
 
-	./fonts.nix
-	
-	./software-config/im.nix
+        stylix.nixosModules.stylix
+
+        ./fonts.nix
+        
+        ./software-config/im.nix
 
         ./software-config/firefox/systemwide.nix
       ];

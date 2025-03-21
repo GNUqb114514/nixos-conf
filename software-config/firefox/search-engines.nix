@@ -39,7 +39,7 @@ pkgs: {
       ];
     }];
     definedAliases = [ "@mycroft" ];
-    iconURL = "https://mycroftproject.com/favicon.ico";
+    icon = "https://mycroftproject.com/favicon.ico";
   };
 
   "Bilibili" = {
@@ -52,7 +52,7 @@ pkgs: {
       ];
     }];
     definedAliases = [ "@bilibili" ];
-    iconURL = "https://i0.hdslb.com/bfs/static/jinkela/long/images/favicon.ico";
+    icon = "https://i0.hdslb.com/bfs/static/jinkela/long/images/favicon.ico";
   };
 
   "Noogle" = {

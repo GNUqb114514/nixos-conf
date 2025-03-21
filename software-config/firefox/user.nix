@@ -8,7 +8,10 @@
       id = 0;
       name = "default";
       isDefault = true;
-      bookmarks = import ./bookmarks.nix;
+      bookmarks = {
+        force = true;
+        settings = import ./bookmarks.nix;
+      };
       settings = {
         "extensions.autoDisableScopes" = 0;
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
@@ -16,7 +19,7 @@
       };
       userContent = builtins.readFile ./userChrome.css;
       search.force = true;
-      search.default = "Bing";
+      search.default = "bing";
       search.engines = import ./search-engines.nix pkgs;
     };
   };
