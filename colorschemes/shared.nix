@@ -16,4 +16,6 @@
       popups = small;
     };
   };
+
+  stylix.targets.firefox.profileNames = [ "default" ];
 }
