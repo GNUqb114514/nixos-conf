@@ -19,6 +19,7 @@
     jq
     gh
     nh
+    just
 
     # Printers
     bat
