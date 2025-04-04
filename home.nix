@@ -14,6 +14,7 @@
 
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
+    inputs.niri-flake.homeModules.niri
     ./software-config
     colorschemes/tokyonight.nix
   ];

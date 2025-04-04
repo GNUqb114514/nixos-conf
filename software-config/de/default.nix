@@ -1,14 +1,11 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
-    niri
-
     # Launcher
     fuzzel
   ];
 
-  home.file.".config/niri/config.kdl".source = ./niri.kdl;
-
   imports = [
+    ./niri.nix
     ./bar.nix
   ];
 }
