@@ -35,3 +35,4 @@ finish parent='main':
     currbr=$(git branch --show-current)
     git switch {{parent}}
     git merge $currbr
+    git branch -d $currbr
