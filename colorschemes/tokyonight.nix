@@ -44,4 +44,27 @@
       };
     };
   };
+
+  # Starship settings - stylix for starship is broken
+  stylix.targets.starship.enable = false;
+  programs.starship.settings.palette = "tokyonight";
+  programs.starship.settings.palettes.tokyonight = {
+    bright-black = "#444b6a";
+    bright-red = "#ff7a93";
+    bright-green = "#b9f27c";
+    bright-blue = "#7da6ff";
+    bright-yellow = "#ff9e64";
+    bright-purple = "#bb9af7";
+    bright-cyan = "#0db9d7";
+    bright-white = "#acb0d0";
+
+    black = "#32344a";
+    red = "#f7768e";
+    green = "#9ece6a";
+    blue = "#7aa2f7";
+    yellow = "#e0af68";
+    purple = "#ad8ee6";
+    cyan = "#449dab";
+    white = "#9699a8";
+  };
 }
