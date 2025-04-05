@@ -12,6 +12,8 @@
         (proportion (1. / 2.))
         (proportion (2. / 3.))
       ];
+
+      gaps = 8;
     };
     window-rules = [
       # Open the Firefox picture-in-picture player as floating by default.
@@ -20,6 +22,13 @@
           { app-id="firefox$"; title="^画中画$"; }
         ];
         open-floating = true;
+        default-window-height = let
+          proportion = value : { proportion = value; };
+        in proportion 0.4;
+        default-column-width = let
+          proportion = value : { proportion = value; };
+        in proportion 0.4;
+        open-focused = false;
       }
     ];
     spawn-at-startup = [
