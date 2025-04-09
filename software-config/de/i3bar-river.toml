@@ -1,0 +1,8 @@
+command = "i3status-rs config-default.toml"
+
+font = "monospace 12"
+
+# Tokyonight theme
+background = "#24283bff"
+color = "#c0caf5ff"
+separator = "#ff9e64ff"
