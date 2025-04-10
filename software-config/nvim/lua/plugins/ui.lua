@@ -20,7 +20,6 @@ return {
       }
     },
   },
-  ---@type LazySpec
   {
     "mikavilpas/yazi.nvim",
     event = "VeryLazy",
@@ -49,7 +48,6 @@ return {
         desc = "Resume the last yazi session",
       },
     },
-    ---@type YaziConfig | {}
     opts = {
       keymaps = {
         show_help = "<f1>",
@@ -130,5 +128,8 @@ return {
   },
   {
     'rcarriga/nvim-notify',
+    config = function()
+      vim.notify = require("notify")
+    end
   }
 }

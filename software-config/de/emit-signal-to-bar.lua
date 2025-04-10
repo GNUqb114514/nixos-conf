@@ -1,7 +1,7 @@
 local fcitx = require("fcitx")
 
 -- 定义输入法切换事件处理函数
-function handle_im_event(event_type)
+function handle_im_event(_)
     os.execute('pkill -SIGRTMIN+4 i3status-rs')
 end
 
