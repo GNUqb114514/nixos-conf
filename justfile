@@ -34,8 +34,8 @@ repl:
 feature name:
     git switch -c {{name}}
 
-# Finish the work in current branch and merge it to the main branch.
-finish parent='main':
+# Finish the work in current branch and merge it to the master branch.
+finish parent='master':
     #!/usr/bin/env bash
     currbr=$(git branch --show-current)
     git switch {{parent}}
