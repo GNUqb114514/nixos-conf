@@ -36,6 +36,10 @@ My personal nixos config.
   - A lot of other miscellaneous utilities
 - Miscellaneous
   - Firefox, the hardest one.
-  > [!NOTE]
-  > I'm planning to change to zen browser these days.
 
+## Todo
+
+- [ ] Document everything
+- [ ] Find a better browser (or write one)
+- [ ] Make this config more practical
+- [ ] Try more new things
