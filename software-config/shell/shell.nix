@@ -27,18 +27,21 @@
     ABBR_SET_LINE_CURSOR=1
   '';
 
-  programs.zsh.zsh-abbr.enable = true;
-  programs.zsh.zsh-abbr.abbreviations = {
-    rebuild = "nh os % .";
+  # programs.zsh.zsh-abbr.enable = true;
+  # programs.zsh.zsh-abbr.abbreviations = {
+    # rebuild = "nh os % .";
+    # neogit = "nvim '+lua require(\"neogit\").open({kind=\"replace\"})' '+lua vim.api.nvim_buf_set_keymap(0, \"n\", \"q\", \"<cmd>q<cr>\", {})'";
+  # };
+  programs.zsh.shellAliases = {
     neogit = "nvim '+lua require(\"neogit\").open({kind=\"replace\"})' '+lua vim.api.nvim_buf_set_keymap(0, \"n\", \"q\", \"<cmd>q<cr>\", {})'";
   };
   programs.zsh.autosuggestion.enable = true;
 
   # programs.zsh.autosuggestion.strategy = lib.mkBefore [ "abbreviations" ];
-  programs.zsh.autosuggestion.strategy = lib.mkForce [];
-  programs.zsh.localVariables = {
-    ZSH_AUTOSUGGEST_STRATEGY = [ "abbreviations" "match_prev_cmd" "history" "completion" ];
-  };
+  # programs.zsh.autosuggestion.strategy = lib.mkForce [];
+  # programs.zsh.localVariables = {
+  #   ZSH_AUTOSUGGEST_STRATEGY = [ "abbreviations" "match_prev_cmd" "history" "completion" ];
+  # };
 
   programs.starship.enable = true;
   programs.starship.enableZshIntegration = true;
