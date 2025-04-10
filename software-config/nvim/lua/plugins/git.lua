@@ -9,5 +9,15 @@ return {
       "nvim-telescope/telescope.nvim", -- optional
     },
     cmd = { "Neogit" },
-  }
+  },
+  {
+    "sindrets/diffview.nvim",
+    opts = {
+      keymaps = {
+        file_panel = {
+          { "n", "q", "<cmd>tabclose<CR>", { desc = "Close diffview" } },
+        },
+      },
+    },
+  },
 }
