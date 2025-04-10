@@ -4,18 +4,43 @@ function detect_executable(name)
   end
 end
 
+function hint_in_ft(ft)
+  return function()
+    local augroup = vim.api.nvim_create_augroup("lsp.hint.unavailable", {
+      clear = false,
+    })
+    vim.api.nvim_create_autocmd('BufEnter', {
+      once = true,
+      callback = function()
+        if vim.bo.filetype == ft then
+          require('notify').notify(
+            "This file has corresponding LSP,\n" ..
+            "but the LSP is not available in PATH,\n" ..
+            "And this is probably not intended.\n" ..
+            "You may try to use nix shell to temporarily enable it,\n" ..
+            "or use nix develop if available.",
+            vim.log.levels.ERROR)
+        end
+      end,
+    })
+  end
+end
+
 return {
   {
     "neovim/nvim-lspconfig",
     opts = {
       rust_analyzer = {
         enable = detect_executable('rust-analyzer'),
+        on_disabled = hint_in_ft("rust"),
       },
       tinymist = {
         enable = detect_executable('tinymist'),
+        on_disabled = hint_in_ft("typst"),
       },
       nixd = {
         enable = detect_executable('nixd'),
+        on_disabled = hint_in_ft("nix"),
       },
     },
     config = function (plugin, opts)
@@ -23,6 +48,8 @@ return {
       for server_name, config in pairs(opts) do
         if config.enable == nil or config.enable() then
           lspconfig[server_name].setup(config.settings or {})
+        elseif config.on_disabled ~= nil then
+          config.on_disabled()
         end
       end
     end

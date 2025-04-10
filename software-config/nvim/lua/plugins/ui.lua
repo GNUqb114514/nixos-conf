@@ -128,4 +128,7 @@ return {
     },
     opts = {},
   },
+  {
+    'rcarriga/nvim-notify',
+  }
 }
