@@ -7,6 +7,12 @@ return {
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
     opts = {
+      heading = {
+        icons = {},
+      },
+      bullet = {
+        icons = { '•', '∘', '⬥', '⬦' },
+      },
       completions = { blink = { enabled = true } },
     },
   }

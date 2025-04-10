@@ -62,7 +62,11 @@ return {
   },
   {
     'akinsho/bufferline.nvim',
-    opts = {},
+    opts = {
+      options = {
+        modified_icon = "•",
+      }
+    },
   },
   {   -- Show lines for indents.
     'lukas-reineke/indent-blankline.nvim',
