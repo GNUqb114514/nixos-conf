@@ -2,7 +2,7 @@
   imports = [
     ./firefox/user.nix
     ./de
-    ./nvim.nix
+    ./nvim
     ./shell
   ];
 }
