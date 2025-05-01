@@ -15,5 +15,5 @@ return {
       },
       completions = { blink = { enabled = true } },
     },
-  }
+  },
 }
