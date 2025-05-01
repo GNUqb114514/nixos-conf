@@ -7,5 +7,6 @@
   imports = [
     ./niri.nix
     ./bar.nix
+    ./eww.nix
   ];
 }

@@ -1,0 +1,40 @@
+(defwidget separator []
+  (label :class "separator"
+         :text "|"
+         :halign "center"))
+
+(defwindow topbar
+  :monitor 0
+  :stacking "fg"
+  :windowtype "normal"
+  :wm-ignore true
+  :exclusive true
+  :geometry (geometry
+              :anchor "top center"
+              :width "100%"
+              :height "3%")
+  (topbar_layout))
+
+(defwidget topbar_layout []
+  (box :orientation "horizon"
+       :space-evenly false
+       :halign "end"
+       :hexpand false
+       :spacing 10
+    (im_layout)
+    (separator)
+    (window_layout)))
+
+(defwidget im_layout []
+  (label :halign "end" :text "${im}" :hexpand false))
+
+(defpoll im :interval "0.1s"
+            :initial "..."
+  `nix shell nixpkgs#python313 --command python3 /nix/store/91dlf5fq3a5b99vdk46qhcf9871lmp82-get-fcitx-im-label.py`)
+
+(defwidget window_layout []
+  (label :halign "end" :text "${window}" :hexpand false))
+
+(defpoll window :interval "0.1s"
+            :initial "..."
+  `niri msg -j focused-window | jq 'if .==null then halt elif .app_id==\"Alacritty\" and (.title | test(\"^\\\\d+ --client-id \\\\d+ - \\\\(term://.+//\\\\d+:yazi .+ --chooser-file .+\\\\) - Nvim$\")) then \"Yazi on NVIM\" elif .app_id==\"firefox\" then \"Firefox\" else .title end' -r`)
