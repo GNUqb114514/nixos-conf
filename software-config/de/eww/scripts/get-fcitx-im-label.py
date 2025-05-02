@@ -1,3 +1,6 @@
+#! /usr/bin/env cached-nix-shell
+#! nix-shell -i python3 -p python3
+
 import os
 import re
 
@@ -35,4 +38,7 @@ def get_label(im_name):
 
 with os.popen('fcitx5-remote -n') as f:
     name = f.read().strip()
+    if not name:
+        print("Unable to get fcitx5 status")
+        exit()
     print(get_label(name))

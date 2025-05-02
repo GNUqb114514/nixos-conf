@@ -1,3 +1,6 @@
+(include "./widgets/volume.yuck")
+(include "./widgets/machine.yuck")
+
 (defwidget separator []
   (label :class "separator"
          :text "|"
@@ -11,30 +14,45 @@
   :exclusive true
   :geometry (geometry
               :anchor "top center"
-              :width "100%"
+              :width "95%"
               :height "3%")
   (topbar_layout))
 
 (defwidget topbar_layout []
-  (box :orientation "horizon"
-       :space-evenly false
-       :halign "end"
-       :hexpand false
-       :spacing 10
-    (im_layout)
-    (separator)
-    (window_layout)))
+  (centerbox :class "root"
+    (box :orientation "horizon"
+         :space-evenly false
+         :halign "begin"
+         :hexpand false
+         :spacing 10
+      (time_layout))
+    (title_layout)
+    (box :orientation "horizon"
+         :space-evenly false
+         :halign "end"
+         :hexpand false
+         :spacing 10
+      (im_layout)
+      (separator)
+      (volume_layout)
+      (separator)
+      (mem_layout)
+      (cpu_layout))))
 
 (defwidget im_layout []
-  (label :halign "end" :text "${im}" :hexpand false))
+  (label :text "${im}"))
 
-(defpoll im :interval "0.1s"
-            :initial "..."
-  `nix shell nixpkgs#python313 --command python3 /nix/store/91dlf5fq3a5b99vdk46qhcf9871lmp82-get-fcitx-im-label.py`)
+(defpoll im :interval "10000000000000000000000000s"  ; Never poll this by interval
+  `./scripts/get-fcitx-im-label.py`)
 
-(defwidget window_layout []
-  (label :halign "end" :text "${window}" :hexpand false))
+(defwidget title_layout []
+  (label :text "${title}"))
 
-(defpoll window :interval "0.1s"
-            :initial "..."
-  `niri msg -j focused-window | jq 'if .==null then halt elif .app_id==\"Alacritty\" and (.title | test(\"^\\\\d+ --client-id \\\\d+ - \\\\(term://.+//\\\\d+:yazi .+ --chooser-file .+\\\\) - Nvim$\")) then \"Yazi on NVIM\" elif .app_id==\"firefox\" then \"Firefox\" else .title end' -r`)
+(defpoll title :interval "0.1s"
+  `niri msg -j focused-window | jq '.title' -r`)
+
+(defwidget time_layout []
+  (label :text "${time.hour}:${time.min}"))
+
+(defpoll time :interval "5s"
+  `date +'{"hour":"%H","min":"%M"}'`)

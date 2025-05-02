@@ -1,0 +1,16 @@
+(defwidget mem_layout []
+  (circular-progress :style "color: #ff9e64"
+                     :value {EWW_RAM.used_mem_perc}
+                     :start-at 75
+                     :thickness 1.5
+                     :tooltip "Memory: ${EWW_RAM.used_mem/1024/1024}/${EWW_RAM.total_mem/1024/1024} MB"
+    (label :text "•" :hexpand false :width 13)))
+
+(defwidget cpu_layout []
+  (circular-progress :style "color: #9ece6a"
+                     :value {EWW_CPU.avg}
+                     :start-at 75
+                     :thickness 1.5
+                     :valign "center"
+                     :tooltip "CPU usage: ${EWW_CPU.avg}%"
+    (label :text "•" :hexpand false :width 13)))
