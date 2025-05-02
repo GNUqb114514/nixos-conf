@@ -20,6 +20,7 @@
     gh
     nh
     just
+    cached-nix-shell
 
     # Printers
     bat
