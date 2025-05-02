@@ -22,7 +22,7 @@
     # (nrml-plugin "olets" "zsh-autosuggestions-abbreviations-strategy" "8edbd1d52445d87172d355f8242082b1ec6c34e7" "sha256-hYl9zplPpMoCsGmxX+NQtECZ5dHgQYqZfTGdV0vcZPk=")
   ];
 
-  programs.zsh.initExtraFirst = ''
+  programs.zsh.initContent = lib.mkBefore ''
     ABBR_SET_EXPANSION_CURSOR=1
     ABBR_SET_LINE_CURSOR=1
   '';

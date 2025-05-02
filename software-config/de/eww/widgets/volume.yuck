@@ -1,0 +1,36 @@
+(defvar show_volume_bar false)
+
+(defwidget volume_layout []
+  (eventbox :onhover "eww update show_volume_bar=true"
+            :onhoverlost "eww update show_volume_bar=false"
+    (box :space-evenly false
+      (revealer :reveal {show_volume_bar}
+                :transition "slideleft"
+        (box :orientation "horizon"
+             :space-evenly false
+             :halign "center"
+             :valign "center"
+             :spacing 10
+          (scale :value {volume}
+                 :tooltip "${volume}%"
+                 :min 0
+                 :max 100
+                 :width 250
+                 :css "trough highlight {background-color: ${mute == "[MUTED]" ? "#a9b1d6" : "#7dcfff"};}"
+                 :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}% && eww poll volume")
+          (label :text "${volume}%" :hexpand false)
+          (box))) ; Placeholder
+      (eventbox :onclick "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && eww poll volume"
+        (circular-progress :style "color: ${mute == "[MUTED]" ? "#a9b1d6" : "#7dcfff"};"
+                           :value {volume}
+                           :start-at 75
+                           :thickness 1.5
+                           :tooltip "Volume: ${volume}%"
+          (label :text {mute == "[MUTED]" ? "󰸈" : "󰖀"} :hexpand false))))))
+
+(defpoll volume :interval "0.1s"
+  `wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2*100}'`)
+
+(defpoll mute :interval "0.1s"
+  `wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $3}'`)
+

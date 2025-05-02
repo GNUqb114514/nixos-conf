@@ -9,13 +9,40 @@ local function hint_in_ft(ft)
     local augroup = vim.api.nvim_create_augroup("lsp.hint.unavailable", {
       clear = false,
     })
-    vim.api.nvim_create_autocmd('BufEnter', {
+    vim.api.nvim_create_autocmd('FileType', {
       group = augroup,
       once = true,
+      pattern = ft,
       callback = function()
         if vim.bo.filetype == ft then
           require('notify').notify(
             "This file has corresponding LSP,\n" ..
+            "but the LSP is not available in PATH,\n" ..
+            "And this is probably not intended.\n" ..
+            "You may try to use nix shell to temporarily enable it,\n" ..
+            "or use nix develop if available.",
+            vim.log.levels.ERROR, {
+              title = "LSP Unavailable",
+            })
+        end
+      end,
+    })
+  end
+end
+
+local function hint_in_ft_with_name(ft, name)
+  return function()
+    local augroup = vim.api.nvim_create_augroup("lsp.hint.unavailable", {
+      clear = false,
+    })
+    vim.api.nvim_create_autocmd('FileType', {
+      group = augroup,
+      once = true,
+      pattern = ft,
+      callback = function()
+        if vim.bo.filetype == ft then
+          require('notify').notify(
+            "This file has corresponding LSP called " .. name .. ",\n" ..
             "but the LSP is not available in PATH,\n" ..
             "And this is probably not intended.\n" ..
             "You may try to use nix shell to temporarily enable it,\n" ..
@@ -48,6 +75,10 @@ return {
       lua_ls = {
         enable = detect_executable('lua-language-server'),
         on_disabled = hint_in_ft("lua"),
+      },
+      marksman = {
+        enable = detect_executable('marksman'),
+        on_disabled = hint_in_ft_with_name("markdown", 'marksman'),
       },
     },
     config = function (_, opts)

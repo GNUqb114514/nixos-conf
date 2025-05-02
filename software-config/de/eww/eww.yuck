@@ -1,0 +1,58 @@
+(include "./widgets/volume.yuck")
+(include "./widgets/machine.yuck")
+
+(defwidget separator []
+  (label :class "separator"
+         :text "|"
+         :halign "center"))
+
+(defwindow topbar
+  :monitor 0
+  :stacking "fg"
+  :windowtype "normal"
+  :wm-ignore true
+  :exclusive true
+  :geometry (geometry
+              :anchor "top center"
+              :width "95%"
+              :height "3%")
+  (topbar_layout))
+
+(defwidget topbar_layout []
+  (centerbox :class "root"
+    (box :orientation "horizon"
+         :space-evenly false
+         :halign "begin"
+         :hexpand false
+         :spacing 10
+      (time_layout))
+    (title_layout)
+    (box :orientation "horizon"
+         :space-evenly false
+         :halign "end"
+         :hexpand false
+         :spacing 10
+      (im_layout)
+      (separator)
+      (volume_layout)
+      (separator)
+      (mem_layout)
+      (cpu_layout))))
+
+(defwidget im_layout []
+  (label :text "${im}"))
+
+(defpoll im :interval "10000000000000000000000000s"  ; Never poll this by interval
+  `./scripts/get-fcitx-im-label.py`)
+
+(defwidget title_layout []
+  (label :text "${title}"))
+
+(defpoll title :interval "0.1s"
+  `niri msg -j focused-window | jq '.title' -r`)
+
+(defwidget time_layout []
+  (label :text "${time.hour}:${time.min}"))
+
+(defpoll time :interval "5s"
+  `date +'{"hour":"%H","min":"%M"}'`)
