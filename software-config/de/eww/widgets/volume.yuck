@@ -16,12 +16,12 @@
                  :min 0
                  :max 100
                  :width 250
-                 :css "trough highlight {background-color: ${mute == "[MUTED]" ? "#a9b1d6" : "#7dcfff"};}"
+                 :class "${mute == "[MUTED]" ? "mute" : ""} volume_bar"
                  :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}% && eww poll volume")
           (label :text "${volume}%" :hexpand false)
-          (box))) ; Placeholder
+          (box)))
       (eventbox :onclick "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && eww poll volume"
-        (circular-progress :style "color: ${mute == "[MUTED]" ? "#a9b1d6" : "#7dcfff"};"
+        (circular-progress :class "${mute == "[MUTED]" ? "mute" : ""} volume"
                            :value {volume}
                            :start-at 75
                            :thickness 1.5

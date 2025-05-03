@@ -1,5 +1,5 @@
 (defwidget mem_layout []
-  (circular-progress :style "color: #ff9e64"
+  (circular-progress :class "mem_layout"
                      :value {EWW_RAM.used_mem_perc}
                      :start-at 75
                      :thickness 1.5
@@ -7,7 +7,7 @@
     (label :text "•" :hexpand false :width 13)))
 
 (defwidget cpu_layout []
-  (circular-progress :style "color: #9ece6a"
+  (circular-progress :class "cpu_layout"
                      :value {EWW_CPU.avg}
                      :start-at 75
                      :thickness 1.5

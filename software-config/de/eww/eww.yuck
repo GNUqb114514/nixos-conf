@@ -1,5 +1,6 @@
 (include "./widgets/volume.yuck")
 (include "./widgets/machine.yuck")
+(include "./widgets/workspace.yuck")
 
 (defwidget separator []
   (label :class "separator"
@@ -16,7 +17,9 @@
               :anchor "top center"
               :width "95%"
               :height "3%")
-  (topbar_layout))
+  (box :orientation "vertical"
+       :spacing 3
+    (topbar_layout)))
 
 (defwidget topbar_layout []
   (centerbox :class "root"
@@ -25,6 +28,8 @@
          :halign "begin"
          :hexpand false
          :spacing 10
+      (workspaces_layout)
+      (separator)
       (time_layout))
     (title_layout)
     (box :orientation "horizon"
@@ -49,7 +54,7 @@
   (label :text "${title}"))
 
 (defpoll title :interval "0.1s"
-  `niri msg -j focused-window | jq '.title' -r`)
+  `niri msg -j focused-window | jq 'if .title == null then "Nothing" else .title end' -r`)
 
 (defwidget time_layout []
   (label :text "${time.hour}:${time.min}"))
