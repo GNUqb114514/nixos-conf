@@ -4,6 +4,9 @@ in {
   home.packages = with pkgs; [
     # Clipboard provider
     wl-clipboard
+
+    # Treesitter
+    tree-sitter
   ];
 
   xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "/home/qb114514/nixos-conf/software-config/nvim/";
