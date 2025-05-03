@@ -56,6 +56,30 @@ local function hint_in_ft_with_name(ft, name)
   end
 end
 
+local function hint_in_file_with_name(file, name)
+  return function()
+    local augroup = vim.api.nvim_create_augroup("lsp.hint.unavailable", {
+      clear = false,
+    })
+    vim.api.nvim_create_autocmd('BufEnter', {
+      group = augroup,
+      once = true,
+      pattern = file,
+      callback = function()
+        require('notify').notify(
+          "This file has corresponding LSP called " .. name .. ",\n" ..
+          "but the LSP is not available in PATH,\n" ..
+          "And this is probably not intended.\n" ..
+          "You may try to use nix shell to temporarily enable it,\n" ..
+          "or use nix develop if available.",
+          vim.log.levels.ERROR, {
+            title = "LSP Unavailable",
+          })
+      end,
+    })
+  end
+end
+
 return {
   {
     "neovim/nvim-lspconfig",
@@ -76,9 +100,20 @@ return {
         enable = detect_executable('lua-language-server'),
         on_disabled = hint_in_ft("lua"),
       },
-      marksman = {
-        enable = detect_executable('marksman'),
-        on_disabled = hint_in_ft_with_name("markdown", 'marksman'),
+      markdown_oxide = {
+        enable = detect_executable('markdown-oxide'),
+        on_disabled = hint_in_file_with_name("*/Obsidian/*.md", 'markdown-oxide'),
+        settings = {
+          -- Ensure that dynamicRegistration is enabled! This allows the LS to take into account actions like the
+          -- Create Unresolved File code action, resolving completions for unindexed code blocks, ...
+          capabilities = {
+            workspace = {
+              didChangeWatchedFiles = {
+                dynamicRegistration = true,
+              },
+            },
+          }
+        }
       },
     },
     config = function (_, opts)
