@@ -1,6 +1,7 @@
 (include "./widgets/volume.yuck")
 (include "./widgets/machine.yuck")
 (include "./widgets/workspace.yuck")
+(include "./widgets/time.yuck")
 
 (defwidget separator []
   (label :class "separator"
@@ -10,16 +11,13 @@
 (defwindow topbar
   :monitor 0
   :stacking "fg"
-  :windowtype "normal"
   :wm-ignore true
   :exclusive true
   :geometry (geometry
               :anchor "top center"
               :width "95%"
               :height "3%")
-  (box :orientation "vertical"
-       :spacing 3
-    (topbar_layout)))
+  (topbar_layout))
 
 (defwidget topbar_layout []
   (centerbox :class "root"
@@ -41,11 +39,12 @@
       (separator)
       (volume_layout)
       (separator)
-      (mem_layout)
-      (cpu_layout))))
+      (cpu_layout)
+      (mem_layout))))
 
 (defwidget im_layout []
-  (label :text "${im}"))
+  (eventbox :onclick "fcitx5-remote -t"
+    (label :text "${im}")))
 
 (defpoll im :interval "10000000000000000000000000s"  ; Never poll this by interval
   `./scripts/get-fcitx-im-label.py`)
@@ -55,9 +54,3 @@
 
 (defpoll title :interval "0.1s"
   `niri msg -j focused-window | jq 'if .title == null then "Nothing" else .title end' -r`)
-
-(defwidget time_layout []
-  (label :text "${time.hour}:${time.min}"))
-
-(defpoll time :interval "5s"
-  `date +'{"hour":"%H","min":"%M"}'`)

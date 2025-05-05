@@ -3,7 +3,6 @@
                      :value {EWW_RAM.used_mem_perc}
                      :start-at 75
                      :thickness 1.5
-                     :tooltip "Memory: ${EWW_RAM.used_mem/1024/1024}/${EWW_RAM.total_mem/1024/1024} MB"
     (label :text "•" :hexpand false :width 13)))
 
 (defwidget cpu_layout []
