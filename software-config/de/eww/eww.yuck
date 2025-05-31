@@ -35,6 +35,8 @@
          :halign "end"
          :hexpand false
          :spacing 10
+      ; (systray)
+      ; (separator)
       (im_layout)
       (separator)
       (volume_layout)

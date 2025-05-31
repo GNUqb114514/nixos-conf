@@ -32,9 +32,11 @@
   };
 
   # Neovim settings - Use out-of-box config
-  programs.nixvim = {
-    colorschemes.tokyonight.enable = true;
-    colorscheme = "tokyonight-storm";
+  programs.nvf.lazy.plugins.tokyonight = {
+    package = pkgs.vimPlugins.tokyonight-nvim;
+    after = ''
+      vim.cmd'colorscheme tokyonight-storm'
+    '';
   };
 
   # Fuzzy finder settings - translated by origin

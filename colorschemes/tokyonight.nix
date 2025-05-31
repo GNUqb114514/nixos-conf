@@ -8,11 +8,7 @@
 
   # Neovim settings - Use out-of-box config
   stylix.targets.neovim.enable = false;
-  stylix.targets.nixvim.enable = false;
-  programs.nixvim = {
-    colorschemes.tokyonight.enable = true;
-    colorscheme = "tokyonight-storm";
-  };
+  # stylix.targets.nvf.enable = false;
 
   # Alacritty settings - stylix for alacritty is broken
   stylix.targets.alacritty.enable = false;

@@ -13,9 +13,9 @@
   programs.home-manager.enable = true;
 
   imports = [
-    inputs.nixvim.homeManagerModules.nixvim
     inputs.niri-flake.homeModules.stylix
     inputs.niri-flake.homeModules.niri
+    inputs.nvf.homeManagerModules.default
     ./software-config
     colorschemes/tokyonight.nix
   ];

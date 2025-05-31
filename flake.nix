@@ -14,20 +14,23 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     stylix.url = "github:danth/stylix";
+
+    nvf = {
+      url = "github:notashelf/nvf";
+      # You can override the input nixpkgs to follow your system's
+      # instance of nixpkgs. This is safe to do as nvf does not depend
+      # on a binary cache.
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nur, nixvim, home-manager, stylix, niri-flake, ... }@inputs: {
+  outputs = { self, nixpkgs, nur, nvf, home-manager, stylix, niri-flake, ... }@inputs: {
     nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
@@ -58,7 +61,7 @@
     devShells."x86_64-linux".default = let
       pkgs = import nixpkgs { system = "x86_64-linux"; };
     in pkgs.mkShell {
-      packages = with pkgs; [ nixd ];
+      packages = with pkgs; [ nil ];
       shellHook = ''
         exec zsh
       '';
