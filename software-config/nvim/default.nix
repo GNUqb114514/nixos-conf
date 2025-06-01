@@ -86,6 +86,19 @@
         package = pkgs.vimPlugins.diffview-nvim;
         setupOpts.keymaps.file_panel = [["n" "q" "<cmd>tabclose<CR>"]];
       };
+      "vimplugin-nerdicons.nvim" = {
+        package = pkgs.vimUtils.buildVimPlugin rec {
+          name = "nerdicons.nvim";
+          src = pkgs.fetchFromGitHub {
+            owner = "nvimdev";
+            repo = "${name}";
+            rev = "2d257ff9b00b7d1510704e0a565a6a7ede76b79a";
+            hash = "sha256-cAaIcF7Z4NmSugaIzSTKzmjEI7YXZoAY8rxi5D3zua0=";
+          };
+        };
+        setupModule = "nerdicons";
+        cmd = ["NerdIcons"];
+      };
     };
 
     mini.ai.enable = true;
@@ -109,7 +122,6 @@
       enableFormat = true;
       enableTreesitter = true;
 
-      rust.enable = true;
       typst.enable = true;
       nix.enable = true;
       nix.lsp.server = "nixd";
