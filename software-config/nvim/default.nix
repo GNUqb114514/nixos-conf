@@ -53,6 +53,20 @@
     notify.nvim-notify.enable = true;
     autopairs.nvim-autopairs.enable = true;
 
+    extraPlugins = {
+      "vimplugin-vim-barbaric" = {
+        package = pkgs.vimUtils.buildVimPlugin rec {
+          name = "vim-barbaric";
+          src = pkgs.fetchFromGitHub {
+            owner = "rlue";
+            repo = "${name}";
+            rev = "7a7084f0a7352528b5785eb411b0cf68bbb07f8d";
+            hash = "sha256-9wFyqL0gekG7IBKAQdWv7JjfUQsoJA60wzAqRWnQuN8=";
+          };
+        };
+      };
+    };
+
     lazy.plugins = {
       "nvim-window-picker" = rec {
         package = pkgs.vimPlugins.nvim-window-picker;
@@ -65,17 +79,6 @@
         '';
         setupOpts = {
           filter_rules.bo.filetype = "fidget";
-        };
-      };
-      "vimplugin-vim-barbaric" = {
-        package = pkgs.vimUtils.buildVimPlugin rec {
-          name = "vim-barbaric";
-          src = pkgs.fetchFromGitHub {
-            owner = "rlue";
-            repo = "${name}";
-            rev = "7a7084f0a7352528b5785eb411b0cf68bbb07f8d";
-            hash = "sha256-9wFyqL0gekG7IBKAQdWv7JjfUQsoJA60wzAqRWnQuN8=";
-          };
         };
       };
       "neogit" = {
@@ -128,6 +131,7 @@
       lua.enable = true;
       lua.lsp.lazydev.enable = true;
       markdown.enable = true;
+      markdown.format.enable = false;
       markdown.lsp.package = ["${pkgs.markdown-oxide}/bin/markdown-oxide"];
     };
 
