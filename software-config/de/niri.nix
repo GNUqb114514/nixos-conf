@@ -38,7 +38,7 @@
     binds = with config.lib.niri.actions; {
       "Mod+Shift+Slash".action = show-hotkey-overlay;
 
-      "Mod+T".action = spawn "alacritty";
+      "Mod+T".action = spawn "kitty";
       "Mod+D".action = spawn "fuzzel";
       "Super+Alt+L".action = spawn "swaylock";
 
