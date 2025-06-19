@@ -65,6 +65,9 @@
           };
         };
       };
+      "vim-repeat" = {
+        package = pkgs.vimPlugins.vim-repeat;
+      };
     };
 
     lazy.plugins = {
@@ -101,6 +104,40 @@
         };
         setupModule = "nerdicons";
         cmd = ["NerdIcons"];
+      };
+      "leap.nvim" = {
+        package = pkgs.vimPlugins.leap-nvim;
+        after = ''
+          local map = vim.keymap
+          map.set('n', '<Leader>le', '<Plug>(leap)');
+          map.set('n', '<Leader>Le', '<Plug>(leap-anywhere)');
+        '';
+      };
+      "vimplugin-leap-zh.nvim" = {
+        package = pkgs.vimUtils.buildVimPlugin rec {
+          name = "leap-zh.nvim";
+          src = pkgs.fetchFromGitHub {
+            owner = "noearc";
+            repo = "${name}";
+            rev = "1fdb57d18c9a3dabc4dfbd69cd80ff8dff0529ea";
+            hash = "sha256-xmUTZHe6Swhrb0n5/r/f6Dfhec1tWvjNyu5zeRw0RnA=";
+          };
+          dependencies = [
+            (pkgs.vimUtils.buildVimPlugin rec {
+              name = "jieba-lua";
+              src = pkgs.fetchFromGitHub {
+                owner = "noearc";
+                repo = "${name}";
+                rev = "20e0b9e0eeb2ce92819e1335f6e2357d87ee78ca";
+                hash = "sha256-p6Y8UZAodS9eiaCoPDUq1pzxkHpcjuWy1orwL9WbwoU=";
+              };
+            })
+          ];
+        };
+        after = ''
+          local map = vim.keymap
+          map.set('n', '<Leader>lc', require('leap-zh').leap_zh_all());
+        '';
       };
     };
 
