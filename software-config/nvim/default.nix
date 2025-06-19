@@ -74,14 +74,21 @@
       "nvim-window-picker" = rec {
         package = pkgs.vimPlugins.nvim-window-picker;
         setupModule = "window-picker";
-        beforeAll = ''
-          vim.keymap.set('n','<leader>pw', function ()
-            local window_number = require('${setupModule}').pick_window()
-            if window_number then vim.api.nvim_set_current_win(window_number) end
-          end)
-        '';
+        keys = [
+          {
+            mode = "n";
+            key = "<leader>pw";
+            action = ''
+              function ()
+                local window_id = require('${setupModule}').pick_window()
+                if window_id then vim.api.nvim_set_current_win(window_id) end
+              end
+            '';
+            lua = true;
+          }
+        ];
         setupOpts = {
-          filter_rules.bo.filetype = "fidget";
+          filter_rules.bo.filetype = [ "fidget" ];
         };
       };
       "neogit" = {
@@ -105,43 +112,34 @@
         setupModule = "nerdicons";
         cmd = ["NerdIcons"];
       };
-      "leap.nvim" = {
-        package = pkgs.vimPlugins.leap-nvim;
-        after = ''
-          local map = vim.keymap
-          map.set('n', '<Leader>le', '<Plug>(leap)');
-          map.set('n', '<Leader>Le', '<Plug>(leap-anywhere)');
-        '';
-      };
-      "vimplugin-leap-zh.nvim" = {
-        package = pkgs.vimUtils.buildVimPlugin rec {
-          name = "leap-zh.nvim";
-          src = pkgs.fetchFromGitHub {
-            owner = "noearc";
-            repo = "${name}";
-            rev = "1fdb57d18c9a3dabc4dfbd69cd80ff8dff0529ea";
-            hash = "sha256-xmUTZHe6Swhrb0n5/r/f6Dfhec1tWvjNyu5zeRw0RnA=";
-          };
-          dependencies = [
-            (pkgs.vimUtils.buildVimPlugin rec {
-              name = "jieba-lua";
-              src = pkgs.fetchFromGitHub {
-                owner = "noearc";
-                repo = "${name}";
-                rev = "20e0b9e0eeb2ce92819e1335f6e2357d87ee78ca";
-                hash = "sha256-p6Y8UZAodS9eiaCoPDUq1pzxkHpcjuWy1orwL9WbwoU=";
-              };
-            })
-          ];
-        };
-        after = ''
-          local map = vim.keymap
-          map.set('n', '<Leader>lc', require('leap-zh').leap_zh_all());
-        '';
-      };
+      # "vimplugin-flash-zh.nvim" = {
+      #   package = pkgs.vimUtils.buildVimPlugin rec {
+      #     name = "flash-zh.nvim";
+      #     src = pkgs.fetchFromGitHub {
+      #       owner = "rainzm";
+      #       repo = name;
+      #       rev = "3a1ac81b5de47c568b640e5a096cf63b00847496";
+      #       hash = "sha256-R8PdEAhi1q1ieYV+q7TLcEPkA4TlTaiuxhHp1dF5qHI=";
+      #     };
+      #     nvimSkipModules = [ "flash-zh" ];
+      #   };
+      #   keys = [
+      #     {
+      #       mode = [ "n" ];
+      #       key = "<leader>sc";
+      #       action = "function() require('flash-zh').jump({ chinese_only = false }) end";
+      #     }
+      #   ];
+      # };
     };
 
     mini.ai.enable = true;
+
+    utility.motion.flash-nvim.enable = true;
+    utility.motion.flash-nvim.mappings = {
+      jump = "<leader>se";
+      treesitter = "<leader>Se";
+    };
 
     utility.surround.enable = true;
     utility.surround.setupOpts.keymaps = {
@@ -155,6 +153,7 @@
     };
 
     lsp.enable = true;
+    lsp.mappings.openDiagnosticFloat = null;
 
     languages = {
       enableDAP = true;
