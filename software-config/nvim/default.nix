@@ -6,6 +6,7 @@
   home.packages = with pkgs; [
     # Clipboard provider
     wl-clipboard
+    inotify-tools
   ];
 
   # xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "/home/qb114514/nixos-conf/software-config/nvim/";
