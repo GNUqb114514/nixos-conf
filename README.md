@@ -1,15 +1,18 @@
 # nixos-conf
+
 My personal nixos config.
 
 > [!WARNING]
 > This configuration is very ugly and unpractical, so do not copy it directly.
 
 ## Overview
+
 - High-level
   - Unstable nixpkgs & NUR & home-manager
-  - [stylix](https://github.com/danth/stylix) to manager color scheme with [tokyonight](https://github.com/folke/tokyonight.nvim) 
+  - [stylix](https://github.com/danth/stylix) to manager color scheme with
+    [tokyonight](https://github.com/folke/tokyonight.nvim)
   - A devshell
-  - Impermanence config without [impermanence](https://github.com/nix-community/impermanence) 
+  - Impermanence config without [impermanence](https://github.com/nix-community/impermanence)
     > [!NOTE]
     > It will be with it.
   - A lot of substituters for nixpkgs
@@ -19,12 +22,10 @@ My personal nixos config.
     > [!NOTE]
     > I need to change default system.
 - DE
-  - [Niri](https://github.com/YaLTeR/niri) configured by [niri-flake](https://github.com/sodiboo/niri-flake) 
+  - [Niri](https://github.com/YaLTeR/niri) configured by [niri-flake](https://github.com/sodiboo/niri-flake)
   - i3status-rust and i3bar-river
   - [Fcitx 5](https://github.com/fcitx/fcitx5)
 - [Neovim](https://github.com/neovim/neovim) configured in plain lua
-> [!NOTE]
-> You may see `nixvim` in my config -- It is just leaved here, and is not used at all.
 - Shell: Zsh
   > [!NOTE]
   > I've tried fish but it is missing fzf-tab.
