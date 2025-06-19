@@ -47,8 +47,6 @@
           home-manager.users.qb114514 = import ./home.nix;
         }
 
-        stylix.nixosModules.stylix
-
         ./fonts.nix
         
         ./software-config/im.nix
