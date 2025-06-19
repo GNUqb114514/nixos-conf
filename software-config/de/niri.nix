@@ -40,7 +40,7 @@
 
       "Mod+T".action = spawn "kitty";
       "Mod+D".action = spawn "fuzzel";
-      "Super+Alt+L".action = spawn "swaylock";
+      "Mod+Alt+L".action = spawn "swaylock";
 
       "XF86AudioRaiseVolume" = { action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; allow-when-locked=true; };
       "XF86AudioLowerVolume" = { action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; allow-when-locked=true; };
@@ -128,6 +128,7 @@
 
       "Mod+F".action = maximize-column;
       "Mod+Shift+F".action = fullscreen-window;
+      "Mod+R".action = switch-preset-column-width;
 
       "Mod+Minus".action = set-column-width "-10%";
       "Mod+Equal".action = set-column-width "+10%";
