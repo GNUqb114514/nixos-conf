@@ -39,7 +39,7 @@ My personal nixos config.
   - Firefox, the hardest one.
 
 ## Todo
-- [-] Document everything
+- [ ] Document everything
 - [ ] Move things to home-manager from systemwide config
 - [ ] Find a better browser (or write one)
 - [ ] Make this config more practical
