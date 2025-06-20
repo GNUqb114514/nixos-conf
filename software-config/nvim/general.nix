@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }: {
   # Add clipboard provider
   home.packages = with pkgs; [ wl-clipboard ];
 
@@ -27,12 +27,7 @@
       "vimplugin-nerdicons.nvim" = {
         package = pkgs.vimUtils.buildVimPlugin rec {
           name = "nerdicons.nvim";
-          src = pkgs.fetchFromGitHub {
-            owner = "nvimdev";
-            repo = "${name}";
-            rev = "2d257ff9b00b7d1510704e0a565a6a7ede76b79a";
-            hash = "sha256-cAaIcF7Z4NmSugaIzSTKzmjEI7YXZoAY8rxi5D3zua0=";
-          };
+          src = inputs.nerdicons-nvim;
         };
         setupModule = "nerdicons";
         cmd = ["NerdIcons"];
@@ -44,7 +39,7 @@
     languages.markdown.extensions.markview-nvim = {
       enable = true;
       setupOpts = {
-        list_items = {
+        markdown.list_items = {
           marker_minus.text = "•";
           marker_plus.text = "⬥";
           marker_star.text = "⬦";

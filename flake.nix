@@ -28,9 +28,30 @@
       # on a binary cache.
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nerdicons-nvim = {
+      url = "github:nvimdev/nerdicons.nvim";
+      flake = false;
+    };
+
+    vim-barbaric = {
+      url = "github:rlue/vim-barbaric";
+      flake = false;
+    };
   };
 
-  outputs = { self, nixpkgs, nur, nvf, home-manager, stylix, niri-flake, ... }@inputs: {
+  outputs = {
+    self,
+    nixpkgs,
+    nur,
+    nvf,
+    home-manager,
+    stylix,
+    niri-flake,
+    nerdicons-nvim,
+    vim-barbaric,
+    ...
+  } @ inputs: {
     nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
@@ -43,12 +64,12 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = { inherit inputs; };
+          home-manager.extraSpecialArgs = {inherit inputs;};
           home-manager.users.qb114514 = import ./home.nix;
         }
 
         ./fonts.nix
-        
+
         ./software-config/im.nix
 
         ./software-config/dm.nix
@@ -57,12 +78,13 @@
       ];
     };
     devShells."x86_64-linux".default = let
-      pkgs = import nixpkgs { system = "x86_64-linux"; };
-    in pkgs.mkShell {
-      packages = with pkgs; [ nil ];
-      shellHook = ''
-        exec zsh
-      '';
-    };
+      pkgs = import nixpkgs {system = "x86_64-linux";};
+    in
+      pkgs.mkShell {
+        packages = with pkgs; [nil];
+        shellHook = ''
+          exec zsh
+        '';
+      };
   };
 }

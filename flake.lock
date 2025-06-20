@@ -313,6 +313,22 @@
         "type": "github"
       }
     },
+    "nerdicons-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1736144509,
+        "narHash": "sha256-cAaIcF7Z4NmSugaIzSTKzmjEI7YXZoAY8rxi5D3zua0=",
+        "owner": "nvimdev",
+        "repo": "nerdicons.nvim",
+        "rev": "2d257ff9b00b7d1510704e0a565a6a7ede76b79a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvimdev",
+        "repo": "nerdicons.nvim",
+        "type": "github"
+      }
+    },
     "nil": {
       "inputs": {
         "nixpkgs": [
@@ -530,11 +546,13 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "nerdicons-nvim": "nerdicons-nvim",
         "niri-flake": "niri-flake",
         "nixpkgs": "nixpkgs",
         "nur": "nur",
         "nvf": "nvf",
-        "stylix": "stylix"
+        "stylix": "stylix",
+        "vim-barbaric": "vim-barbaric"
       }
     },
     "stylix": {
@@ -738,6 +756,22 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "vim-barbaric": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1749834434,
+        "narHash": "sha256-rn8YXzI60vFHC0fU0kMrIeAyuE+UsSG0gGK2gbqht8Q=",
+        "owner": "rlue",
+        "repo": "vim-barbaric",
+        "rev": "0cacaf7125188cacd61be8dc04c9352d0605f3af",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rlue",
+        "repo": "vim-barbaric",
         "type": "github"
       }
     },

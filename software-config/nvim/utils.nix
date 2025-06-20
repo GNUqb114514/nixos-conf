@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }: {
   programs.nvf.settings.vim = {
     utility.yazi-nvim.enable = true;
     utility.yazi-nvim.mappings.openYazi = "<leader>ef";
@@ -11,12 +11,13 @@
       "vimplugin-vim-barbaric" = {
         package = pkgs.vimUtils.buildVimPlugin rec {
           name = "vim-barbaric";
-          src = pkgs.fetchFromGitHub {
-            owner = "rlue";
-            repo = "${name}";
-            rev = "7a7084f0a7352528b5785eb411b0cf68bbb07f8d";
-            hash = "sha256-9wFyqL0gekG7IBKAQdWv7JjfUQsoJA60wzAqRWnQuN8=";
-          };
+          src = inputs.vim-barbaric;
+          # src = pkchFromGitHub {
+          #   owner = "rlue";
+          #   repo = "${name}";
+          #   rev = "7a7084f0a7352528b5785eb411b0cf68bbb07f8d";
+          #   hash = "sha256-9wFyqL0gekG7IBKAQdWv7JjfUQsoJA60wzAqRWnQuN8=";
+          # };
         };
       };
     };
