@@ -2,33 +2,34 @@
 Here are my DE configuration.
 
 ## [`niri.nix`](./niri.nix)
-Here are my [niri](https://github.com/YaLTeR/niri) configurations.
 
-Niri is a *tiling window manager* putting windows in an infinite strip going to the right.
+My [niri](https://github.com/YaLTeR/niri) configurations.
 
-Pros:
-- The special window managing algorithm make the window easier to manage.
+> [!NOTE] Pros and Cons of Niri
+> Niri is a *tiling window manager* putting windows in an infinite strip going
+> to the right.
+>
+> Pros:
+>
+> - The special window managing algorithm make the window easier to manage.
+>
+> Cons:
+>
+> - It's a bit confusing.
+> - Sometimes I'm missing openend windows.
 
-Cons:
-- It's a bit confusing.
-- Sometimes I'm missing openend windows.
+The configuration is managed by [niri-flake](https://github.com/sodiboo/niri-flake).
 
-## [`bar.nix`](./bar.nix)
-Here are my bar configuration. I'm currently using i3bar-river as my bar and i3status-rust as
-feeder.
+> [!NOTE] Pros and Cons of niri-flake
+>
+> Pros:
+>
+> - Manage things in nix
+>
+> Cons:
+>
+> - It's a bit confusing.
 
-`i3bar-river` is a port of i3bar (a part of i3 project) to river and some other WMs.
+## [`eww.nix`](./eww.nix)
 
-Pros:
-- Customizable
-
-Cons:
-- Not very customizable
-
-`i3status-rust` is a rewrite of i3status in Rust.
-
-Pros:
-- Written in Rust.
-
-Cons:
-- No many built-in components.
+My [eww](https://github.com/elkowar/eww) configuration entry.
