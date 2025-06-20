@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: {
   home.packages = with pkgs; [
     inotify-tools
   ];
@@ -28,11 +28,27 @@
       markdown.lsp.package = ["${pkgs.markdown-oxide}/bin/markdown-oxide"];
     };
 
+    lsp.inlayHints.enable = true;
+
     lsp.lspsaga = {
       enable = true;
     };
 
+    diagnostics.enable = true;
+    diagnostics.config.virtual_text = true;
+
     keymaps = [
+      {
+        key = "<leader>it";
+        mode = "n";
+        action = ''
+          function ()
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled
+              {bufnr = vim.api.nvim_get_current_buf()})
+          end
+        '';
+        lua = true;
+      }
       {
         key = "gd";
         mode = "n";
