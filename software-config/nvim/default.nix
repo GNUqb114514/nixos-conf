@@ -10,6 +10,7 @@
     ./languages.nix
     ./neogit.nix
     ./completion.nix
+    ./fold.nix
   ];
 
   programs.nvf.enable = true;
