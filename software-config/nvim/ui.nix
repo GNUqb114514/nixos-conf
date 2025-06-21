@@ -6,9 +6,6 @@
       disabledFiletypes = ["sagaoutline"];
     };
 
-    # tabline.nvimBufferline.enable = true;
-    # tabline.nvimBufferline.setupOpts.options.modified_icon = "•";
-
     # Indent
     visuals.indent-blankline.enable = true;
 

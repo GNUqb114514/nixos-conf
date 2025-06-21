@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ config, ... }: {
   programs.eww = {
     enable = true;
     configDir = config.lib.file.mkOutOfStoreSymlink "/home/qb114514/nixos-conf/software-config/de/eww/";

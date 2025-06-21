@@ -1,11 +1,9 @@
-{lib, config, options, pkgs, ...}: {
+{ pkgs, ... }: {
   fonts.packages = with pkgs; [
     nerd-fonts.ubuntu
     nerd-fonts.ubuntu-mono
     source-han-sans
     source-han-serif
-    # foundertypeFonts.fzktk
-    # lxgw-wenkai
   ];
 
   fonts.fontconfig.defaultFonts = {
