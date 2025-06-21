@@ -9,15 +9,9 @@
 
     extraPlugins = {
       "vimplugin-vim-barbaric" = {
-        package = pkgs.vimUtils.buildVimPlugin rec {
+        package = pkgs.vimUtils.buildVimPlugin {
           name = "vim-barbaric";
           src = inputs.vim-barbaric;
-          # src = pkchFromGitHub {
-          #   owner = "rlue";
-          #   repo = "${name}";
-          #   rev = "7a7084f0a7352528b5785eb411b0cf68bbb07f8d";
-          #   hash = "sha256-9wFyqL0gekG7IBKAQdWv7JjfUQsoJA60wzAqRWnQuN8=";
-          # };
         };
       };
     };
@@ -63,5 +57,18 @@
       normal_cur = "yss";
       normal_cur_line = "ySS";
     };
+
+    telescope.enable = true;
+    telescope.mappings = {
+      diagnostics = "<leader>td";
+      findFiles = "<leader>tf";
+      helpTags = "<leader>th";
+      liveGrep = "<leader>tg";
+      lspDefinitions = "<leader>tld";
+      lspWorkspaceSymbols = "<leader>tls";
+      lspImplementations = "<leader>tli";
+      lspReferences = "<leader>tlr";
+    };
+    telescope.setupOpts.defaults.color_devicons = true;
   };
 }
