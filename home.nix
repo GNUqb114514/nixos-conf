@@ -18,6 +18,6 @@
     inputs.nvf.homeManagerModules.default
     inputs.stylix.homeModules.stylix
     ./software-config
-    ./colorschemes/tokyonight.nix
+    ./colorschemes/catppuccin-mocha.nix
   ];
 }
