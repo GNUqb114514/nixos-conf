@@ -75,6 +75,8 @@
         ./software-config/dm.nix
 
         ./software-config/firefox/systemwide.nix
+
+        ./software-config/de/osd-system.nix
       ];
     };
   };

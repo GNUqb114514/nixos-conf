@@ -8,5 +8,6 @@
     ./niri.nix
     ./eww.nix
     ./notify.nix
+    ./osd-user.nix
   ];
 }

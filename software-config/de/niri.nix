@@ -42,10 +42,10 @@
       "Mod+D".action = spawn "fuzzel";
       "Mod+Alt+L".action = spawn "swaylock";
 
-      "XF86AudioRaiseVolume" = { action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; allow-when-locked=true; };
-      "XF86AudioLowerVolume" = { action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; allow-when-locked=true; };
-      "XF86AudioMute" = { action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; allow-when-locked=true; };
-      "XF86AudioMicMute" = { action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; allow-when-locked=true; };
+      "XF86AudioRaiseVolume" = { action = spawn "swayosd-client" "--output-volume=raise"; allow-when-locked=true; };
+      "XF86AudioLowerVolume" = { action = spawn "swayosd-client" "--output-volume=lower"; allow-when-locked=true; };
+      "XF86AudioMute" = { action = spawn "swayosd-client" "--output-volume=mute-toggle"; allow-when-locked=true; };
+      "XF86AudioMicMute" = { action = spawn "swayosd-client" "--input-volume=mute-toggle"; allow-when-locked=true; };
 
       "Mod+Q".action = close-window;
 
