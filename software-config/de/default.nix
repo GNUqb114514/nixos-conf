@@ -7,5 +7,6 @@
   imports = [
     ./niri.nix
     ./eww.nix
+    ./notify.nix
   ];
 }
