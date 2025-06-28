@@ -41,15 +41,9 @@
   };
 
   outputs = {
-    self,
     nixpkgs,
     nur,
-    nvf,
     home-manager,
-    stylix,
-    niri-flake,
-    nerdicons-nvim,
-    vim-barbaric,
     ...
   } @ inputs: {
     nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
