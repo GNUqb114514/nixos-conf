@@ -32,7 +32,7 @@
       }
     ];
     spawn-at-startup = [
-      { command = [ "fcitx5" ]; }
+      { command = [ "systemctl" "--user" "start" "fcitx5-daemon.service" ]; }
       { command = [ "eww" "open" "topbar" ]; }
     ];
     binds = with config.lib.niri.actions; {
