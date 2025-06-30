@@ -1,6 +1,6 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   i18n.inputMethod.type = "fcitx5";
-  
+
   i18n.inputMethod.enable = true;
 
   i18n.inputMethod.fcitx5 = {
@@ -12,5 +12,108 @@
       libsForQt5.fcitx5-configtool
     ];
     waylandFrontend = true;
+    settings = let
+      fcitxStyleList = list:
+        builtins.listToAttrs
+        (
+          builtins.foldl'
+          (prev: value: {
+            counter = prev.counter + 1;
+            value =
+              prev.value
+              ++ [
+                {
+                  name = builtins.toString prev.counter;
+                  inherit value;
+                }
+              ];
+          })
+          {
+            counter = 0;
+            value = [];
+          }
+          list
+        ).value;
+    in {
+      globalOptions = {
+        Hotkey = {
+          EnumerateWithTriggerKeys = true;
+          EnumerateSkipFirst = false;
+        };
+
+        "Hotkey/TriggerKeys" = fcitxStyleList ["Shift+Shift_L" "Shift+Shift_R"];
+        "Hotkey/EnumerateForwardKeys" = fcitxStyleList ["Control+Tab" "Super+space"];
+        "Hotkey/EnumerateBackwardKeys" = fcitxStyleList ["Control+Shift+Tab" "Shift+Super+space"];
+        "Hotkey/PrevPage" = fcitxStyleList ["comma" "Page_up" "Up"];
+        "Hotkey/NextPage" = fcitxStyleList ["period" "Next" "Down"];
+        "Hotkey/PrevCandidate" = fcitxStyleList ["Left"];
+        "Hotkey/NextCandidate" = fcitxStyleList ["Right"];
+
+        Behavior = {
+          ActiveByDefault = false;
+          resetStateWhenFocusIn = "No";
+          ShareInputState = "No";
+          PreeditEnabledByDefault = true;
+          ShowInputMethodInformation = true;
+          showInputMethodInformationWhenFocusIn = false;
+          CompactInputMethodInformation = true;
+          ShowFirstInputMethodInformation = true;
+          DefaultPageSize = 9;
+          PreloadInputMethod = true;
+        };
+      };
+      inputMethod = {
+        GroupOrder."0" = "默认";
+        "Groups/0" = {
+          Name = "默认";
+          "Default Layout" = "us";
+          DefaultIM = "shuangpin";
+        };
+        "Groups/0/Items/0" = {
+          Name = "keyboard-us";
+          Layout = "";
+        };
+        "Groups/0/Items/1" = {
+          Name = "shuangpin";
+          Layout = "";
+        };
+        "Groups/0/Items/2" = {
+          Name = "pinyin";
+          Layout = "";
+        };
+      };
+      addons.pinyin = {
+        globalSection = {
+          ShuangpinProfile = "Xiaohe";
+          ShowShuangpinMode = true;
+          PageSize = 9;
+          SpellEnabled = true;
+          SymbolsEnabled = true;
+          ChaiziEnabled = true;
+          ExtBEnabled = true;
+          CloudPinyinEnabled = true;
+          CloudPinyinIndex = 2;
+          CloudPinyinAnimation = true;
+          KeepCloudPinyinPlaceholder = false;
+          PreeditMode = "Composing pinyin";
+          PreeditCursorPositionAtBeginning = false;
+          SwitchInputMethodBehavior = "Commit current preedit";
+          UseKeypadAsSelection = true;
+          QuickPhraseKey = "grave";
+          VAsQuickphrase = true;
+        };
+        sections = {
+          PrevPage = fcitxStyleList ["comma" "Page_up" "Up"];
+          NextPage = fcitxStyleList ["period" "Next" "Down"];
+          PrevCandidate = fcitxStyleList ["Left"];
+          NextCandidate = fcitxStyleList ["Right"];
+          CurrentCandidate = fcitxStyleList ["space" "KP_space"];
+          CommitRawInput = fcitxStyleList ["Return" "KP_Enter"];
+          ChooseCharFromPhrase = fcitxStyleList ["bracketleft" "bracketright"];
+          FilterByStroke = fcitxStyleList ["Tab"];
+          QuickPhraseTriggerRegex = fcitxStyleList [".(/|@)$" ''^(www|bbs|forum|mail|bbs)\\.'' "^(http|https|ftp|telnet|mailto):"];
+        };
+      };
+    };
   };
 }

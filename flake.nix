@@ -64,8 +64,6 @@
 
         ./fonts.nix
 
-        ./software-config/im.nix
-
         ./software-config/dm.nix
 
         ./software-config/firefox/systemwide.nix
