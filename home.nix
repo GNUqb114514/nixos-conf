@@ -18,6 +18,13 @@
     inputs.nvf.homeManagerModules.default
     inputs.stylix.homeModules.stylix
     ./software-config
-    ./colorschemes/catppuccin-mocha.nix
+    # ./colorschemes/catppuccin-mocha.nix
+    ./modules/stylix.nix
+    # ./modules/colorscheme.nix
   ];
+
+  user.stylix = {
+    enable = true;
+    colorscheme = "catppuccin-mocha";
+  };
 }
