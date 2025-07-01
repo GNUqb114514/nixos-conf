@@ -3,5 +3,6 @@
     ./stylix.nix
     ./im.nix
     ./shell.nix
+    ./programming
   ];
 }

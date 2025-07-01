@@ -154,5 +154,6 @@
       fzf-tab = true;
       vi-mode = true;
     };
+    programming = { rust = true; };
   };
 }
