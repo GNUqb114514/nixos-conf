@@ -19,9 +19,26 @@ in {
     fzf-tab = mkEnableOption "fzf-tab";
 
     vi-mode = mkEnableOption "zsh-vi-mode";
+
+    utilities = {
+      archive = mkEnableOption "archive managers";
+
+      monitors = mkEnableOption "sytem monitors";
+
+      file-manager = mkEnableOption "file managers";
+
+      pretty = mkEnableOption "pretty-printers";
+
+      tui = mkEnableOption "TUI things";
+
+      jq = mkEnableOption "jq";
+      gh = mkEnableOption "gh";
+    };
   };
 
   config = lib.mkIf cfg.enable {
+    warnings = lib.optionals (cfg.utilities.tui && !config.user.terminal) ["TUI things require GUI features."];
+
     programs.zsh.enable = true;
 
     programs.zsh.plugins =
@@ -69,5 +86,40 @@ in {
       ];
       enableZshIntegration = true;
     };
+
+    home.packages = with lib; let
+      util = cfg.utilities;
+    in
+      (with pkgs; [
+        nh
+        just
+      ])
+      ++ lib.optionals util.archive (with pkgs; [
+        zip
+        xz
+        unzip
+      ])
+      ++ lib.optionals util.monitors (with pkgs; [
+        iftop
+        htop
+        iotop
+      ])
+      ++ lib.optionals (util.monitors && config.user.terminal) [pkgs.btop]
+      ++ lib.optionals util.file-manager (with pkgs; [
+        file
+        which
+        tree
+        ripgrep
+      ])
+      ++ lib.optionals util.pretty (with pkgs; [
+        bat
+        delta
+      ])
+      ++ lib.optionals (util.tui && config.user.terminal) (with pkgs; [
+        fastfetch
+        yazi
+      ])
+      ++ lib.optionals util.jq [pkgs.jq]
+      ++ lib.optionals util.gh [pkgs.gh];
   };
 }

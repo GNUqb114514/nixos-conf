@@ -153,8 +153,17 @@
       fzf = true;
       fzf-tab = true;
       vi-mode = true;
+      utilities = {
+        archive = true;
+        monitors = true;
+        file-manager = true;
+        pretty = true;
+        tui = true;
+        jq = true;
+        gh = true;
+      };
     };
-    programming = { rust = true; };
+    programming = {rust = true;};
     terminal = true;
   };
 }
