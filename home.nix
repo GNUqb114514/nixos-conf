@@ -155,5 +155,6 @@
       vi-mode = true;
     };
     programming = { rust = true; };
+    terminal = true;
   };
 }

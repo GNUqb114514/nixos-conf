@@ -30,8 +30,4 @@
     fastfetch
     yazi
   ];
-
-  imports = [
-    ./terminal.nix
-  ];
 }
