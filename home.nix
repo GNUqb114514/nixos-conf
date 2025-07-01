@@ -145,5 +145,14 @@
         };
       };
     };
+    shell = {
+      enable = true;
+      neogitAlias = true;
+      autosuggestion = true;
+      starship = true;
+      fzf = true;
+      fzf-tab = true;
+      vi-mode = true;
+    };
   };
 }

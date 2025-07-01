@@ -2,5 +2,6 @@
   imports = [
     ./stylix.nix
     ./im.nix
+    ./shell.nix
   ];
 }
