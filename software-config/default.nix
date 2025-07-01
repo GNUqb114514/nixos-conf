@@ -5,6 +5,5 @@
     ./programming
     ./nvim
     ./shell
-    ./im.nix
   ];
 }
