@@ -169,6 +169,9 @@
       enable = true;
       mpv = true;
       swaync = true;
+      swayosd = true;
     };
+
+    nvim = {enable = true;};
   };
 }

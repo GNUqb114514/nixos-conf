@@ -6,5 +6,6 @@
     ./programming
     ./terminal.nix
     ./gui.nix
+    ./nvim
   ];
 }
