@@ -8,6 +8,9 @@
 in {
   options.user.gui = with lib; {
     enable = mkEnableOption "GUI";
+
+    swaync = mkEnableOption "swaync";
+    mpv = mkEnableOption "mpv";
   };
 
   config = lib.mkIf cfg.enable {
@@ -185,5 +188,8 @@ in {
           })
         ];
     };
+
+    programs.mpv.enable = cfg.mpv;
+    services.swaync.enable = cfg.swaync;
   };
 }

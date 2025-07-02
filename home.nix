@@ -165,6 +165,10 @@
     };
     programming = {rust = true;};
     terminal = true;
-    gui.enable = true;
+    gui = {
+      enable = true;
+      mpv = true;
+      swaync = true;
+    };
   };
 }

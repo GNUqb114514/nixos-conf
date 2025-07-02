@@ -6,7 +6,6 @@
 
   imports = [
     ./eww.nix
-    ./notify.nix
     ./osd-user.nix
   ];
 }
