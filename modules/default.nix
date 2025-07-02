@@ -5,5 +5,6 @@
     ./shell.nix
     ./programming
     ./terminal.nix
+    ./gui.nix
   ];
 }

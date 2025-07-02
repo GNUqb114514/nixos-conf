@@ -165,5 +165,6 @@
     };
     programming = {rust = true;};
     terminal = true;
+    gui.enable = true;
   };
 }
