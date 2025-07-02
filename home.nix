@@ -163,7 +163,13 @@
         gh = true;
       };
     };
-    programming = {rust = true;};
+    programming = {
+      rust = true;
+      lua = true;
+      markdown = true;
+      nix = true;
+      typst = true;
+    };
     terminal = true;
     gui = {
       enable = true;
@@ -172,6 +178,27 @@
       swayosd = true;
     };
 
-    nvim = {enable = true;};
+    nvim = {
+      enable = true;
+      exrc = true;
+      yazi = true;
+      window-picker = true;
+      flash = true;
+      surround = true;
+      telescope = true;
+      lsp = {
+        enable = true;
+        saga = true;
+      };
+      extraProgrammingSupport = true;
+      trouble = true;
+      neogit = true;
+      completion = {
+        enable = true;
+        snippets = true;
+        lazydev = true;
+      };
+      fold = true;
+    };
   };
 }

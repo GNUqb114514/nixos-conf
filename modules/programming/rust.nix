@@ -10,6 +10,7 @@ in {
 
   config = lib.mkIf cfg {
     home.packages = with pkgs; [
+      inotify-tools
       cargo
       rustc
       rustfmt
