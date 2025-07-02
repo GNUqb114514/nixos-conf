@@ -11,6 +11,8 @@ in {
 
     swaync = mkEnableOption "swaync";
     mpv = mkEnableOption "mpv";
+
+    swayosd = mkEnableOption "swayosd";
   };
 
   config = lib.mkIf cfg.enable {
@@ -191,5 +193,7 @@ in {
 
     programs.mpv.enable = cfg.mpv;
     services.swaync.enable = cfg.swaync;
+
+    services.swayosd.enable = cfg.swayosd;
   };
 }
