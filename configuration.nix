@@ -98,8 +98,7 @@
     packages = with pkgs; [
       tree
     ];
-    # initialHashedPassword = "$y$j9T$rWpNSXnii3RaWhdY3Xu460$WBI8yv15jfrWpRvB7Yv1x47TJSGOv/UhOyB0Ya3hba2";
-    initialPassword = "114514191980810Stinky!";
+    hashedPassword = "$y$j9T$hcOv1.aVZ69Qi5hEl7hUp1$mhoREMZDMAfwhzGumzkXHFAnib2MuU5SaLDW3bYc3o/";
     shell = pkgs.zsh;
   };
 
