@@ -37,7 +37,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    warnings = lib.optionals (cfg.utilities.tui && !config.user.terminal) ["TUI things require GUI features."]
+    warnings =
+      lib.optionals (cfg.utilities.tui && !config.user.terminal) ["TUI things require GUI features."]
       ++ lib.optionals (cfg.neogitAlias && !config.user.nvim.enable) ["Neogit alias requires neogit."];
 
     programs.zsh.enable = true;
@@ -67,6 +68,9 @@ in {
         zstyle ':completion:*:descriptions' format '[%d]'
         zstyle ':fzf-tab:*' switch-group '<' '>'
       '')
+      (lib.mkIf cfg.fzf-tab (lib.mkOrder 899 ''
+        ZVM_INIT_MODE=sourcing
+      ''))
     ];
 
     programs.zsh.autosuggestion.enable = cfg.autosuggestion;
