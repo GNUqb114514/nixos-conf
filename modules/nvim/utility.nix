@@ -2,7 +2,6 @@
   pkgs,
   config,
   lib,
-  inputs,
   ...
 }: let
   cfg = config.user.nvim;
@@ -12,6 +11,7 @@ in {
     window-picker = mkEnableOption "window-picker";
     surround = mkEnableOption "surround.nvim";
     telescope = mkEnableOption "telescope.nvim";
+    oil = mkEnableOption "oil.nvim";
   };
 
   config.programs.nvf.settings.vim = lib.mkMerge [
@@ -75,6 +75,9 @@ in {
         })
       ];
       telescope.setupOpts.defaults.color_devicons = true;
+    })
+    (lib.mkIf cfg.oil {
+      utility.oil-nvim.enable = true;
     })
   ];
 }

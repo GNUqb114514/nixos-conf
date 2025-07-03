@@ -199,6 +199,7 @@
         lazydev = true;
       };
       fold = true;
+      oil = true;
     };
   };
 }
