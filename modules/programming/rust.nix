@@ -11,10 +11,8 @@ in {
   config = lib.mkIf cfg {
     home.packages = with pkgs; [
       inotify-tools
-      cargo
-      rustc
-      rustfmt
-      clippy
+      rustup
+      gcc
     ];
 
     programs.nvf.settings.vim.languages.rust.enable = true;
