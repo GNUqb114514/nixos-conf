@@ -71,12 +71,12 @@
           };
 
           "Hotkey/TriggerKeys" = fcitxStyleList ["Shift+Shift_L" "Shift+Shift_R"];
-          "Hotkey/EnumerateForwardKeys" = fcitxStyleList ["Control+Tab" "Super+space"];
-          "Hotkey/EnumerateBackwardKeys" = fcitxStyleList ["Control+Shift+Tab" "Shift+Super+space"];
+          "Hotkey/EnumerateForwardKeys" = fcitxStyleList ["Super+space"];
+          "Hotkey/EnumerateBackwardKeys" = fcitxStyleList ["Shift+Super+space"];
           "Hotkey/PrevPage" = fcitxStyleList ["comma" "Page_up" "Up"];
           "Hotkey/NextPage" = fcitxStyleList ["period" "Next" "Down"];
-          "Hotkey/PrevCandidate" = fcitxStyleList ["Left"];
-          "Hotkey/NextCandidate" = fcitxStyleList ["Right"];
+          "Hotkey/PrevCandidate" = fcitxStyleList ["Shift+Tab"];
+          "Hotkey/NextCandidate" = fcitxStyleList ["Tab"];
 
           Behavior = {
             ActiveByDefault = false;
@@ -134,12 +134,12 @@
           sections = {
             PrevPage = fcitxStyleList ["comma" "Page_up" "Up"];
             NextPage = fcitxStyleList ["period" "Next" "Down"];
-            PrevCandidate = fcitxStyleList ["Left"];
-            NextCandidate = fcitxStyleList ["Right"];
+            PrevCandidate = fcitxStyleList ["Shift+Tab"];
+            NextCandidate = fcitxStyleList ["Tab"];
             CurrentCandidate = fcitxStyleList ["space" "KP_space"];
             CommitRawInput = fcitxStyleList ["Return" "KP_Enter"];
             ChooseCharFromPhrase = fcitxStyleList ["bracketleft" "bracketright"];
-            FilterByStroke = fcitxStyleList ["Tab"];
+            FilterByStroke = fcitxStyleList ["Shift+grave"];
             QuickPhraseTriggerRegex = fcitxStyleList [".(/|@)$" ''^(www|bbs|forum|mail|bbs)\\.'' "^(http|https|ftp|telnet|mailto):"];
           };
         };
