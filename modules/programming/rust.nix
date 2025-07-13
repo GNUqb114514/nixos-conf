@@ -13,6 +13,7 @@ in {
       inotify-tools
       rustup
       gcc
+      dioxus-cli
     ];
 
     programs.nvf.settings.vim.languages.rust.enable = true;
