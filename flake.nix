@@ -69,6 +69,11 @@
         ./software-config/firefox/systemwide.nix
 
         ./software-config/de/osd-system.nix
+
+        {
+          # Enable OpenGL
+          hardware.graphics.enable = true;
+        }
       ];
     };
   };

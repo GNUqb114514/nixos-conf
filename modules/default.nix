@@ -7,5 +7,6 @@
     ./terminal.nix
     ./gui.nix
     ./nvim
+    ./qutebrowser.nix
   ];
 }

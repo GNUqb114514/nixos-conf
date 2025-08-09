@@ -201,5 +201,10 @@
       fold = true;
       oil = true;
     };
+
+    qutebrowser = {
+      enable = true;
+      disable-gpu = true;
+    };
   };
 }
