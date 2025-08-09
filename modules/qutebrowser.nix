@@ -25,6 +25,14 @@ in {
         url.default_page = "https://cn.bing.com";
         url.start_pages = "https://cn.bing.com";
       };
+      searchEngines = {
+        DEFAULT = "https://cn.bing.com/search?q={}";
+        bing = "https://cn.bing.com/search?q={}";
+        ddg = "https://duckduckgo.com/?q={}";
+        gh = "https://github.com/search?q={}";
+        bilibili = "https://search.bilibili.com/all?keyword={}";
+        mycroft = "https://mycroftproject.com/search-engines.html?name={}";
+      };
     };
   };
 }
