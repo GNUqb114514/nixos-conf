@@ -22,6 +22,8 @@ in {
       settings = {
         qt.args = lib.mkIf cfg.disable-gpu ["disable-gpu"];
         editor.command = ["kitty" "nvim" "+call cursor({line}, {column})" "--" "{file}"];
+        url.default_page = "https://cn.bing.com";
+        url.start_pages = "https://cn.bing.com";
       };
     };
   };
