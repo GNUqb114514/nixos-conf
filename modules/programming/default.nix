@@ -5,5 +5,6 @@
     ./markdown.nix
     ./nix.nix
     ./typst.nix
+    ./bluespec.nix
   ];
 }

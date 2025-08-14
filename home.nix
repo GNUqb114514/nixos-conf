@@ -169,6 +169,7 @@
       markdown = true;
       nix = true;
       typst = true;
+      bluespec = true;
     };
     terminal = true;
     gui = {
