@@ -164,6 +164,7 @@
       };
     };
     programming = {
+      python = true;
       rust = true;
       lua = true;
       markdown = true;

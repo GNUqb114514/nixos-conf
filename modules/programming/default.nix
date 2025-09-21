@@ -6,5 +6,6 @@
     ./nix.nix
     ./typst.nix
     ./bluespec.nix
+    ./python.nix
   ];
 }
