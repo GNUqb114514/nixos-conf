@@ -12,13 +12,5 @@ in {
     home.packages = with pkgs; [
       bluespec
     ];
-
-    # programs.nvf.settings.vim.lsp.servers = {
-    #   "bluespec" = {
-    #     cmd = [
-    #       ""
-    #     ];
-    #   };
-    # };
   };
 }
