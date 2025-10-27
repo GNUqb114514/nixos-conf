@@ -19,12 +19,12 @@
     "https://mirrors.ustc.edu.cn/nix-channels/store"
     "https://mirror.iscas.ac.cn/nix-channels/store"
     "https://mirror.nju.edu.cn/nix-channels/store"
-    # "https://mirrors.cqupt.edu.cn/nix-channels/store"
-    "https://mirror.nyist.edu.cn/nix-channels/store"
-    # "https://mirror.sjtu.edu.cn/nix-channels/store"
+    "https://mirrors.cqupt.edu.cn/nix-channels/store"
+    # "https://mirror.nyist.edu.cn/nix-channels/store"
+    "https://mirror.sjtu.edu.cn/nix-channels/store"
     "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
-    # "https://mirrors.cernet.edu.cn/nix-channels/store"
-    # "https://nix-community.cachix.org"
+    "https://mirrors.cernet.edu.cn/nix-channels/store"
+    "https://nix-community.cachix.org"
   ];
 
   nix.settings.trusted-public-keys = [
@@ -33,14 +33,14 @@
 
   # Use the systemd-boot EFI boot loader.
   # boot.loader.systemd-boot.enable = true;
-  # boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   boot.loader.grub.enable = true;
-  boot.loader.grub.device = "nodev";
+  boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.efiSupport = true;
-  boot.loader.grub.efiInstallAsRemovable = true;
-  boot.loader.grub.useOSProber = true;
-  boot.loader.grub.default = 2;
+  # boot.loader.grub.efiInstallAsRemovable = true;
+  # boot.loader.grub.useOSProber = true;
+  # boot.loader.grub.default = 2;
 
   networking.hostName = "desktop"; # Define your hostname.
   # Pick only one of the below networking options.
@@ -111,7 +111,7 @@
   ];
   environment.variables.EDITOR = "nvim";
 
-  environment.etc."machine-id".source = "/nix/persist/etc/machine-id";
+  # environment.etc."machine-id".source = "/nix/persist/etc/machine-id";
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -124,7 +124,7 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -135,7 +135,7 @@
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
-  # system.copySystemConfiguration = true;
+  system.copySystemConfiguration = true;
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.

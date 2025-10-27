@@ -45,36 +45,72 @@
     nur,
     home-manager,
     ...
-  } @ inputs: {
-    nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        nur.modules.nixos.default
+    } @ inputs: {
+      nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          nur.modules.nixos.default
 
-        ./configuration.nix
+          ./configuration.nix
 
-        home-manager.nixosModules.home-manager
+          {
+            networking.hostName = "desktop"; # Define your hostname.
+          }
+          home-manager.nixosModules.home-manager
 
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = {inherit inputs;};
-          home-manager.users.qb114514 = import ./home.nix;
-        }
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = {inherit inputs;};
+            home-manager.users.qb114514 = import ./home.nix;
+          }
 
-        ./fonts.nix
+          ./fonts.nix
 
-        ./software-config/dm.nix
+          ./software-config/dm.nix
 
-        ./software-config/firefox/systemwide.nix
+          ./software-config/firefox/systemwide.nix
 
-        ./software-config/de/osd-system.nix
+          ./software-config/de/osd-system.nix
 
-        {
-          # Enable OpenGL
-          hardware.graphics.enable = true;
-        }
-      ];
+          {
+            # Enable OpenGL
+            hardware.graphics.enable = true;
+          }
+        ];
+      };
+      nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          nur.modules.nixos.default
+
+          ./configuration.nix
+          {
+            networking.hostName = "laptop"; # Define your hostname.
+          }
+
+          home-manager.nixosModules.home-manager
+
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = {inherit inputs;};
+            home-manager.users.qb114514 = import ./home.nix;
+          }
+
+          ./fonts.nix
+
+          ./software-config/dm.nix
+
+          ./software-config/firefox/systemwide.nix
+
+          ./software-config/de/osd-system.nix
+
+          {
+            # Enable OpenGL
+            hardware.graphics.enable = true;
+          }
+        ];
+      };
     };
-  };
 }
