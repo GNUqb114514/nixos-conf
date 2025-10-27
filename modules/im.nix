@@ -38,7 +38,7 @@ in {
           fcitx5-gtk
           fcitx5-chinese-addons
           fcitx5-lua
-          libsForQt5.fcitx5-configtool
+          kdePackages.fcitx5-configtool
         ];
         inherit (cfg) settings;
         waylandFrontend = true;
