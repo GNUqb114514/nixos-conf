@@ -8,5 +8,6 @@
     ./gui.nix
     ./nvim
     ./qutebrowser.nix
+    ./ssh.nix
   ];
 }

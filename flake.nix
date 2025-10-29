@@ -29,6 +29,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.darwin.follows = "";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nerdicons-nvim = {
       url = "github:nvimdev/nerdicons.nvim";
       flake = false;
@@ -44,73 +50,88 @@
     nixpkgs,
     nur,
     home-manager,
+    agenix,
     ...
-    } @ inputs: {
-      nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          nur.modules.nixos.default
+  } @ inputs: {
+    nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        nur.modules.nixos.default
 
-          ./configuration.nix
+        ./configuration.nix
 
-          {
-            networking.hostName = "desktop"; # Define your hostname.
-          }
-          home-manager.nixosModules.home-manager
+        agenix.nixosModules.default
 
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = {inherit inputs;};
-            home-manager.users.qb114514 = import ./home.nix;
-          }
+        {
+          networking.hostName = "desktop"; # Define your hostname.
+        }
+        home-manager.nixosModules.home-manager
 
-          ./fonts.nix
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = {inherit inputs;};
+          home-manager.users.qb114514 = import ./home.nix;
+        }
 
-          ./software-config/dm.nix
+        ./fonts.nix
 
-          ./software-config/firefox/systemwide.nix
+        ./software-config/dm.nix
 
-          ./software-config/de/osd-system.nix
+        ./software-config/firefox/systemwide.nix
 
-          {
-            # Enable OpenGL
-            hardware.graphics.enable = true;
-          }
-        ];
-      };
-      nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          nur.modules.nixos.default
+        ./software-config/de/osd-system.nix
 
-          ./configuration.nix
-          {
-            networking.hostName = "laptop"; # Define your hostname.
-          }
-
-          home-manager.nixosModules.home-manager
-
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = {inherit inputs;};
-            home-manager.users.qb114514 = import ./home.nix;
-          }
-
-          ./fonts.nix
-
-          ./software-config/dm.nix
-
-          ./software-config/firefox/systemwide.nix
-
-          ./software-config/de/osd-system.nix
-
-          {
-            # Enable OpenGL
-            hardware.graphics.enable = true;
-          }
-        ];
-      };
+        {
+          # Enable OpenGL
+          hardware.graphics.enable = true;
+        }
+      ];
     };
+    nixosConfigurations.laptop = nixpkgs.lib.nixosSystem rec {
+      system = "x86_64-linux";
+      modules = [
+        nur.modules.nixos.default
+
+        agenix.nixosModules.default
+
+        ./age.nix
+
+        {
+          environment.systemPackages = [agenix.packages.${system}.default];
+        }
+
+        ./configuration.nix
+
+        {
+          networking.hostName = "laptop"; # Define your hostname.
+        }
+
+        home-manager.nixosModules.home-manager
+
+        ({config, ...}: {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = {
+            inherit inputs;
+            inherit (config.age) secrets;
+          };
+          home-manager.users.qb114514 = import ./home.nix;
+        })
+
+        ./fonts.nix
+
+        ./software-config/dm.nix
+
+        ./software-config/firefox/systemwide.nix
+
+        ./software-config/de/osd-system.nix
+
+        {
+          # Enable OpenGL
+          hardware.graphics.enable = true;
+        }
+      ];
+    };
+  };
 }

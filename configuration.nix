@@ -42,7 +42,6 @@
   # boot.loader.grub.useOSProber = true;
   # boot.loader.grub.default = 2;
 
-  networking.hostName = "desktop"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -96,7 +95,7 @@
     packages = with pkgs; [
       tree
     ];
-    hashedPassword = "$y$j9T$hcOv1.aVZ69Qi5hEl7hUp1$mhoREMZDMAfwhzGumzkXHFAnib2MuU5SaLDW3bYc3o/";
+    hashedPassword = "$y$j9T$Aye4YC.G36h0XvpnAG0aP.$tJqA3ifHDHjC2wanjJ3UTLVAXJS88kFbV3HQ0Cl6bkC";
     shell = pkgs.zsh;
   };
 
@@ -135,7 +134,7 @@
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
-  system.copySystemConfiguration = true;
+  # system.copySystemConfiguration = true;
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.

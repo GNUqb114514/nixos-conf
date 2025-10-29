@@ -28,6 +28,7 @@
   ];
 
   user = {
+    ssh.enable = true;
     stylix = {
       enable = true;
       colorscheme = "catppuccin-mocha";
