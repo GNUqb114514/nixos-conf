@@ -12,29 +12,33 @@ My personal nixos config.
   - [stylix](https://github.com/danth/stylix) to manager color scheme with
     [tinted theming](https://github.com/tinted-theming/schemes).
   - A devshell
-  - Impermanence config without [impermanence](https://github.com/nix-community/impermanence)
-    > [!NOTE]
-    > It will be with it.
   - A lot of substituters for nixpkgs
     > [!NOTE]
     > My network sucks.
   - GRUB as bootloader
     > [!NOTE]
-    > I need to change default boot entry.
+    > Its UI is more clean.
 - DE
   - [Niri](https://github.com/YaLTeR/niri) configured by [niri-flake](https://github.com/sodiboo/niri-flake)
   - [eww](https://github.com/elkowar/eww)
+    > [!NOTE]
+    > Migration to quickshell scheduled due to the complexity of eww.
   - [Fcitx 5](https://github.com/fcitx/fcitx5)
-- [Neovim](https://github.com/neovim/neovim) configured in plain lua
+- [Neovim](https://github.com/neovim/neovim) configured by [`nvf`](https://github.com/notashelf/nvf)
 - Shell: Zsh
   > [!NOTE]
   > I've tried fish but it is missing fzf-tab.
-  - [zsh-vi-mode](https://github.com/jeffreytse/zsh-vi-mode)
+  - Not frequently used [zsh-vi-mode](https://github.com/jeffreytse/zsh-vi-mode)
   - Starship
   - Fzf
 - Utilities
   - [`nh`](https://github.com/nix-community/nh) with weekly clean job
   - A lot of other miscellaneous utilities
+- Security
+  - [`agenix`](https://github.com/ryantm/agenix)-protected GitHub SSH key
+    > [!NOTE]
+    > I'm going to make my configuration more secure following the guidance in
+    > [this blog](https://thiscute.world/posts/an-incomplete-guide-to-data-security/).
 - Miscellaneous
   - Firefox, the ugliest and evilest one.
 
@@ -44,6 +48,7 @@ My personal nixos config.
 - [ ] Move things to home-manager from systemwide config
 - [ ] Find a better browser (or write one)
 - [x] Make this config more practical
+- [ ] Migrate to quickshell
 - [ ] Try more new things
 
 ## Hierarchy
