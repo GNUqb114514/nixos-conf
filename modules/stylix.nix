@@ -50,6 +50,18 @@ in {
         };
       };
 
+    stylix.polarity = "dark";
+
+    stylix.icons = with pkgs; {
+      enable = true;
+      package = kora-icon-theme;
+      dark = "kora";
+      light = "kora-light-panel";
+      # package = papirus-icon-theme;
+      # dark = "Papirus-Dark";
+      # light = "Papirus-Light";
+    };
+
     stylix.targets.firefox.profileNames = ["default"];
 
     stylix.base16Scheme = lib.mkIf (cfg.colorscheme != null) "${pkgs.base16-schemes}/share/themes/${cfg.colorscheme}.yaml";
