@@ -24,6 +24,7 @@ in {
         editor.command = ["kitty" "nvim" "+call cursor({line}, {column})" "--" "{file}"];
         url.default_page = "https://cn.bing.com";
         url.start_pages = "https://cn.bing.com";
+        tabs.position = "left";
       };
       searchEngines = {
         DEFAULT = "https://cn.bing.com/search?q={}";
