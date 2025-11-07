@@ -28,6 +28,9 @@
   ];
 
   user = {
+    de = {
+      quickshell.enable = true;
+    };
     ssh.enable = true;
     stylix = {
       enable = true;

@@ -9,5 +9,6 @@
     ./nvim
     ./qutebrowser.nix
     ./ssh.nix
+    ./de
   ];
 }
