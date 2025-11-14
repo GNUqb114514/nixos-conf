@@ -170,6 +170,7 @@
     programming = {
       python = true;
       rust = true;
+      cpp = true;
       lua = true;
       markdown = true;
       nix = true;

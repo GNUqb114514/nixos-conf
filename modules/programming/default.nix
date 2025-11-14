@@ -7,5 +7,6 @@
     ./typst.nix
     ./bluespec.nix
     ./python.nix
+    ./cpp.nix
   ];
 }
