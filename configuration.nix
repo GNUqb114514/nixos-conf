@@ -24,7 +24,7 @@
     "https://mirror.sjtu.edu.cn/nix-channels/store"
     "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
     "https://mirrors.cernet.edu.cn/nix-channels/store"
-    "https://nix-community.cachix.org"
+    # "https://nix-community.cachix.org"
   ];
 
   nix.settings.trusted-public-keys = [
