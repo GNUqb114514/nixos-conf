@@ -30,7 +30,7 @@ in {
 
       lazy.plugins = {
         "vimplugin-nerdicons.nvim" = {
-          package = pkgs.vimUtils.buildVimPlugin rec {
+          package = pkgs.vimUtils.buildVimPlugin {
             name = "nerdicons.nvim";
             src = inputs.nerdicons-nvim;
           };
