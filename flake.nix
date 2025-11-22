@@ -81,6 +81,8 @@
         ./software-config/firefox/systemwide.nix
 
         ./software-config/de/osd-system.nix
+        
+        ./software-config/virtualisation.nix
 
         {
           # Enable OpenGL
@@ -126,6 +128,8 @@
         ./software-config/firefox/systemwide.nix
 
         ./software-config/de/osd-system.nix
+
+        ./software-config/virtualisation.nix
 
         {
           # Enable OpenGL
