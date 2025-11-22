@@ -177,7 +177,7 @@ in {
             "Mod+V".action = toggle-window-floating;
             "Mod+Shift+V".action = switch-focus-between-floating-and-tiling;
 
-            "Print".action = screenshot;
+            "Print".action.screenshot = {show-pointer = true;};
             "Ctrl+Print".action.screenshot-screen = [];
             "Alt+Print".action.screenshot-window = [];
 

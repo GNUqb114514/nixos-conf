@@ -37,7 +37,7 @@ in {
       with pkgs; {
         monospace = font "UbuntuMono Nerd Font" nerd-fonts.ubuntu-mono;
         sansSerif = font "Ubuntu Nerd Font" nerd-fonts.ubuntu;
-        serif = font "Source Han Serif SC" source-han-serif-simplified-chinese;
+        serif = font "Source Han Serif SC" source-han-serif;
         sizes = let
           normal = 13;
           small = 12;

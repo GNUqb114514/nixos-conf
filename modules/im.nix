@@ -8,18 +8,6 @@
 in {
   options.user.fcitx = with lib; {
     enable = mkEnableOption "Fcitx5";
-    addons = mkOption {
-      type = types.listOf types.package;
-      description = ''
-        Addons for fcitx5.
-      '';
-      default = [
-        fcitx5-gtk
-        fcitx5-chinese-addons
-        fcitx5-lua
-        libsForQt5.fcitx5-configtool
-      ];
-    };
     settings = mkOption {
       type = types.attrs;
       description = ''
@@ -36,7 +24,7 @@ in {
       fcitx5 = {
         addons = with pkgs; [
           fcitx5-gtk
-          fcitx5-chinese-addons
+          qt6Packages.fcitx5-chinese-addons
           fcitx5-lua
           kdePackages.fcitx5-configtool
         ];
