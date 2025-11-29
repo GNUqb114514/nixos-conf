@@ -12,7 +12,7 @@ in {
     programs.nvf.settings.vim.languages = {
       markdown.enable = true;
       markdown.format.enable = false;
-      markdown.lsp.package = ["${pkgs.markdown-oxide}/bin/markdown-oxide"];
+      # markdown.lsp.package = ["${pkgs.markdown-oxide}/bin/markdown-oxide"];
       markdown.extensions.markview-nvim = {
         enable = true;
         setupOpts = lib.mkMerge [
