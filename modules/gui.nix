@@ -58,7 +58,7 @@ in {
           {command = ["eww" "open" "topbar"];}
         ]
         ++ lib.optionals config.user.fcitx.enable [
-          {command = ["systemctl" "--user" "start" "fcitx5-daemon.service"];}
+          {command = ["systemctl" "--user" "restart" "fcitx5-daemon.service"];}
         ];
       binds = with config.lib.niri.actions;
         lib.mkMerge [
