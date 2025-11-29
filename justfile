@@ -11,22 +11,22 @@ update:
 # Switch to the new system
 [no-exit-message]
 switch:
-    nh os switch .
+    nh os switch -a .
 
 # Activate the new system but not make it the boot default
 [no-exit-message]
 test:
-    nh os test .
+    nh os test -a .
 
 # Make the new config the boot default but not activate it
 [no-exit-message]
 boot:
-    nh os boot .
+    nh os boot -a .
 
 # Open an REPL environment in the system config
 [no-exit-message]
 repl:
-    nh os repl .
+    nh os repl -a .
 
 ## Git Wrappers
 
