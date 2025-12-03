@@ -10,5 +10,6 @@
     ./qutebrowser.nix
     ./ssh.nix
     ./de
+    ./helix.nix
   ];
 }

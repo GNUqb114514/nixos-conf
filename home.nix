@@ -201,6 +201,7 @@
       fold = true;
       oil = true;
     };
+    helix.enable = true;
 
     qutebrowser = {
       enable = true;
