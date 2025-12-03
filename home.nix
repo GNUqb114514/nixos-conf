@@ -201,7 +201,10 @@
       fold = true;
       oil = true;
     };
-    helix.enable = true;
+    helix = {
+      enable = true;
+      custom-theming = true;
+    };
 
     qutebrowser = {
       enable = true;
