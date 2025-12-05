@@ -44,98 +44,106 @@
       url = "github:rlue/vim-barbaric";
       flake = false;
     };
+
+    xremap.url = "github:xremap/nix-flake";
   };
 
-  outputs = {
-    nixpkgs,
-    nur,
-    home-manager,
-    agenix,
-    ...
-  } @ inputs: {
-    nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        nur.modules.nixos.default
+  outputs =
+    {
+      nixpkgs,
+      nur,
+      home-manager,
+      agenix,
+      xremap,
+      ...
+    }@inputs:
+    {
+      nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          nur.modules.nixos.default
 
-        ./configuration.nix
+          ./configuration.nix
 
-        agenix.nixosModules.default
+          agenix.nixosModules.default
 
-        {
-          networking.hostName = "desktop"; # Define your hostname.
-        }
-        home-manager.nixosModules.home-manager
+          {
+            networking.hostName = "desktop"; # Define your hostname.
+          }
+          home-manager.nixosModules.home-manager
 
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = {inherit inputs;};
-          home-manager.users.qb114514 = import ./home.nix;
-        }
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = { inherit inputs; };
+            home-manager.users.qb114514 = import ./home.nix;
+          }
 
-        ./fonts.nix
+          ./fonts.nix
 
-        ./software-config/dm.nix
+          ./software-config/dm.nix
 
-        ./software-config/firefox/systemwide.nix
+          ./software-config/firefox/systemwide.nix
 
-        ./software-config/de/osd-system.nix
-        
-        ./software-config/virtualisation.nix
+          ./software-config/de/osd-system.nix
 
-        {
-          # Enable OpenGL
-          hardware.graphics.enable = true;
-        }
-      ];
+          ./software-config/virtualisation.nix
+
+          {
+            # Enable OpenGL
+            hardware.graphics.enable = true;
+          }
+        ];
+      };
+      nixosConfigurations.laptop = nixpkgs.lib.nixosSystem rec {
+        system = "x86_64-linux";
+        modules = [
+          nur.modules.nixos.default
+
+          agenix.nixosModules.default
+
+          ./age.nix
+
+          {
+            environment.systemPackages = [ agenix.packages.${system}.default ];
+          }
+
+          ./configuration.nix
+
+          {
+            networking.hostName = "laptop"; # Define your hostname.
+          }
+
+          home-manager.nixosModules.home-manager
+
+          (
+            { config, ... }:
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = {
+                inherit inputs;
+                inherit (config.age) secrets;
+              };
+              home-manager.users.qb114514 = import ./home.nix;
+            }
+          )
+
+          ./fonts.nix
+
+          ./software-config/dm.nix
+
+          ./software-config/firefox/systemwide.nix
+
+          ./software-config/de/osd-system.nix
+
+          ./software-config/virtualisation.nix
+
+          {
+            # Enable OpenGL
+            hardware.graphics.enable = true;
+          }
+        ];
+      };
     };
-    nixosConfigurations.laptop = nixpkgs.lib.nixosSystem rec {
-      system = "x86_64-linux";
-      modules = [
-        nur.modules.nixos.default
-
-        agenix.nixosModules.default
-
-        ./age.nix
-
-        {
-          environment.systemPackages = [agenix.packages.${system}.default];
-        }
-
-        ./configuration.nix
-
-        {
-          networking.hostName = "laptop"; # Define your hostname.
-        }
-
-        home-manager.nixosModules.home-manager
-
-        ({config, ...}: {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = {
-            inherit inputs;
-            inherit (config.age) secrets;
-          };
-          home-manager.users.qb114514 = import ./home.nix;
-        })
-
-        ./fonts.nix
-
-        ./software-config/dm.nix
-
-        ./software-config/firefox/systemwide.nix
-
-        ./software-config/de/osd-system.nix
-
-        ./software-config/virtualisation.nix
-
-        {
-          # Enable OpenGL
-          hardware.graphics.enable = true;
-        }
-      ];
-    };
-  };
 }

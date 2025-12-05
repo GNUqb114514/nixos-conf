@@ -21,6 +21,7 @@
     inputs.niri-flake.homeModules.niri
     inputs.nvf.homeManagerModules.default
     inputs.stylix.homeModules.stylix
+    inputs.xremap.homeManagerModules.default
     ./software-config
     # ./colorschemes/catppuccin-mocha.nix
     ./modules
@@ -209,6 +210,13 @@
     qutebrowser = {
       enable = true;
       disable-gpu = true;
+    };
+
+    xremap = {
+      enable = true;
+      capslock-as-esc = true;
+      home-row-numbers = true;
+      home-row-modifiers = true;
     };
   };
 }

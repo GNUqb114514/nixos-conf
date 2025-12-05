@@ -11,5 +11,6 @@
     ./ssh.nix
     ./de
     ./helix.nix
+    ./xremap.nix
   ];
 }

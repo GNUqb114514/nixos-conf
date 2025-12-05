@@ -91,13 +91,19 @@
   users.mutableUsers = false;
   users.users."qb114514"= {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "input" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       tree
     ];
     hashedPassword = "$y$j9T$Aye4YC.G36h0XvpnAG0aP.$tJqA3ifHDHjC2wanjJ3UTLVAXJS88kFbV3HQ0Cl6bkC";
     shell = pkgs.zsh;
   };
+
+  hardware.uinput.enable = true;
+  boot.kernelModules = [ "uinput" ];
+  services.udev.extraRules = ''
+    KERNEL=="uinput", GROUP="input", TAG+="uaccess"
+    '';
 
   programs.firefox.enable = true;
 
