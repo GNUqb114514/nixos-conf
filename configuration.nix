@@ -18,7 +18,7 @@
     "https://mirrors.sustech.edu.cn/nix-channels/store"
     "https://mirrors.ustc.edu.cn/nix-channels/store"
     "https://mirror.iscas.ac.cn/nix-channels/store"
-    "https://mirror.nju.edu.cn/nix-channels/store"
+    # "https://mirror.nju.edu.cn/nix-channels/store"
     # "https://mirrors.cqupt.edu.cn/nix-channels/store"
     # "https://mirror.nyist.edu.cn/nix-channels/store"
     "https://mirror.sjtu.edu.cn/nix-channels/store"
