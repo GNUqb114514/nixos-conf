@@ -12,6 +12,10 @@
     userEmail = "GNUqb114514@outlook.com";
   };
 
+  programs.lazygit = {
+    enable = true;
+  };
+
   home.stateVersion = "24.11";
 
   programs.home-manager.enable = true;
