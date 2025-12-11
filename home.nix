@@ -217,6 +217,7 @@
       capslock-as-esc = true;
       home-row-numbers = true;
       home-row-modifiers = true;
+      space-as-shift = true;
     };
   };
 }

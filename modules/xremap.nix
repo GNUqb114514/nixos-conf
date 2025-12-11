@@ -12,14 +12,15 @@ in
     capslock-as-esc = mkEnableOption "capslock-as-esc";
     home-row-numbers = mkEnableOption "home row numbers";
     home-row-modifiers = mkEnableOption "home row modifiers";
+    space-as-shift = mkEnableOption "space as shift";
   };
 
-  config = lib.mkIf cfg.enable ({
+  config = lib.mkIf cfg.enable {
     services.xremap.enable = true;
     services.xremap.config =
       let
-        hold-alone = held: alone: { inherit held alone; freehold = true; };
-        hold-alone-same = builtins.mapAttrs (name: value: hold-alone value name);
+        held-alone = held: alone: { inherit held alone; freehold = true; };
+        held-alone-same = builtins.mapAttrs (name: value: held-alone value name);
       in
       lib.mkMerge [
         (lib.mkIf cfg.capslock-as-esc {
@@ -48,6 +49,11 @@ in
                 k = "8";
                 l = "9";
                 semicolon = "0";
+                r = "leftbrace";
+                u = "rightbrace";
+                w = "grave";
+                i = "equal";
+                e = "minus";
               };
             }
           ];
@@ -56,7 +62,7 @@ in
           modmap = [
             {
               name = "Home Row Modifiers";
-              remap = hold-alone-same {
+              remap = held-alone-same {
                 f = "LeftMeta";
                 j = "RightMeta";
                 d = "LeftCtrl";
@@ -65,6 +71,16 @@ in
             }
           ];
         })
+        (lib.mkIf cfg.space-as-shift {
+          modmap = [
+            {
+              name = "Space as Shift";
+              remap = held-alone-same {
+                space = "LeftShift";
+              };
+            }
+          ];
+        })
       ];
-  });
+  };
 }
