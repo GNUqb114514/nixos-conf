@@ -62,6 +62,12 @@ in {
       # light = "Papirus-Light";
     };
 
+    stylix.cursor = with pkgs; {
+      package = everforest-cursors;
+      name = "everforest-cursors";
+      size = 24;
+    };
+
     stylix.targets.firefox.profileNames = ["default"];
 
     stylix.base16Scheme = lib.mkIf (cfg.colorscheme != null) "${pkgs.base16-schemes}/share/themes/${cfg.colorscheme}.yaml";
