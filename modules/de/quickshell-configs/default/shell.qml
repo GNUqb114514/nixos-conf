@@ -1,3 +1,4 @@
+//@ pragma UseQApplication
 import Quickshell
 import Quickshell.Widgets
 import Quickshell.Io
@@ -13,7 +14,7 @@ Scope {
   readonly property var palette: JSON.parse(jsonPalette.text())
 
   Variants {
-    model: Quickshell.screens;
+    model: Quickshell.screens
 
     delegate: Component {
       PanelWindow {
@@ -59,25 +60,24 @@ Scope {
             RowLayout {
               Repeater {
                 model: bar.workspaces
-                delegate:
-                  Text {
-                    id: delegate
-                    required property var modelData
-                    font.pixelSize: 14
-                    text: modelData.is_active ? "" : ""
-                    color: `#${root.palette.base0D}`
+                delegate: Text {
+                  id: delegate
+                  required property var modelData
+                  font.pixelSize: 14
+                  text: modelData.is_active ? "" : ""
+                  color: `#${root.palette.base0D}`
 
-                    MouseArea {
-                      anchors.fill: parent
+                  MouseArea {
+                    anchors.fill: parent
 
-                      onClicked: workspaceChanger.running = true;
-                    }
+                    onClicked: workspaceChanger.running = true
+                  }
 
-                    Process {
-                      id: workspaceChanger
-                      readonly property var destWorkspace: delegate.modelData.idx
-                      command: ["niri", "msg", "action", "focus-workspace", `${destWorkspace}`]
-                    }
+                  Process {
+                    id: workspaceChanger
+                    readonly property var destWorkspace: delegate.modelData.idx
+                    command: ["niri", "msg", "action", "focus-workspace", `${destWorkspace}`]
+                  }
                 }
               }
 
@@ -90,7 +90,6 @@ Scope {
                 text: root.time
               }
             }
-
 
             Text {
               id: title
@@ -136,6 +135,27 @@ Scope {
                     colorization: 1.0
                     colorizationColor: `#${root.palette.base05}`
                   }
+
+                  QsMenuAnchor {
+                    id: anchor
+                    menu: modelData.menu
+                    anchor.item: parent
+                  }
+
+                  MouseArea {
+                    anchors.fill: parent
+                    acceptedButtons: Qt.AllButtons
+                    onClicked: (mouse) => {
+                      switch (mouse.button) {
+                        case Qt.LeftButton:
+                          parent.modelData.activate()
+                          break
+                        case Qt.RightButton:
+                          anchor.open()
+                          break
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -157,9 +177,9 @@ Scope {
           running: true
           stdout: StdioCollector {
             onStreamFinished: {
-              workspaces = JSON.parse(this.text)
-              workspaces.sort((a, b) => a.idx-b.idx)
-              bar.workspaces = workspaces
+              let workspaces = JSON.parse(this.text);
+              workspaces.sort((a, b) => a.idx - b.idx);
+              bar.workspaces = workspaces;
             }
           }
         }
@@ -197,7 +217,7 @@ Scope {
 
   FileView {
     id: jsonPalette
-    path: "/home/qb114514/.config/stylix/palette.json";
+    path: "/home/qb114514/.config/stylix/palette.json"
     blockLoading: true
 
     watchChanges: true
