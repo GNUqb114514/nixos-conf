@@ -223,5 +223,10 @@
       home-row-modifiers = true;
       space-as-shift = true;
     };
+
+    waybar = {
+      enable = true;
+      custom-css = true;
+    };
   };
 }

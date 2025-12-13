@@ -1,0 +1,44 @@
+* {
+  padding: 0 5px;
+}
+
+window#waybar, tooltip {
+    color: @base05;
+}
+
+tooltip {
+    border-color: @base0D;
+}
+
+tooltip label {
+    color: @base05;
+}
+
+#workspaces button {
+    border-bottom: none;
+}
+
+#workspaces button.focused {
+    background: @base09;
+    color: @base00;
+}
+
+#workspaces button.active {
+    background: @base0D;
+}
+
+#cpu.high {
+    color: @base08
+}
+
+#mem.high {
+    color: @base08
+}
+
+#battery.twenty {
+    color: @base0A
+}
+
+#battery.empty {
+    color: @base08
+}
