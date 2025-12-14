@@ -26,7 +26,7 @@ boot:
 # Open an REPL environment in the system config
 [no-exit-message]
 repl:
-    nh os repl -a .
+    nh os repl .
 
 ## Git Wrappers
 
