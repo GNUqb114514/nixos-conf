@@ -46,6 +46,11 @@
     };
 
     xremap.url = "github:xremap/nix-flake";
+
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -55,6 +60,7 @@
       home-manager,
       agenix,
       xremap,
+      fenix,
       ...
     }@inputs:
     {
@@ -126,6 +132,10 @@
                 inherit (config.age) secrets;
               };
               home-manager.users.qb114514 = import ./home.nix;
+
+              nixpkgs.overlays = [
+                inputs.rust-overlay.overlays.default
+              ];
             }
           )
 

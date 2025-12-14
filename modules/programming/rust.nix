@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }: let
   cfg = config.user.programming.rust;
@@ -10,10 +11,7 @@ in {
 
   config = lib.mkIf cfg {
     home.packages = with pkgs; [
-      inotify-tools
-      rustup
-      gcc
-      dioxus-cli
+      rust-bin.stable.latest.default
     ];
 
     programs.nvf.settings.vim.languages.rust.enable = true;
