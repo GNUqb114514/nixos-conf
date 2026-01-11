@@ -1,27 +1,7 @@
 { pkgs, ... }: {
   fonts.packages = with pkgs; [
     nerd-fonts.ubuntu-mono
-    (pkgs.stdenv.mkDerivation {
-  pname = "dream-han";
-  version = "2.003";
-
-  src = ./DreamHanSansCN.zip;
-
-  unpackPhase = ''
-    runHook preUnpack
-    ${unzip}/bin/unzip $src
-
-    runHook postUnpack
-  '';
-
-  installPhase = ''
-    runHook preInstall
-
-    install -Dm644 *.ttf -t $out/share/fonts/truetype
-
-    runHook postInstall
-  '';
-    })
+    (import packages/default.nix { inherit pkgs; }).dream-han-sans
     source-han-serif
   ];
 

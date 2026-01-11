@@ -30,4 +30,5 @@
       };
     };
   };
+  dream-han-sans = pkgs.callPackage ./dream-han-sans.nix {};
 }
