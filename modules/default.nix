@@ -1,5 +1,6 @@
 {
   imports = [
+    ./emacs/default.nix
     ./stylix.nix
     ./im.nix
     ./shell.nix

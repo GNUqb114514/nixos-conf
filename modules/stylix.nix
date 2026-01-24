@@ -39,7 +39,7 @@ in {
       maple-mono-custom-build = user-pkgs.maple-font-custom-build;
     in
       with pkgs; {
-        monospace = font "Maple Mono" maple-mono-custom-build;
+        monospace = font "Maple Mono NF" maple-mono-custom-build;
         sansSerif = font "Ubuntu Nerd Font" nerd-fonts.ubuntu;
         serif = font "Source Han Serif SC" source-han-serif;
         sizes = let

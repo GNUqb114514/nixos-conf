@@ -28,6 +28,6 @@
   fonts.fontconfig.defaultFonts = {
     sansSerif = ["Ubuntu Nerd Font"  "Source Han Sans SC"];
     serif = ["Source Han Serif SC"];
-    monospace = ["Maple Mono" "UbuntuMono Nerd Font" "Source Han Sans SC"];
+    monospace = ["Maple Mono NF" "UbuntuMono Nerd Font" "Source Han Sans SC"];
   };
 }
