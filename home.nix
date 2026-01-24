@@ -228,5 +228,6 @@
       enable = true;
       custom-css = true;
     };
+    emacs = {enable = true;};
   };
 }

@@ -51,6 +51,11 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    maple-font = {
+      url = "github:subframe7536/maple-font";
+      flake = false;
+    };
   };
 
   outputs =

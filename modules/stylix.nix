@@ -2,9 +2,11 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }: let
   cfg = config.user.stylix;
+  user-pkgs = import ../packages { inherit pkgs; };
 in {
   options.user.stylix = with lib; {
     enable = mkEnableOption "stylix configurations";
@@ -33,9 +35,11 @@ in {
     stylix.enable = true;
     stylix.fonts = let
       font = name: package: {inherit name package;};
+
+      maple-mono-custom-build = user-pkgs.maple-font-custom-build;
     in
       with pkgs; {
-        monospace = font "UbuntuMono Nerd Font" nerd-fonts.ubuntu-mono;
+        monospace = font "Maple Mono" maple-mono-custom-build;
         sansSerif = font "Ubuntu Nerd Font" nerd-fonts.ubuntu;
         serif = font "Source Han Serif SC" source-han-serif;
         sizes = let
