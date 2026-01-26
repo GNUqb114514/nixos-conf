@@ -10,37 +10,40 @@
       ./hardware-configuration.nix
     ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings = {
+    eval-cache = true;
 
-  nix.settings.trusted-users = [ "qb114514" ];
+    max-jobs = "auto";
 
-  nix.settings.substituters = [
-    "https://mirrors.sustech.edu.cn/nix-channels/store"
-    "https://mirrors.ustc.edu.cn/nix-channels/store"
-    "https://mirror.iscas.ac.cn/nix-channels/store"
-    # "https://mirror.nju.edu.cn/nix-channels/store"
-    # "https://mirrors.cqupt.edu.cn/nix-channels/store"
-    # "https://mirror.nyist.edu.cn/nix-channels/store"
-    "https://mirror.sjtu.edu.cn/nix-channels/store"
-    "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
-    "https://mirrors.cernet.edu.cn/nix-channels/store"
-    # "https://nix-community.cachix.org"
-  ];
+    experimental-features = [ "nix-command" "flakes" "ca-derivations" "recursive-nix" ];
+    trusted-users = [ "qb114514" ];   
+    substituters = [
+      "https://mirrors.sustech.edu.cn/nix-channels/store"
+      "https://mirrors.ustc.edu.cn/nix-channels/store"
+      "https://mirror.iscas.ac.cn/nix-channels/store"
+      # "https://mirror.nju.edu.cn/nix-channels/store"
+      # "https://mirrors.cqupt.edu.cn/nix-channels/store"
+      # "https://mirror.nyist.edu.cn/nix-channels/store"
+      "https://mirror.sjtu.edu.cn/nix-channels/store"
+      "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+      "https://mirrors.cernet.edu.cn/nix-channels/store"
+      # "https://nix-community.cachix.org"
+    ];
 
-  nix.settings.trusted-public-keys = [
-    "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-  ];
+    trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
 
-  # Use the systemd-boot EFI boot loader.
-  # boot.loader.systemd-boot.enable = true;
+    builders-use-substitutes = true;
+
+    auto-optimise-store = true;
+  };
+
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.efiSupport = true;
-  # boot.loader.grub.efiInstallAsRemovable = true;
-  # boot.loader.grub.useOSProber = true;
-  # boot.loader.grub.default = 2;
 
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
