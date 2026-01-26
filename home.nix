@@ -8,8 +8,8 @@
 
   programs.git = {
     enable = true;
-    userName = "qb114514";
-    userEmail = "GNUqb114514@outlook.com";
+    settings.user.name = "qb114514";
+    settings.user.email = "GNUqb114514@outlook.com";
   };
 
   programs.lazygit = {

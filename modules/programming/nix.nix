@@ -11,7 +11,7 @@ in {
   config = lib.mkIf cfg {
     programs.nvf.settings.vim.languages = {
       nix.enable = true;
-      nix.lsp.server = "nixd";
+      nix.lsp.servers = [ "nixd" ];
     };
   };
 }
