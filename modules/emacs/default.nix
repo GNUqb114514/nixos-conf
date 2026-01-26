@@ -4,21 +4,26 @@
   config,
   ...
 }: let cfg = config.user.emacs; in {
+  imports = [
+    ./basic.nix
+  ];
+
   options.user.emacs = with lib; {
     enable = mkEnableOption "emacs";
+
+    extraPackages = mkOption {
+      description = "Extra packages for Emacs";
+      type = with types; listOf hm.types.selectorFunction;
+    };
   };
   
   config = lib.mkIf cfg.enable {
     programs.emacs = {
       enable = true;
       package = pkgs.emacs-pgtk;
-      extraPackages = epkgs: with epkgs; [
-        helpful
-        vertico
-        orderless
+      extraPackages = epkgs: (with epkgs; [
         mwim
         good-scroll
-        marginalia
         hydra
         use-package-hydra
         multiple-cursors
@@ -28,19 +33,10 @@
         cape
         corfu
         yasnippet-snippets
-        diminish
         consult
         emacs-application-framework
-      ];
+      ] ++ (lib.concatMap (x: x epkgs) cfg.extraPackages));
       extraConfig = ''
-(use-package vertico
-  :config
-  (vertico-mode t))
-
-(use-package orderless
-  :custom
-  (completion-styles '(orderless)))
-
 (use-package mwim
   :bind
   ("C-a" . mwim-beginning-of-code-or-line)
@@ -49,17 +45,6 @@
 (use-package good-scroll
   :if window-system
   :config (good-scroll-mode))
-
-(use-package marginalia
-  :demand t
-  :after vertico
-  :config
-  (mapc (lambda (x)
-          (setcdr x (remq 'builtin (cdr x))))
-	marginalia-annotators)
-  (marginalia-mode t)
-  :bind (:map minibuffer-local-map
-	      ("M-A" . marginalia-cycle)))
 
 (use-package hydra)
 
@@ -155,10 +140,6 @@ Up^^       Down^^      Miscellaneous      % 2(mc/num-cursors) cursor%s(if (> (mc
   :requires yasnippet
   :after yasnippet)
 
-(use-package diminish
-  :config
-  (diminish 'hs-minor-mode))
-
 (use-package consult
   :config
   (setq consult-fd-args "fd -H -u") ; 不忽视隐藏文件（Windows 用户请删除这一行）
@@ -167,14 +148,6 @@ Up^^       Down^^      Miscellaneous      % 2(mc/num-cursors) cursor%s(if (> (mc
   ("C-f" . consult-line)
   ("C-c f" . consult-fd) ; windows 用不了，删掉这行
   ("C-c r" . consult-ripgrep))
-
-(use-package helpful
-  :bind
-  ("C-h f" . #'helpful-callable)
-  ("C-h v" . #'helpful-variable)
-  ("C-h k" . #'helpful-key)
-  ("C-h x" . #'helpful-command)
-  ("C-h C-h" . #'helpful-at-point))
 
 (use-package eaf)
 
