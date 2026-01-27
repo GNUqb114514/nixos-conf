@@ -21,10 +21,11 @@
 
     bind ? [],
     custom ? {},
+    diminish ? null,
 
     extraConfig ? "",
   }: (lib.mkMerge [{
-    user.emacs.extraPackages = [(epkgs: [
+    user.emacs.extraPackages = lib.mkIf (package != null) [(epkgs: [
       (package epkgs)
     ])];
     programs.emacs.extraConfig = ''
@@ -39,6 +40,7 @@
     then ":custom ${lib.concatMapAttrsStringSep "" (name: value: "(${name} ${value})") custom}"
     else "; No custom"}
   ${lib.concatMapStrings use-package-bindSpec bind}
+  ${if diminish != null then ":diminish ${diminish}" else ""}
   ${extraConfig})
       '';
   } (use-packages requirements)]);
