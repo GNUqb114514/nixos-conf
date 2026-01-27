@@ -6,6 +6,7 @@
 }: let cfg = config.user.emacs; in {
   imports = [
     ./basic.nix
+    ./operation.nix
   ];
 
   options.user.emacs = with lib; {
@@ -22,69 +23,18 @@
       enable = true;
       package = pkgs.emacs-pgtk;
       extraPackages = epkgs: (with epkgs; [
-        mwim
         good-scroll
-        hydra
-        use-package-hydra
-        multiple-cursors
-        rainbow-delimiters
         yasnippet
         yasnippet-capf
         cape
         corfu
         yasnippet-snippets
-        consult
         emacs-application-framework
       ] ++ (lib.concatMap (x: x epkgs) cfg.extraPackages));
       extraConfig = ''
-(use-package mwim
-  :bind
-  ("C-a" . mwim-beginning-of-code-or-line)
-  ("C-e" . mwim-end-of-code-or-line))
-
 (use-package good-scroll
   :if window-system
   :config (good-scroll-mode))
-
-(use-package hydra)
-
-(use-package use-package-hydra
-  :after hydra)
-
-(use-package multiple-cursors
-  :after hydra
-  :bind
-  (("C-x C-h m" . hydra-multiple-cursors/body)
-   ("C-S-<mouse-1>" . mc/toggle-cursor-on-click))
-  :hydra
-  (hydra-multiple-cursors
-   (:hint nil)
-   "
-Up^^       Down^^      Miscellaneous      % 2(mc/num-cursors) cursor%s(if (> (mc/num-cursors) 1) \"s\" \"\")
-------------------------------------------------------------------
- [_p_]  Prev   [_n_]  Next   [_l_] Edit lines [_0_] Insert numbers
- [_P_]  Skip   [_N_]  Skip   [_a_] Mark all  [_A_] Insert letters
- [_M-p_] Unmark  [_M-n_] Unmark  [_s_] Search   [_q_] Quit
- [_|_] Align with input CHAR    [Click] Cursor at point"
-   ("l" mc/edit-lines :exit t)
-   ("a" mc/mark-all-like-this :exit t)
-   ("n" mc/mark-next-like-this)
-   ("N" mc/skip-to-next-like-this)
-   ("M-n" mc/unmark-next-like-this)
-   ("p" mc/mark-previous-like-this)
-   ("P" mc/skip-to-previous-like-this)
-   ("M-p" mc/unmark-previous-like-this)
-   ("|" mc/vertical-align)
-   ("s" mc/mark-all-in-region-regexp :exit t)
-   ("0" mc/insert-numbers :exit t)
-   ("A" mc/insert-letters :exit t)
-   ("<mouse-1>" mc/add-cursor-on-click)
-   ("<down-mouse-1>" ignore)
-   ("<drag-mouse-1>" ignore)
-   ("q" nil)))
-
-(use-package rainbow-delimiters
-  :hook (prog-mode . rainbow-delimiters-mode))
 
 (use-package yasnippet
   :diminish yas-minor-mode
@@ -139,15 +89,6 @@ Up^^       Down^^      Miscellaneous      % 2(mc/num-cursors) cursor%s(if (> (mc
 (use-package yasnippet-snippets
   :requires yasnippet
   :after yasnippet)
-
-(use-package consult
-  :config
-  (setq consult-fd-args "fd -H -u") ; 不忽视隐藏文件（Windows 用户请删除这一行）
-  :bind
-  ("C-x b" . consult-buffer)
-  ("C-f" . consult-line)
-  ("C-c f" . consult-fd) ; windows 用不了，删掉这行
-  ("C-c r" . consult-ripgrep))
 
 (use-package eaf)
 
