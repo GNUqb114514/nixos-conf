@@ -25,7 +25,6 @@
       package = pkgs.emacs-pgtk;
       extraPackages = epkgs: (with epkgs; [
         good-scroll
-        emacs-application-framework
       ] ++ (lib.concatMap (x: x epkgs) cfg.extraPackages));
       extraConfig = ''
 (setopt confirm-kill-emacs #'yes-or-no-p)
@@ -50,11 +49,6 @@
 (use-package good-scroll
   :if window-system
   :config (good-scroll-mode))
-
-(use-package eaf)
-
-(use-package eaf-browser
-  :requires eaf)
       '';
     };
   };
