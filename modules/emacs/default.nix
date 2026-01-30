@@ -8,6 +8,7 @@
     ./basic.nix
     ./operation.nix
     ./completion.nix
+    ./org.nix
   ];
 
   options.user.emacs = with lib; {
