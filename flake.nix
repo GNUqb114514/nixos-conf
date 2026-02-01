@@ -56,6 +56,11 @@
       url = "github:subframe7536/maple-font";
       flake = false;
     };
+
+    org-hold = {
+      url = "github:GNUqb114514/org-hold";
+      flake = false;
+    };
   };
 
   outputs =
