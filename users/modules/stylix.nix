@@ -6,7 +6,7 @@
   ...
 }: let
   cfg = config.user.stylix;
-  user-pkgs = import ../packages { inherit pkgs; };
+  user-pkgs = import ../../packages { inherit pkgs; };
 in {
   options.user.stylix = with lib; {
     enable = mkEnableOption "stylix configurations";

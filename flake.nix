@@ -76,93 +76,20 @@
     {
       nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        specialArgs = {
+          inherit inputs;
+        };
         modules = [
-          nur.modules.nixos.default
-
-          ./configuration.nix
-
-          agenix.nixosModules.default
-
-          {
-            networking.hostName = "desktop"; # Define your hostname.
-          }
-          home-manager.nixosModules.home-manager
-
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit inputs; };
-            home-manager.users.qb114514 = import ./home.nix;
-          }
-
-          ./fonts.nix
-
-          ./software-config/dm.nix
-
-          ./software-config/firefox/systemwide.nix
-
-          ./software-config/de/osd-system.nix
-
-          ./software-config/virtualisation.nix
-
-          {
-            # Enable OpenGL
-            hardware.graphics.enable = true;
-          }
+          ./hosts/laptop.nix
         ];
       };
       nixosConfigurations.laptop = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
+        specialArgs = {
+          inherit inputs;
+        };
         modules = [
-          nur.modules.nixos.default
-
-          agenix.nixosModules.default
-
-          ./age.nix
-
-          {
-            environment.systemPackages = [ agenix.packages.${system}.default ];
-          }
-
-          ./configuration.nix
-
-          {
-            networking.hostName = "laptop"; # Define your hostname.
-          }
-
-          home-manager.nixosModules.home-manager
-
-          (
-            { config, ... }:
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = {
-                inherit inputs;
-                inherit (config.age) secrets;
-              };
-              home-manager.users.qb114514 = import ./home.nix;
-
-              nixpkgs.overlays = [
-                inputs.rust-overlay.overlays.default
-              ];
-            }
-          )
-
-          ./fonts.nix
-
-          ./software-config/dm.nix
-
-          ./software-config/firefox/systemwide.nix
-
-          ./software-config/de/osd-system.nix
-
-          ./software-config/virtualisation.nix
-
-          {
-            # Enable OpenGL
-            hardware.graphics.enable = true;
-          }
+          ./hosts/laptop.nix
         ];
       };
     };

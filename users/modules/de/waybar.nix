@@ -19,6 +19,7 @@ in {
   config = lib.mkIf cfg.enable (lib.mkMerge [
     {
       programs.waybar.enable = true;
+      programs.waybar.systemd.enable = true;
       programs.waybar.settings.mainBar = {
         modules-left = [ "niri/workspaces" ];
         modules-center = [ "niri/window" ];
