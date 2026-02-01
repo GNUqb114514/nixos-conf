@@ -6,6 +6,11 @@
   home.username = "qb114514";
   home.homeDirectory = "/home/qb114514";
 
+  programs.nh.enable = true;
+  programs.nh.flake = "/home/qb114514/nixos-conf";
+  programs.nh.clean.enable = true;
+  programs.nh.clean.dates = "weekly";
+
   programs.git = {
     enable = true;
     settings.user.name = "qb114514";
@@ -20,22 +25,44 @@
 
   programs.home-manager.enable = true;
 
+  programs.firefox.enable = true;
+
+  programs.firefox.languagePacks = [ "en-US" "zh-CN" ];
+
+  programs.firefox.profiles = {
+    default = {
+      id = 0;
+      name = "default";
+      isDefault = true;
+      bookmarks = {
+        force = true;
+        settings = import ./software-config/firefox/bookmarks.nix;
+      };
+      settings = {
+        "extensions.autoDisableScopes" = 0;
+        "browser.display.use_document_fonts" = 0;
+        "browser.startup.page" = 3;
+        "general.useragent.locale" = "zh-CN";
+      };
+      userContent = builtins.readFile ./software-config/firefox/userChrome.css;
+      search.force = true;
+      search.default = "bing";
+      search.engines = import ./software-config/firefox/search-engines.nix pkgs;
+    };
+  };
+  
   imports = [
     inputs.niri-flake.homeModules.stylix
     inputs.niri-flake.homeModules.niri
     inputs.nvf.homeManagerModules.default
     inputs.stylix.homeModules.stylix
     inputs.xremap.homeManagerModules.default
-    ./software-config
     # ./colorschemes/catppuccin-mocha.nix
     ./modules
     # ./modules/colorscheme.nix
   ];
 
   user = {
-    de = {
-      quickshell.enable = true;
-    };
     ssh.enable = true;
     stylix = {
       enable = true;
@@ -54,7 +81,7 @@
                 prev.value
                 ++ [
                   {
-                    name = builtins.toString prev.counter;
+                    name = toString prev.counter;
                     inherit value;
                   }
                 ];
@@ -228,6 +255,9 @@
       enable = true;
       custom-css = true;
     };
-    emacs = {enable = true;};
+
+    emacs = {
+      enable = true;
+    };
   };
 }
