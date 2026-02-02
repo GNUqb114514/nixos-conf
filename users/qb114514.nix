@@ -3,6 +3,8 @@
   inputs,
   ...
 }: {
+  home.packages = [ pkgs.wget ];
+
   home.username = "qb114514";
   home.homeDirectory = "/home/qb114514";
 
