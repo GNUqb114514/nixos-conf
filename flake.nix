@@ -61,6 +61,11 @@
       url = "github:GNUqb114514/org-hold";
       flake = false;
     };
+
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -80,7 +85,7 @@
           inherit inputs;
         };
         modules = [
-          ./hosts/laptop.nix
+          ./hosts/desktop.nix
         ];
       };
       nixosConfigurations.laptop = nixpkgs.lib.nixosSystem rec {

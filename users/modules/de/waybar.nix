@@ -21,6 +21,7 @@ in {
       programs.waybar.enable = true;
       programs.waybar.systemd.enable = true;
       programs.waybar.settings.mainBar = {
+        layer = "top";
         modules-left = [ "niri/workspaces" ];
         modules-center = [ "niri/window" ];
         modules-right = [ "cpu" "memory" "battery" "clock" "tray" ];

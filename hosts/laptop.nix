@@ -16,11 +16,25 @@
     nixpkgs.overlays = [
       inputs.rust-overlay.overlays.default
     ];
+
+    boot.loader = {
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot";
+      };
+      grub = {
+        enable = true;
+        version = 2;
+        device = "nodev";
+        efiSupport = true;
+      };
+    };
   };
   
   imports = [
     ../age.nix
 
     ./common.nix
+    ./hardware-configuration.nix
   ];
 }
