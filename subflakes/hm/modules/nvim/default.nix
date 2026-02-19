@@ -3,6 +3,8 @@
   lib,
   config,
   inputs,
+  vim-barbaric,
+  nvf,
   ...
 }: let
   cfg = config.user.nvim;
@@ -64,7 +66,7 @@ in {
           "vimplugin-vim-barbaric" = {
             package = pkgs.vimUtils.buildVimPlugin {
               name = "vim-barbaric";
-              src = inputs.vim-barbaric;
+              src = vim-barbaric;
             };
           };
         };
@@ -93,7 +95,7 @@ in {
         }
         (lib.mkIf config.user.terminal {
           luaConfigRC = {
-            foldtext = inputs.nvf.lib.nvim.dag.entryBefore ["optionsScript"] (builtins.readFile ./fold_virt_text.lua);
+            foldtext = nvf.lib.nvim.dag.entryBefore ["optionsScript"] (builtins.readFile ./fold_virt_text.lua);
           };
           options.fillchars = "fold: ,foldopen:,foldclose:";
 

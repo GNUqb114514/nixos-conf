@@ -15,7 +15,6 @@ in stdenv.mkDerivation rec {
 
   fontConfigPkg = configFile fontConfig;
 
-  #inherit src;
   src = fetchFromGitHub {
     owner = "subframe7536";
     repo = "maple-font";

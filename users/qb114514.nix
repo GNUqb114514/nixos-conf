@@ -54,14 +54,7 @@
   };
   
   imports = [
-    inputs.niri-flake.homeModules.stylix
-    inputs.niri-flake.homeModules.niri
-    inputs.nvf.homeManagerModules.default
-    inputs.stylix.homeModules.stylix
-    inputs.xremap.homeManagerModules.default
-    # ./colorschemes/catppuccin-mocha.nix
-    ./modules
-    # ./modules/colorscheme.nix
+    inputs.hm.homeModules.qb
   ];
 
   user = {

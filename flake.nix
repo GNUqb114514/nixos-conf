@@ -4,28 +4,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs";
 
-    niri-flake = {
-      url = "github:sodiboo/niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nur = {
-      url = "github:nix-community/NUR";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    stylix.url = "github:danth/stylix";
-
-    nvf = {
-      url = "github:notashelf/nvf";
-      # You can override the input nixpkgs to follow your system's
-      # instance of nixpkgs. This is safe to do as nvf does not depend
-      # on a binary cache.
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -35,22 +15,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nerdicons-nvim = {
-      url = "github:nvimdev/nerdicons.nvim";
-      flake = false;
-    };
-
-    vim-barbaric = {
-      url = "github:rlue/vim-barbaric";
-      flake = false;
-    };
-
     xremap.url = "github:xremap/nix-flake";
-
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     maple-font = {
       url = "github:subframe7536/maple-font";
@@ -66,16 +31,22 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Subflakes
+    hm = {
+      url = "./subflakes/hm";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     {
       nixpkgs,
-      nur,
+      # nur,
       home-manager,
       agenix,
       xremap,
-      fenix,
+      # fenix,
       ...
     }@inputs:
     {

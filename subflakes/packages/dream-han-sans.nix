@@ -15,13 +15,6 @@ stdenvNoCC.mkDerivation {
     stripRoot = false;
   };
 
-  #unpackPhase = ''
-  #  runHook preUnpack
-  #  ${unzip}/bin/unzip $src
-
-  #  runHook postUnpack
-  #'';
-
   installPhase = ''
     runHook preInstall
 

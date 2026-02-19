@@ -13,10 +13,6 @@
 
     networking.hostName = "laptop";
 
-    nixpkgs.overlays = [
-      inputs.rust-overlay.overlays.default
-    ];
-
     boot.loader = {
       efi = {
         canTouchEfiVariables = true;

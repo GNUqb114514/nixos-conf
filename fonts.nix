@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   fonts.packages = with pkgs; [
     nerd-fonts.ubuntu-mono
-    (import packages/default.nix { inherit pkgs; }).dream-han-sans
+    (import ./subflakes/packages/default.nix { inherit pkgs; }).dream-han-sans
     source-han-serif
   ];
 
