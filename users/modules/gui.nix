@@ -59,6 +59,8 @@ in {
         ]
         ++ lib.optionals config.user.fcitx.enable [
           {command = ["systemctl" "--user" "restart" "fcitx5-daemon.service"];}
+          {command = ["systemctl" "--user" "start" "waybar.service"];}
+          {command = ["systemctl" "--user" "start" "swayosd.service"];}
         ];
       binds = with config.lib.niri.actions;
         lib.mkMerge [
