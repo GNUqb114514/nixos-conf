@@ -53,12 +53,12 @@ in {
           open-focused = false;
         }
       ];
-      spawn-at-startup =
-        [
-          {command = ["eww" "open" "topbar"];}
-        ]
-        ++ lib.optionals config.user.fcitx.enable [
+      spawn-at-startup = lib.optionals config.user.fcitx.enable [
           {command = ["systemctl" "--user" "restart" "fcitx5-daemon.service"];}
+        ] ++ lib.optionals config.user.waybar.enable [
+          {command = ["systemctl" "--user" "start" "waybar.service"];}
+        ] ++ lib.optionals config.user.gui.swayosd [
+          {command = ["systemctl" "--user" "start" "swayosd.service"];}
         ];
       binds = with config.lib.niri.actions;
         lib.mkMerge [
