@@ -5,21 +5,24 @@
   inputs,
   nerdicons-nvim,
   ...
-}: let
+}:
+let
   cfg = config.user.nvim;
-in {
+in
+{
   options.user.nvim = with lib; {
     yazi = mkEnableOption "yazi.nvim";
   };
-  config.warnings =
-    lib.optionals (cfg.yazi && !config.user.shell.utilities.tui) ["Yazi.nvim requires TUI softwares"];
+  config.warnings = lib.optionals (cfg.yazi && !config.user.shell.utilities.tui) [
+    "Yazi.nvim requires TUI softwares"
+  ];
   config.programs.nvf.settings.vim = lib.mkMerge [
     (lib.mkIf config.user.terminal {
       options.title = true;
       # Status line
       statusline.lualine = {
         enable = true;
-        disabledFiletypes = ["sagaoutline"];
+        disabledFiletypes = [ "sagaoutline" ];
       };
 
       # Indent
@@ -36,7 +39,7 @@ in {
             src = nerdicons-nvim;
           };
           setupModule = "nerdicons";
-          cmd = ["NerdIcons"];
+          cmd = [ "NerdIcons" ];
         };
       };
 

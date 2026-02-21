@@ -4,9 +4,11 @@
   config,
   inputs,
   ...
-}: let
+}:
+let
   cfg = config.user.nvim;
-in {
+in
+{
   options.user.nvim = with lib; {
     completion = {
       enable = mkEnableOption "blink.cmp";
@@ -15,8 +17,9 @@ in {
     };
   };
 
-  config.warnings =
-    lib.optionals (cfg.completion.lazydev && !config.user.programming.lua) ["Lazydev requires lua programmming environment."];
+  config.warnings = lib.optionals (cfg.completion.lazydev && !config.user.programming.lua) [
+    "Lazydev requires lua programmming environment."
+  ];
 
   config.programs.nvf.settings.vim = lib.mkMerge [
     (lib.mkIf cfg.completion.enable {
@@ -44,7 +47,7 @@ in {
           };
           sources = lib.mkMerge [
             (lib.mkIf cfg.completion.lazydev {
-              default = lib.mkBefore ["lazydev"];
+              default = lib.mkBefore [ "lazydev" ];
               providers.lazydev = {
                 name = "LazyDev";
                 module = "lazydev.integrations.blink";

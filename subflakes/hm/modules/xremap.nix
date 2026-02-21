@@ -19,7 +19,10 @@ in
     services.xremap.enable = true;
     services.xremap.config =
       let
-        held-alone = held: alone: { inherit held alone; freehold = true; };
+        held-alone = held: alone: {
+          inherit held alone;
+          freehold = true;
+        };
         held-alone-same = builtins.mapAttrs (name: value: held-alone value name);
       in
       lib.mkMerge [

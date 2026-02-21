@@ -3,9 +3,11 @@
   config,
   secrets,
   ...
-}: let
+}:
+let
   cfg = config.user.ssh;
-in {
+in
+{
   options.user.ssh = with lib; {
     enable = mkEnableOption "SSH";
     hosts = {

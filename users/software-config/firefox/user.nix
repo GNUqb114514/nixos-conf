@@ -1,7 +1,11 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.firefox.enable = true;
 
-  programs.firefox.languagePacks = [ "en-US" "zh-CN" ];
+  programs.firefox.languagePacks = [
+    "en-US"
+    "zh-CN"
+  ];
 
   programs.firefox.profiles = {
     default = {

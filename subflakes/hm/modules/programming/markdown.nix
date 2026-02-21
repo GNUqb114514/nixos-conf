@@ -3,9 +3,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.user.programming.markdown;
-in {
+in
+{
   options.user.programming.markdown = lib.mkEnableOption "Markdown editing environment";
 
   config = lib.mkIf cfg {

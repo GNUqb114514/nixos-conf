@@ -76,19 +76,23 @@
     };
   };
 
-  outputs = {
-    nixpkgs, home-manager, ...
-  }@inputs: {
-    homeModules.qb = {
-      _module.args = inputs;
-      imports = [
-        inputs.niri-flake.homeModules.stylix
-        inputs.niri-flake.homeModules.niri
-        inputs.nvf.homeManagerModules.default
-        inputs.stylix.homeModules.stylix
-        inputs.xremap.homeManagerModules.default
-        ./modules/default.nix
-      ];
+  outputs =
+    {
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
+    {
+      homeModules.qb = {
+        _module.args = inputs;
+        imports = [
+          inputs.niri-flake.homeModules.stylix
+          inputs.niri-flake.homeModules.niri
+          inputs.nvf.homeManagerModules.default
+          inputs.stylix.homeModules.stylix
+          inputs.xremap.homeManagerModules.default
+          ./modules/default.nix
+        ];
+      };
     };
-  };
 }

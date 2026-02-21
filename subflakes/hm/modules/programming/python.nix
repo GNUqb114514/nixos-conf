@@ -3,9 +3,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.user.programming.python;
-in {
+in
+{
   options.user.programming.python = lib.mkEnableOption "Python programming environment";
 
   config = lib.mkIf cfg {

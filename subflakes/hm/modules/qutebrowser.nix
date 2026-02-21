@@ -2,9 +2,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.user.qutebrowser;
-in {
+in
+{
   options.user.qutebrowser = with lib; {
     enable = mkEnableOption "Qutebrowser";
     disable-gpu = mkOption {
@@ -20,8 +22,14 @@ in {
     programs.qutebrowser = {
       enable = true;
       settings = {
-        qt.args = lib.mkIf cfg.disable-gpu ["disable-gpu"];
-        editor.command = ["kitty" "nvim" "+call cursor({line}, {column})" "--" "{file}"];
+        qt.args = lib.mkIf cfg.disable-gpu [ "disable-gpu" ];
+        editor.command = [
+          "kitty"
+          "nvim"
+          "+call cursor({line}, {column})"
+          "--"
+          "{file}"
+        ];
         url.default_page = "https://cn.bing.com";
         url.start_pages = "https://cn.bing.com";
         tabs.position = "left";

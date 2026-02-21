@@ -3,9 +3,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.user.fcitx;
-in {
+in
+{
   options.user.fcitx = with lib; {
     enable = mkEnableOption "Fcitx5";
     settings = mkOption {
@@ -13,7 +15,7 @@ in {
       description = ''
         Settings for Fcitx5.
       '';
-      default = {};
+      default = { };
     };
   };
 

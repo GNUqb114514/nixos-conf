@@ -3,9 +3,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.user.terminal;
-in {
+in
+{
   options.user.terminal = lib.mkEnableOption "terminal (kitty)";
 
   config = lib.mkIf cfg {

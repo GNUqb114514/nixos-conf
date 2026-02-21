@@ -1,5 +1,6 @@
-{pkgs, ...}: rec {
-  ufo-extractor = pkgs.python3.pkgs.callPackage ./ufo-extractor.nix {};
+{ pkgs, ... }:
+rec {
+  ufo-extractor = pkgs.python3.pkgs.callPackage ./ufo-extractor.nix { };
   foundrytools = pkgs.python3.pkgs.callPackage ./foundrytools.nix {
     inherit ufo-extractor;
   };
@@ -30,5 +31,5 @@
       };
     };
   };
-  dream-han-sans = pkgs.callPackage ./dream-han-sans.nix {};
+  dream-han-sans = pkgs.callPackage ./dream-han-sans.nix { };
 }

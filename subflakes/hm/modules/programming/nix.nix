@@ -3,9 +3,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.user.programming.nix;
-in {
+in
+{
   options.user.programming.nix = lib.mkEnableOption "Nix programming environment";
 
   config = lib.mkIf cfg {

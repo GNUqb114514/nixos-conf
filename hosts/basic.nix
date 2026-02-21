@@ -1,4 +1,11 @@
-{ pkgs, config, lib, inputs, ... }: {
+{
+  pkgs,
+  config,
+  lib,
+  inputs,
+  ...
+}:
+{
   config = {
     hardware.graphics.enable = true;
   };

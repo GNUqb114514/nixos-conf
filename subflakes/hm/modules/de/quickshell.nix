@@ -2,9 +2,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.user.de.quickshell;
-in {
+in
+{
   options.user.de.quickshell = with lib; {
     enable = mkEnableOption "Quickshell";
     activeConfig = mkOption {
@@ -16,6 +18,8 @@ in {
   config.programs.quickshell = lib.mkIf cfg.enable {
     inherit (cfg) activeConfig;
     enable = true;
-    configs = builtins.mapAttrs (name: _: ./quickshell-configs/${name}) (builtins.readDir ./quickshell-configs);
+    configs = builtins.mapAttrs (name: _: ./quickshell-configs/${name}) (
+      builtins.readDir ./quickshell-configs
+    );
   };
 }

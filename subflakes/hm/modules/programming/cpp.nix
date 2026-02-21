@@ -1,6 +1,13 @@
-{pkgs, config, lib, ...}: let
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+let
   cfg = config.user.programming.cpp;
-in {
+in
+{
   options.user.programming.cpp = lib.mkEnableOption "C++ environment";
 
   config = lib.mkIf cfg {

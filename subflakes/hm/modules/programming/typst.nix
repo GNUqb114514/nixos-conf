@@ -3,9 +3,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.user.programming.typst;
-in {
+in
+{
   options.user.programming.typst = lib.mkEnableOption "Typst programming environment";
 
   config = lib.mkIf cfg {

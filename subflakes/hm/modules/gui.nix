@@ -3,9 +3,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.user.gui;
-in {
+in
+{
   options.user.gui = with lib; {
     enable = mkEnableOption "GUI";
 
@@ -21,14 +23,16 @@ in {
 
     programs.niri.settings = {
       layout = {
-        preset-column-widths = let
-          proportion = value: {proportion = value;};
-          fixed = value: {fixed = value;};
-        in [
-          (proportion (1. / 3.))
-          (proportion (1. / 2.))
-          (proportion (2. / 3.))
-        ];
+        preset-column-widths =
+          let
+            proportion = value: { proportion = value; };
+            fixed = value: { fixed = value; };
+          in
+          [
+            (proportion (1. / 3.))
+            (proportion (1. / 2.))
+            (proportion (2. / 3.))
+          ];
 
         gaps = 8;
       };
@@ -42,25 +46,52 @@ in {
             }
           ];
           open-floating = true;
-          default-window-height = let
-            proportion = value: {proportion = value;};
-          in
+          default-window-height =
+            let
+              proportion = value: { proportion = value; };
+            in
             proportion 0.4;
-          default-column-width = let
-            proportion = value: {proportion = value;};
-          in
+          default-column-width =
+            let
+              proportion = value: { proportion = value; };
+            in
             proportion 0.4;
           open-focused = false;
         }
       ];
-      spawn-at-startup = lib.optionals config.user.fcitx.enable [
-          {command = ["systemctl" "--user" "restart" "fcitx5-daemon.service"];}
-        ] ++ lib.optionals config.user.waybar.enable [
-          {command = ["systemctl" "--user" "start" "waybar.service"];}
-        ] ++ lib.optionals config.user.gui.swayosd [
-          {command = ["systemctl" "--user" "start" "swayosd.service"];}
+      spawn-at-startup =
+        lib.optionals config.user.fcitx.enable [
+          {
+            command = [
+              "systemctl"
+              "--user"
+              "restart"
+              "fcitx5-daemon.service"
+            ];
+          }
+        ]
+        ++ lib.optionals config.user.waybar.enable [
+          {
+            command = [
+              "systemctl"
+              "--user"
+              "start"
+              "waybar.service"
+            ];
+          }
+        ]
+        ++ lib.optionals config.user.gui.swayosd [
+          {
+            command = [
+              "systemctl"
+              "--user"
+              "start"
+              "swayosd.service"
+            ];
+          }
         ];
-      binds = with config.lib.niri.actions;
+      binds =
+        with config.lib.niri.actions;
         lib.mkMerge [
           {
             "Mod+Shift+Slash".action = show-hotkey-overlay;
@@ -177,9 +208,11 @@ in {
             "Mod+V".action = toggle-window-floating;
             "Mod+Shift+V".action = switch-focus-between-floating-and-tiling;
 
-            "Print".action.screenshot = {show-pointer = true;};
-            "Ctrl+Print".action.screenshot-screen = [];
-            "Alt+Print".action.screenshot-window = [];
+            "Print".action.screenshot = {
+              show-pointer = true;
+            };
+            "Ctrl+Print".action.screenshot-screen = [ ];
+            "Alt+Print".action.screenshot-window = [ ];
 
             "Mod+Shift+E".action = quit;
 

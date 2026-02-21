@@ -3,9 +3,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.user.programming.bluespec;
-in {
+in
+{
   options.user.programming.bluespec = lib.mkEnableOption "Bluespec programming environment";
 
   config = lib.mkIf cfg {

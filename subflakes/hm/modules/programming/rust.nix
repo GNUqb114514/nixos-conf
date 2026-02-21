@@ -3,9 +3,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.user.programming.rust;
-in {
+in
+{
   options.user.programming.rust = lib.mkEnableOption "Rust programming environment";
 
   config = lib.mkIf cfg {

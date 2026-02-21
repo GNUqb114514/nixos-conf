@@ -6,10 +6,13 @@
   foundrytools-cli,
   uv,
   debug ? false,
-  fontConfig ? {},
-} @ deps: with deps; let
+  fontConfig ? { },
+}@deps:
+with deps;
+let
   configFile = config: writeText "config.json" (builtins.toJSON config);
-in stdenv.mkDerivation rec {
+in
+stdenv.mkDerivation rec {
   pname = "maple-mono";
   version = "7.9";
 
@@ -26,7 +29,8 @@ in stdenv.mkDerivation rec {
     python3
     foundrytools-cli
     uv
-  ] ++ (with python3.pkgs; [
+  ]
+  ++ (with python3.pkgs; [
     fonttools
     ttfautohint-py
     glyphslib
@@ -34,7 +38,7 @@ in stdenv.mkDerivation rec {
 
   configurePhase = ''
     ln -sf ${fontConfigPkg} ./config.json
-    '';
+  '';
 
   buildPhase = ''
     ${if debug then "python3 ./build.py --dry" else ""}

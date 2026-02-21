@@ -3,9 +3,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.user.programming.lua;
-in {
+in
+{
   options.user.programming.lua = lib.mkEnableOption "Lua programming environment";
 
   config = lib.mkIf cfg {

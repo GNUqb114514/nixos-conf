@@ -2,7 +2,8 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   home.packages = [ pkgs.wget ];
 
   home.username = "qb114514";
@@ -29,7 +30,10 @@
 
   programs.firefox.enable = true;
 
-  programs.firefox.languagePacks = [ "en-US" "zh-CN" ];
+  programs.firefox.languagePacks = [
+    "en-US"
+    "zh-CN"
+  ];
 
   programs.firefox.profiles = {
     default = {
@@ -52,7 +56,7 @@
       search.engines = import ./software-config/firefox/search-engines.nix pkgs;
     };
   };
-  
+
   imports = [
     inputs.hm.homeModules.qb
   ];
@@ -65,109 +69,141 @@
     };
     fcitx = {
       enable = true;
-      settings = let
-        fcitxStyleList = list:
-          builtins.listToAttrs
-          (
-            builtins.foldl'
-            (prev: value: {
-              counter = prev.counter + 1;
-              value =
-                prev.value
-                ++ [
-                  {
-                    name = toString prev.counter;
-                    inherit value;
-                  }
-                ];
-            })
-            {
-              counter = 0;
-              value = [];
-            }
-            list
-          ).value;
-      in {
-        globalOptions = {
-          Hotkey = {
-            EnumerateWithTriggerKeys = true;
-            EnumerateSkipFirst = false;
-          };
+      settings =
+        let
+          fcitxStyleList =
+            list:
+            builtins.listToAttrs
+              (builtins.foldl'
+                (prev: value: {
+                  counter = prev.counter + 1;
+                  value = prev.value ++ [
+                    {
+                      name = toString prev.counter;
+                      inherit value;
+                    }
+                  ];
+                })
+                {
+                  counter = 0;
+                  value = [ ];
+                }
+                list
+              ).value;
+        in
+        {
+          globalOptions = {
+            Hotkey = {
+              EnumerateWithTriggerKeys = true;
+              EnumerateSkipFirst = false;
+            };
 
-          "Hotkey/TriggerKeys" = fcitxStyleList ["Shift+Shift_L" "Shift+Shift_R"];
-          "Hotkey/EnumerateForwardKeys" = fcitxStyleList ["Super+space"];
-          "Hotkey/EnumerateBackwardKeys" = fcitxStyleList ["Shift+Super+space"];
-          "Hotkey/PrevPage" = fcitxStyleList ["comma" "Page_up" "Up"];
-          "Hotkey/NextPage" = fcitxStyleList ["period" "Next" "Down"];
-          "Hotkey/PrevCandidate" = fcitxStyleList ["Shift+Tab"];
-          "Hotkey/NextCandidate" = fcitxStyleList ["Tab"];
+            "Hotkey/TriggerKeys" = fcitxStyleList [
+              "Shift+Shift_L"
+              "Shift+Shift_R"
+            ];
+            "Hotkey/EnumerateForwardKeys" = fcitxStyleList [ "Super+space" ];
+            "Hotkey/EnumerateBackwardKeys" = fcitxStyleList [ "Shift+Super+space" ];
+            "Hotkey/PrevPage" = fcitxStyleList [
+              "comma"
+              "Page_up"
+              "Up"
+            ];
+            "Hotkey/NextPage" = fcitxStyleList [
+              "period"
+              "Next"
+              "Down"
+            ];
+            "Hotkey/PrevCandidate" = fcitxStyleList [ "Shift+Tab" ];
+            "Hotkey/NextCandidate" = fcitxStyleList [ "Tab" ];
 
-          Behavior = {
-            ActiveByDefault = false;
-            resetStateWhenFocusIn = "No";
-            ShareInputState = "No";
-            PreeditEnabledByDefault = true;
-            ShowInputMethodInformation = true;
-            showInputMethodInformationWhenFocusIn = false;
-            CompactInputMethodInformation = true;
-            ShowFirstInputMethodInformation = true;
-            DefaultPageSize = 9;
-            PreloadInputMethod = true;
+            Behavior = {
+              ActiveByDefault = false;
+              resetStateWhenFocusIn = "No";
+              ShareInputState = "No";
+              PreeditEnabledByDefault = true;
+              ShowInputMethodInformation = true;
+              showInputMethodInformationWhenFocusIn = false;
+              CompactInputMethodInformation = true;
+              ShowFirstInputMethodInformation = true;
+              DefaultPageSize = 9;
+              PreloadInputMethod = true;
+            };
+          };
+          inputMethod = {
+            GroupOrder."0" = "默认";
+            "Groups/0" = {
+              Name = "默认";
+              "Default Layout" = "us";
+              DefaultIM = "shuangpin";
+            };
+            "Groups/0/Items/0" = {
+              Name = "keyboard-us";
+              Layout = "";
+            };
+            "Groups/0/Items/1" = {
+              Name = "shuangpin";
+              Layout = "";
+            };
+            "Groups/0/Items/2" = {
+              Name = "pinyin";
+              Layout = "";
+            };
+          };
+          addons.pinyin = {
+            globalSection = {
+              ShuangpinProfile = "Xiaohe";
+              ShowShuangpinMode = true;
+              PageSize = 9;
+              SpellEnabled = true;
+              SymbolsEnabled = true;
+              ChaiziEnabled = true;
+              ExtBEnabled = true;
+              CloudPinyinEnabled = true;
+              CloudPinyinIndex = 2;
+              CloudPinyinAnimation = true;
+              KeepCloudPinyinPlaceholder = false;
+              PreeditMode = "Composing pinyin";
+              PreeditCursorPositionAtBeginning = false;
+              SwitchInputMethodBehavior = "Commit current preedit";
+              UseKeypadAsSelection = true;
+              QuickPhraseKey = "grave";
+              VAsQuickphrase = true;
+            };
+            sections = {
+              PrevPage = fcitxStyleList [
+                "comma"
+                "Page_up"
+                "Up"
+              ];
+              NextPage = fcitxStyleList [
+                "period"
+                "Next"
+                "Down"
+              ];
+              PrevCandidate = fcitxStyleList [ "Shift+Tab" ];
+              NextCandidate = fcitxStyleList [ "Tab" ];
+              CurrentCandidate = fcitxStyleList [
+                "space"
+                "KP_space"
+              ];
+              CommitRawInput = fcitxStyleList [
+                "Return"
+                "KP_Enter"
+              ];
+              ChooseCharFromPhrase = fcitxStyleList [
+                "bracketleft"
+                "bracketright"
+              ];
+              FilterByStroke = fcitxStyleList [ "Shift+grave" ];
+              QuickPhraseTriggerRegex = fcitxStyleList [
+                ".(/|@)$"
+                ''^(www|bbs|forum|mail|bbs)\\.''
+                "^(http|https|ftp|telnet|mailto):"
+              ];
+            };
           };
         };
-        inputMethod = {
-          GroupOrder."0" = "默认";
-          "Groups/0" = {
-            Name = "默认";
-            "Default Layout" = "us";
-            DefaultIM = "shuangpin";
-          };
-          "Groups/0/Items/0" = {
-            Name = "keyboard-us";
-            Layout = "";
-          };
-          "Groups/0/Items/1" = {
-            Name = "shuangpin";
-            Layout = "";
-          };
-          "Groups/0/Items/2" = {
-            Name = "pinyin";
-            Layout = "";
-          };
-        };
-        addons.pinyin = {
-          globalSection = {
-            ShuangpinProfile = "Xiaohe";
-            ShowShuangpinMode = true;
-            PageSize = 9;
-            SpellEnabled = true;
-            SymbolsEnabled = true;
-            ChaiziEnabled = true;
-            ExtBEnabled = true;
-            CloudPinyinEnabled = true;
-            CloudPinyinIndex = 2;
-            CloudPinyinAnimation = true;
-            KeepCloudPinyinPlaceholder = false;
-            PreeditMode = "Composing pinyin";
-            PreeditCursorPositionAtBeginning = false;
-            SwitchInputMethodBehavior = "Commit current preedit";
-            UseKeypadAsSelection = true;
-            QuickPhraseKey = "grave";
-            VAsQuickphrase = true;
-          };
-          sections = {
-            PrevPage = fcitxStyleList ["comma" "Page_up" "Up"];
-            NextPage = fcitxStyleList ["period" "Next" "Down"];
-            PrevCandidate = fcitxStyleList ["Shift+Tab"];
-            NextCandidate = fcitxStyleList ["Tab"];
-            CurrentCandidate = fcitxStyleList ["space" "KP_space"];
-            CommitRawInput = fcitxStyleList ["Return" "KP_Enter"];
-            ChooseCharFromPhrase = fcitxStyleList ["bracketleft" "bracketright"];
-            FilterByStroke = fcitxStyleList ["Shift+grave"];
-            QuickPhraseTriggerRegex = fcitxStyleList [".(/|@)$" ''^(www|bbs|forum|mail|bbs)\\.'' "^(http|https|ftp|telnet|mailto):"];
-          };
-        };
-      };
     };
     shell = {
       enable = true;

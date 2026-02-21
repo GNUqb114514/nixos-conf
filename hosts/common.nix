@@ -1,4 +1,11 @@
-{ pkgs, config, lib, inputs, ... }: {
+{
+  pkgs,
+  config,
+  lib,
+  inputs,
+  ...
+}:
+{
   config = {
     home-manager = {
       useGlobalPkgs = true;
@@ -13,8 +20,13 @@
 
       max-jobs = "auto";
 
-      experimental-features = [ "nix-command" "flakes" "ca-derivations" "recursive-nix" ];
-      trusted-users = [ "qb114514" ];   
+      experimental-features = [
+        "nix-command"
+        "flakes"
+        "ca-derivations"
+        "recursive-nix"
+      ];
+      trusted-users = [ "qb114514" ];
       substituters = [
         "https://mirrors.sustech.edu.cn/nix-channels/store"
         "https://mirrors.ustc.edu.cn/nix-channels/store"
@@ -37,7 +49,7 @@
       auto-optimise-store = true;
     };
 
-    networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+    networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
     time.timeZone = "Asia/Shanghai";
     i18n.defaultLocale = "zh_CN.UTF-8";
     programs.niri.enable = true;
@@ -50,14 +62,17 @@
     boot.kernelModules = [ "uinput" ];
     services.udev.extraRules = ''
       KERNEL=="uinput", GROUP="input", TAG+="uaccess"
-      '';
+    '';
     programs.firefox.enable = true;
     services.openssh.enable = true;
 
     users.mutableUsers = false;
-    users.users."qb114514"= {
+    users.users."qb114514" = {
       isNormalUser = true;
-      extraGroups = [ "wheel" "input" ]; # Enable ‘sudo’ for the user.
+      extraGroups = [
+        "wheel"
+        "input"
+      ]; # Enable ‘sudo’ for the user.
       packages = with pkgs; [
         tree
       ];
@@ -87,7 +102,7 @@
 
   imports = with inputs; [
     ./basic.nix
-    
+
     # nur.modules.nixos.default
     home-manager.nixosModules.home-manager
 

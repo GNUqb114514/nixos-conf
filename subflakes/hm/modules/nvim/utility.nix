@@ -3,9 +3,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.user.nvim;
-in {
+in
+{
   options.user.nvim = with lib; {
     flash = mkEnableOption "flash.nvim";
     window-picker = mkEnableOption "window-picker";
@@ -41,7 +43,7 @@ in {
             }
           ];
           setupOpts = {
-            filter_rules.bo.filetype = ["fidget"];
+            filter_rules.bo.filetype = [ "fidget" ];
           };
         };
       };

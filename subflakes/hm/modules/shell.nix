@@ -3,9 +3,11 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   cfg = config.user.shell;
-in {
+in
+{
   options.user.shell = with lib; {
     enable = mkEnableOption "shell";
 
@@ -38,8 +40,8 @@ in {
 
   config = lib.mkIf cfg.enable {
     warnings =
-      lib.optionals (cfg.utilities.tui && !config.user.terminal) ["TUI things require GUI features."]
-      ++ lib.optionals (cfg.neogitAlias && !config.user.nvim.enable) ["Neogit alias requires neogit."];
+      lib.optionals (cfg.utilities.tui && !config.user.terminal) [ "TUI things require GUI features." ]
+      ++ lib.optionals (cfg.neogitAlias && !config.user.nvim.enable) [ "Neogit alias requires neogit." ];
 
     programs.zsh.enable = true;
 
@@ -68,9 +70,11 @@ in {
         zstyle ':completion:*:descriptions' format '[%d]'
         zstyle ':fzf-tab:*' switch-group '<' '>'
       '')
-      (lib.mkIf cfg.fzf-tab (lib.mkOrder 899 ''
-        ZVM_INIT_MODE=sourcing
-      ''))
+      (lib.mkIf cfg.fzf-tab (
+        lib.mkOrder 899 ''
+          ZVM_INIT_MODE=sourcing
+        ''
+      ))
     ];
 
     programs.zsh.autosuggestion.enable = cfg.autosuggestion;
@@ -92,39 +96,56 @@ in {
       enableZshIntegration = true;
     };
 
-    home.packages = with lib; let
-      util = cfg.utilities;
-    in
+    home.packages =
+      with lib;
+      let
+        util = cfg.utilities;
+      in
       (with pkgs; [
         nh
         just
       ])
-      ++ lib.optionals util.archive (with pkgs; [
-        zip
-        xz
-        unzip
-      ])
-      ++ lib.optionals util.monitors (with pkgs; [
-        iftop
-        htop
-        iotop
-      ])
-      ++ lib.optionals (util.monitors && config.user.terminal) [pkgs.btop]
-      ++ lib.optionals util.file-manager (with pkgs; [
-        file
-        which
-        tree
-        ripgrep
-      ])
-      ++ lib.optionals util.pretty (with pkgs; [
-        bat
-        delta
-      ])
-      ++ lib.optionals (util.tui && config.user.terminal) (with pkgs; [
-        fastfetch
-        yazi
-      ])
-      ++ lib.optionals util.jq [pkgs.jq]
-      ++ lib.optionals util.gh [pkgs.gh];
+      ++ lib.optionals util.archive (
+        with pkgs;
+        [
+          zip
+          xz
+          unzip
+        ]
+      )
+      ++ lib.optionals util.monitors (
+        with pkgs;
+        [
+          iftop
+          htop
+          iotop
+        ]
+      )
+      ++ lib.optionals (util.monitors && config.user.terminal) [ pkgs.btop ]
+      ++ lib.optionals util.file-manager (
+        with pkgs;
+        [
+          file
+          which
+          tree
+          ripgrep
+        ]
+      )
+      ++ lib.optionals util.pretty (
+        with pkgs;
+        [
+          bat
+          delta
+        ]
+      )
+      ++ lib.optionals (util.tui && config.user.terminal) (
+        with pkgs;
+        [
+          fastfetch
+          yazi
+        ]
+      )
+      ++ lib.optionals util.jq [ pkgs.jq ]
+      ++ lib.optionals util.gh [ pkgs.gh ];
   };
 }
