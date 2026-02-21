@@ -2,12 +2,11 @@
   pkgs,
   lib,
   config,
-  inputs,
-  nerdicons-nvim,
   ...
 }:
 let
   cfg = config.user.nvim;
+  inputs = config.user.inputs;
 in
 {
   options.user.nvim = with lib; {
@@ -36,7 +35,7 @@ in
         "vimplugin-nerdicons.nvim" = {
           package = pkgs.vimUtils.buildVimPlugin {
             name = "nerdicons.nvim";
-            src = nerdicons-nvim;
+            src = inputs.nerdicons-nvim;
           };
           setupModule = "nerdicons";
           cmd = [ "NerdIcons" ];

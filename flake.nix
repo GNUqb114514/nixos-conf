@@ -4,6 +4,10 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs";
 
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+    };
+
     systems = {
       url = "github:nix-systems/default";
     };
@@ -43,6 +47,7 @@
       inputs.home-manager.follows = "home-manager";
       inputs.maple-font.follows = "maple-font";
       inputs.systems.follows = "systems";
+      inputs.flake-parts.follows = "flake-parts";
     };
   };
 
@@ -53,26 +58,35 @@
       home-manager,
       agenix,
       # fenix,
+      flake-parts,
+      systems,
       ...
     }@inputs:
-    {
-      nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {
-          inherit inputs;
+    flake-parts.lib.mkFlake { inherit inputs; } (
+      { ... }:
+      {
+        imports = [ ];
+        flake = {
+          nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            specialArgs = {
+              inherit inputs;
+            };
+            modules = [
+              ./hosts/desktop.nix
+            ];
+          };
+          nixosConfigurations.laptop = nixpkgs.lib.nixosSystem rec {
+            system = "x86_64-linux";
+            specialArgs = {
+              inherit inputs;
+            };
+            modules = [
+              ./hosts/laptop.nix
+            ];
+          };
         };
-        modules = [
-          ./hosts/desktop.nix
-        ];
-      };
-      nixosConfigurations.laptop = nixpkgs.lib.nixosSystem rec {
-        system = "x86_64-linux";
-        specialArgs = {
-          inherit inputs;
-        };
-        modules = [
-          ./hosts/laptop.nix
-        ];
-      };
-    };
+        systems = import systems;
+      }
+    );
 }

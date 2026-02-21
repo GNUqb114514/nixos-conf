@@ -80,19 +80,38 @@
     {
       nixpkgs,
       home-manager,
+      flake-parts,
+      systems,
       ...
     }@inputs:
-    {
-      homeModules.qb = {
-        _module.args = inputs;
-        imports = [
-          inputs.niri-flake.homeModules.stylix
-          inputs.niri-flake.homeModules.niri
-          inputs.nvf.homeManagerModules.default
-          inputs.stylix.homeModules.stylix
-          inputs.xremap.homeManagerModules.default
-          ./modules/default.nix
-        ];
-      };
-    };
+    flake-parts.lib.mkFlake { inherit inputs; } (
+      {
+        config,
+        withSystem,
+        moduleWithSystem,
+        ...
+      }@top:
+      {
+        imports = [ ];
+        flake = {
+          homeModules.qb = {lib, ...}: {
+            options.user.inputs = lib.mkOption {
+              description = "Inputs of my home-manager flake.";
+              internal = true;
+              readOnly = true;
+            };
+            imports = [
+              inputs.niri-flake.homeModules.stylix
+              inputs.niri-flake.homeModules.niri
+              inputs.nvf.homeManagerModules.default
+              inputs.stylix.homeModules.stylix
+              inputs.xremap.homeManagerModules.default
+              ./modules/default.nix
+            ];
+            config.user.inputs = inputs;
+          };
+        };
+        systems = import systems;
+      }
+    );
 }

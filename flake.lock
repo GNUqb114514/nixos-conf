@@ -217,7 +217,9 @@
     },
     "hm": {
       "inputs": {
-        "flake-parts": "flake-parts",
+        "flake-parts": [
+          "flake-parts"
+        ],
         "home-manager": [
           "home-manager"
         ],
@@ -523,6 +525,7 @@
       "inputs": {
         "agenix": "agenix",
         "disko": "disko",
+        "flake-parts": "flake-parts",
         "hm": "hm",
         "home-manager": "home-manager",
         "maple-font": "maple-font",

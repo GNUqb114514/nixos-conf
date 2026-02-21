@@ -2,13 +2,11 @@
   pkgs,
   lib,
   config,
-  inputs,
-  vim-barbaric,
-  nvf,
   ...
 }:
 let
   cfg = config.user.nvim;
+  inputs = config.user.inputs;
 in
 {
   options.user.nvim = with lib; {
@@ -68,7 +66,7 @@ in
           "vimplugin-vim-barbaric" = {
             package = pkgs.vimUtils.buildVimPlugin {
               name = "vim-barbaric";
-              src = vim-barbaric;
+              src = inputs.vim-barbaric;
             };
           };
         };
@@ -104,7 +102,7 @@ in
           }
           (lib.mkIf config.user.terminal {
             luaConfigRC = {
-              foldtext = nvf.lib.nvim.dag.entryBefore [ "optionsScript" ] (
+              foldtext = inputs.nvf.lib.nvim.dag.entryBefore [ "optionsScript" ] (
                 builtins.readFile ./fold_virt_text.lua
               );
             };

@@ -2,12 +2,12 @@
   pkgs,
   lib,
   config,
-  org-hold,
   ...
 }@args:
 let
   cfg = config.user.emacs;
   ulib = import ./lib.nix args;
+  inputs = config.user.inputs;
 in
 {
   config = lib.mkIf cfg.enable (
@@ -79,7 +79,7 @@ in
             epkgs.trivialBuild {
               pname = "org-hold";
               version = "0.1.0";
-              src = org-hold;
+              src = inputs.org-hold;
             };
           configPhase = ''
             (bind-key "C-c h o p" (org-hold-template
