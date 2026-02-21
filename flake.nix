@@ -4,6 +4,10 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs";
 
+    systems = {
+      url = "github:nix-systems/default";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -13,19 +17,19 @@
       url = "github:ryantm/agenix";
       inputs.darwin.follows = "";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+      inputs.systems.follows = "systems";
     };
-
-    xremap.url = "github:xremap/nix-flake";
 
     maple-font = {
       url = "github:subframe7536/maple-font";
       flake = false;
     };
 
-    org-hold = {
-      url = "github:GNUqb114514/org-hold";
-      flake = false;
-    };
+    # org-hold = {
+    #   url = "github:GNUqb114514/org-hold";
+    #   flake = false;
+    # };
 
     disko = {
       url = "github:nix-community/disko";
@@ -36,6 +40,9 @@
     hm = {
       url = "./subflakes/hm";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+      inputs.maple-font.follows = "maple-font";
+      inputs.systems.follows = "systems";
     };
   };
 
@@ -45,7 +52,6 @@
       # nur,
       home-manager,
       agenix,
-      xremap,
       # fenix,
       ...
     }@inputs:

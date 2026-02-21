@@ -2,7 +2,7 @@
   pkgs,
   lib,
   config,
-  inputs,
+  org-hold,
   ...
 }@args: let cfg = config.user.emacs; ulib = import ./lib.nix args; in {
   config = lib.mkIf cfg.enable (lib.mkMerge [
@@ -70,7 +70,7 @@ SCHEDULED: %(org-read-date t nil nil \"比赛开始时间\" nil \"+1w 14:00\")--
         package = epkgs: with epkgs; epkgs.trivialBuild {
           pname = "org-hold";
           version = "0.1.0";
-          src = inputs.org-hold;
+          src = org-hold;
         };
         configPhase = ''(bind-key "C-c h o p" (org-hold-template
                          (lambda ()

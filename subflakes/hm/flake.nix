@@ -3,6 +3,14 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs";
 
+    systems = {
+      url = "github:nix-systems/default";
+    };
+
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+    };
+
     niri-flake = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -13,7 +21,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    stylix.url = "github:danth/stylix";
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.systems.follows = "systems";
+    };
 
     nvf = {
       url = "github:notashelf/nvf";
@@ -21,13 +34,15 @@
       # instance of nixpkgs. This is safe to do as nvf does not depend
       # on a binary cache.
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.systems.follows = "systems";
     };
 
-    agenix = {
-      url = "github:ryantm/agenix";
-      inputs.darwin.follows = "";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # agenix = {
+    #   url = "github:ryantm/agenix";
+    #   inputs.darwin.follows = "";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     nerdicons-nvim = {
       url = "github:nvimdev/nerdicons.nvim";
@@ -39,7 +54,11 @@
       flake = false;
     };
 
-    xremap.url = "github:xremap/nix-flake";
+    xremap = {
+      url = "github:xremap/nix-flake";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
