@@ -530,7 +530,8 @@
         "home-manager": "home-manager",
         "maple-font": "maple-font",
         "nixpkgs": "nixpkgs",
-        "systems": "systems"
+        "systems": "systems",
+        "watt": "watt"
       }
     },
     "rust-overlay": {
@@ -704,6 +705,26 @@
       "original": {
         "owner": "rlue",
         "repo": "vim-barbaric",
+        "type": "github"
+      }
+    },
+    "watt": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1771230567,
+        "narHash": "sha256-KkjlOIxCzxoxi28louRYstaRlppHwM+t4tVPYzzhKOs=",
+        "owner": "NotAShelf",
+        "repo": "watt",
+        "rev": "95749b5d508583562da74f83fb51a1506c9f96fe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NotAShelf",
+        "repo": "watt",
         "type": "github"
       }
     },

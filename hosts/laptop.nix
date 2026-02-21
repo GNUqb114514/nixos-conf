@@ -56,6 +56,8 @@ in
 
     hardware.enableRedistributableFirmware = true;
     boot.kernelPackages = pkgs.linuxPackages_latest;
+
+    services.watt.enable = true;
   };
 
   imports = [
@@ -65,5 +67,6 @@ in
     ./laptop-disko.nix
 
     inputs.disko.nixosModules.disko
+    inputs.watt.nixosModules.watt
   ];
 }

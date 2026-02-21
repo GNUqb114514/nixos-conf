@@ -49,6 +49,11 @@
       inputs.systems.follows = "systems";
       inputs.flake-parts.follows = "flake-parts";
     };
+
+    watt = {
+      url = "github:NotAShelf/watt";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -60,6 +65,7 @@
       # fenix,
       flake-parts,
       systems,
+      watt,
       ...
     }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } (
