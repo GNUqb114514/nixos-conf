@@ -293,5 +293,7 @@
     };
 
     idle.enable = true;
+
+    bluetooth.enable = true;
   };
 }

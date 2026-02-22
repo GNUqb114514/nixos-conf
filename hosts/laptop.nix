@@ -65,6 +65,9 @@ in
     users.groups.video.members = [ "qb114514" ];
 
     systemd.sleep.extraConfig = "HibernateDelaySec=120";
+
+    hardware.bluetooth.enable = true;
+    services.blueman.enable = true;
   };
 
   imports = [
