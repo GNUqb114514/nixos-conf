@@ -65,7 +65,7 @@
     ssh.enable = true;
     stylix = {
       enable = true;
-      colorscheme = "catppuccin-mocha";
+      colorscheme = "catppuccin-latte";
     };
     fcitx = {
       enable = true;
