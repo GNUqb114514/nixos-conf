@@ -22,6 +22,13 @@ in
       example = "catppuccin-mocha";
       default = null;
     };
+    polarity = mkOption {
+      type = types.str;
+      description = ''
+        The polarity of the colorscheme.
+      '';
+      default = "dark";
+    };
     wallpaper = mkOption {
       type = types.nullOr types.path;
       description = ''
@@ -60,7 +67,7 @@ in
           };
       };
 
-    stylix.polarity = "dark";
+    stylix.polarity = cfg.polarity;
 
     stylix.icons = with pkgs; {
       enable = true;

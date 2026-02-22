@@ -66,6 +66,7 @@
     stylix = {
       enable = true;
       colorscheme = "catppuccin-latte";
+      polarity = "light";
     };
     fcitx = {
       enable = true;
