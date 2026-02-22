@@ -290,5 +290,7 @@
     emacs = {
       enable = true;
     };
+
+    idle.enable = true;
   };
 }

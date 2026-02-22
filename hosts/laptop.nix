@@ -58,6 +58,13 @@ in
     boot.kernelPackages = pkgs.linuxPackages_latest;
 
     services.watt.enable = true;
+
+    services.logind.settings.Login.HandleLidSwitch = "ignore";
+
+    users.groups.input.members = [ "qb114514" ];
+    users.groups.video.members = [ "qb114514" ];
+
+    systemd.sleep.extraConfig = "HibernateDelaySec=120";
   };
 
   imports = [

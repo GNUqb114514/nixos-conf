@@ -74,6 +74,12 @@
       url = "github:GNUqb114514/org-hold";
       flake = false;
     };
+
+    stasis = {
+      url = "github:saltnpepper97/stasis";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -82,6 +88,7 @@
       home-manager,
       flake-parts,
       systems,
+      stasis,
       ...
     }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } (
@@ -106,6 +113,7 @@
               inputs.nvf.homeManagerModules.default
               inputs.stylix.homeModules.stylix
               inputs.xremap.homeManagerModules.default
+              inputs.stasis.homeModules.default
               ./modules/default.nix
             ];
             config.user.inputs = inputs;
