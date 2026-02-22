@@ -53,10 +53,11 @@ in
           };
           "battery" = {
             format = "{capacity}% {icon}";
+            format-alt = "{time} {icon}";
             format-plugged = "{capacity}% {icon}  ";
             format-charging = "{capacity}% {icon} 󱐋";
             format-time = "{H}h{M}m";
-            tooltip-format = "{timeTo}\n{power}W draw";
+            tooltip-format = "{timeTo}\n{power}W";
             format-icons = [
               " "
               " "
