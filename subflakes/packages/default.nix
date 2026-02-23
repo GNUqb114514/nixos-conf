@@ -1,9 +1,6 @@
 { pkgs, ... }:
 rec {
-  ufo-extractor = pkgs.python3.pkgs.callPackage ./ufo-extractor.nix { };
-  foundrytools = pkgs.python3.pkgs.callPackage ./foundrytools.nix {
-    inherit ufo-extractor;
-  };
+  foundrytools = pkgs.python3.pkgs.callPackage ./foundrytools.nix { };
   foundrytools-cli = pkgs.python3.pkgs.callPackage ./foundrytools-cli.nix {
     inherit foundrytools;
   };
