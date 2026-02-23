@@ -33,6 +33,7 @@ in
         url.default_page = "https://cn.bing.com";
         url.start_pages = "https://cn.bing.com";
         tabs.position = "left";
+        content.headers.accept_language = "zh-CN,zh;q=0.9,en;q=0.8";
       };
       searchEngines = {
         DEFAULT = "https://cn.bing.com/search?q={}";
