@@ -14,5 +14,6 @@
     ./helix.nix
     ./xremap.nix
     ./bluetooth.nix
+    ./direnv.nix
   ];
 }

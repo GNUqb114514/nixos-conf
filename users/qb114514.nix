@@ -295,5 +295,7 @@
     idle.enable = true;
 
     bluetooth.enable = true;
+
+    direnv.enable = true;
   };
 }

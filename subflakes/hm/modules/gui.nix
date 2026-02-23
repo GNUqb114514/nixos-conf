@@ -59,6 +59,7 @@ in
           open-focused = false;
         }
       ];
+      prefer-no-csd = true;
       spawn-at-startup =
         lib.optionals config.user.fcitx.enable [
           {
