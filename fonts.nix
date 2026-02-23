@@ -9,13 +9,13 @@
   fonts.fontconfig.defaultFonts = {
     sansSerif = [
       "Ubuntu Nerd Font"
-      "Source Han Sans SC"
+      "Dream Han Sans CN"
     ];
     serif = [ "Source Han Serif SC" ];
     monospace = [
       "Maple Mono NF"
       "UbuntuMono Nerd Font"
-      "Source Han Sans SC"
+      "Dream Han Sans CN"
     ];
   };
 }
