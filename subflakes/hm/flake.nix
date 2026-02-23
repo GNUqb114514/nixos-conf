@@ -101,23 +101,25 @@
       {
         imports = [ ];
         flake = {
-          homeModules.qb = {lib, ...}: {
-            options.user.inputs = lib.mkOption {
-              description = "Inputs of my home-manager flake.";
-              internal = true;
-              readOnly = true;
+          homeModules.qb =
+            { lib, ... }:
+            {
+              options.user.inputs = lib.mkOption {
+                description = "Inputs of my home-manager flake.";
+                internal = true;
+                readOnly = true;
+              };
+              imports = [
+                inputs.niri-flake.homeModules.stylix
+                inputs.niri-flake.homeModules.niri
+                inputs.nvf.homeManagerModules.default
+                inputs.stylix.homeModules.stylix
+                inputs.xremap.homeManagerModules.default
+                inputs.stasis.homeModules.default
+                ./modules/default.nix
+              ];
+              config.user.inputs = inputs;
             };
-            imports = [
-              inputs.niri-flake.homeModules.stylix
-              inputs.niri-flake.homeModules.niri
-              inputs.nvf.homeManagerModules.default
-              inputs.stylix.homeModules.stylix
-              inputs.xremap.homeManagerModules.default
-              inputs.stasis.homeModules.default
-              ./modules/default.nix
-            ];
-            config.user.inputs = inputs;
-          };
         };
         systems = import systems;
       }
