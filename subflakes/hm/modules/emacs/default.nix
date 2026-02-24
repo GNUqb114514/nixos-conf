@@ -13,6 +13,7 @@ in
     ./operation.nix
     ./completion.nix
     ./org.nix
+    ./lsp.nix
   ];
 
   options.user.emacs = with lib; {
@@ -60,6 +61,9 @@ in
         (use-package good-scroll
           :if window-system
           :config (good-scroll-mode))
+
+        (add-hook 'rust-mode-hook
+                  (lambda () (setq indent-tabs-mode nil)))
       '';
     };
   };
