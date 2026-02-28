@@ -39,6 +39,7 @@ in
           ++ (lib.concatMap (x: x epkgs) cfg.extraPackages)
         );
       extraConfig = ''
+        (set-fontset-font t 'han (font-spec :family "Dream Han Sans CN"))
         (setopt confirm-kill-emacs #'yes-or-no-p)
         (electric-pair-mode t)
         (add-hook 'prog-mode-hook #'show-paren-mode)
