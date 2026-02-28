@@ -15,8 +15,8 @@ default:
     command "swaylock"
   end
   suspend:
-    timeout 180
-    command "systemctl suspend-then-hibernate"
+    timeout 3600
+    command "systemctl hybrid-sleep"
   end
 end
 
