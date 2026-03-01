@@ -19,6 +19,7 @@ in
         name = "orderless";
         custom = {
           completion-styles = "'(orderless)";
+          orderless-component-separator = ''"[ -]"'';
         };
       }
       {
