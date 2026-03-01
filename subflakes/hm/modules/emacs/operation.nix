@@ -77,6 +77,17 @@ in
           }
         ];
       }
+      {
+        name = "separedit";
+        bind = [
+          {
+            "C-c '" = "separedit";
+          }
+        ];
+        custom = {
+          separedit-preserve-string-indentation = "t";
+        };
+      }
     ]
   );
 }
