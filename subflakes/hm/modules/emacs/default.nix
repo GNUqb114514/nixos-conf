@@ -23,12 +23,14 @@ in
       description = "Extra packages for Emacs";
       type = with types; listOf hm.types.selectorFunction;
     };
+
+    neomacs = mkEnableOption "neomacs";
   };
 
   config = lib.mkIf cfg.enable {
     programs.emacs = {
       enable = true;
-      package = pkgs.emacs-pgtk;
+      package = if cfg.neomacs then config.user.inputs.neomacs.packages.${pkgs.system}.default else pkgs.emacs-pgtk;
       extraPackages =
         epkgs:
         (

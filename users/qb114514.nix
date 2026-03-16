@@ -290,9 +290,10 @@
 
     emacs = {
       enable = true;
+      # neomacs = true;
     };
 
-    idle.enable = true;
+    # idle.enable = true;
 
     bluetooth.enable = true;
 

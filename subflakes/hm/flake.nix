@@ -11,6 +11,10 @@
       url = "github:hercules-ci/flake-parts";
     };
 
+    crane = {
+      url = "github:ipetkov/crane";
+    };
+
     niri-flake = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -58,6 +62,8 @@
       url = "github:xremap/nix-flake";
       inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.crane.follows = "crane";
+      inputs.rust-overlay.follows = "rust-overlay";
     };
 
     rust-overlay = {
@@ -80,6 +86,13 @@
       inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    neomacs = {
+      url = "github:eval-exec/neomacs";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.crane.follows = "crane";
+      inputs.rust-overlay.follows = "rust-overlay";
+    };
   };
 
   outputs =
@@ -89,6 +102,7 @@
       flake-parts,
       systems,
       stasis,
+      neomacs,
       ...
     }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } (

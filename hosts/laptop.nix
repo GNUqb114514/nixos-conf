@@ -30,7 +30,6 @@ in
       };
       grub = {
         enable = true;
-        version = 2;
         device = "nodev";
         efiSupport = true;
       };
@@ -63,8 +62,6 @@ in
 
     users.groups.input.members = [ "qb114514" ];
     users.groups.video.members = [ "qb114514" ];
-
-    systemd.sleep.extraConfig = "HibernateDelaySec=120";
 
     hardware.bluetooth.enable = true;
     services.blueman.enable = true;
