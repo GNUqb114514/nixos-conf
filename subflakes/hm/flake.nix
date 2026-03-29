@@ -63,7 +63,6 @@
       inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.crane.follows = "crane";
-      inputs.rust-overlay.follows = "rust-overlay";
     };
 
     rust-overlay = {
