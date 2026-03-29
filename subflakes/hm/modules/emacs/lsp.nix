@@ -24,6 +24,9 @@ in
             :mode "\\.nix\\'"
           '';
         }
+        {
+          name = "typst-ts-mode";
+        }
       ])
       {
         user.emacs.extraPackages = [
