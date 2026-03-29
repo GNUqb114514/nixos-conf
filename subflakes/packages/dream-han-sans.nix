@@ -7,11 +7,11 @@
 }:
 stdenvNoCC.mkDerivation {
   pname = "dream-han-sans";
-  version = "3.02";
+  version = "3.03";
 
   src = fetchzip {
-    url = "https://github.com/Pal3love/dream-han-cjk/releases/download/dream-3.02-sans-2.004-serif-2.003/DreamHanSansCN.zip";
-    hash = "sha256-j90CySSC7c4jpwMqulA36oNv2/zZ5MgYCjZyfLB9i4I=";
+    url = "https://github.com/Pal3love/dream-han-cjk/releases/download/dream-3.03-sans-2.005-serif-2.003/DreamHanSansCN.zip";
+    hash = "sha256-nU5byB67+CVbUDt93GEIZEqYFPkKWG2e9+um7e8UZ4Q=";
     stripRoot = false;
   };
 
