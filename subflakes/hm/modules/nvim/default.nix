@@ -61,7 +61,7 @@ in
 
         mini.ai.enable = true;
       }
-      (lib.mkIf config.user.fcitx.enable {
+      (lib.mkIf config.user.rime.enable {
         extraPlugins = {
           "vimplugin-vim-barbaric" = {
             package = pkgs.vimUtils.buildVimPlugin {
