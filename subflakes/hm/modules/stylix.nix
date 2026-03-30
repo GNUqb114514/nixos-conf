@@ -7,7 +7,7 @@
 }:
 let
   cfg = config.user.stylix;
-  user-pkgs = import ../../packages { inherit pkgs; };
+  userPkgs = config.user.inputs.packages.${pkgs.system};
 in
 {
   options.user.stylix = with lib; {
@@ -46,7 +46,7 @@ in
       let
         font = name: package: { inherit name package; };
 
-        maple-mono-custom-build = user-pkgs.maple-font-custom-build;
+        maple-mono-custom-build = userPkgs.maple-font-custom-build;
       in
       with pkgs;
       {

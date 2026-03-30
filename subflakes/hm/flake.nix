@@ -92,6 +92,13 @@
       inputs.crane.follows = "crane";
       inputs.rust-overlay.follows = "rust-overlay";
     };
+
+    packages = {
+      url = "../packages";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.systems.follows = "systems";
+      inputs.flake-parts.follows = "flake-parts";
+    };
   };
 
   outputs =
@@ -102,6 +109,7 @@
       systems,
       stasis,
       neomacs,
+      packages,
       ...
     }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } (

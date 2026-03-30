@@ -17,9 +17,6 @@ let
           generalPatch = writeText "rime-general-patch" ''
             patch:
               switches/+:
-                - name: cn_en_space
-                  states: [ 中A, 中 A ]
-                  abbrev: [ 密, 疏 ]
               engine/filters/+:
                 - lua_filter@*cn_en_spacer
           '';
@@ -48,11 +45,6 @@ let
         '';
         destination = "/share/rime-data/default.custom.yaml";
       })
-      # (writeTextFile {
-      #   name = "rime-default";
-      #   text = "# Nothing here :)";
-      #   destination = "/share/rime-data/default.custom.yaml";
-      # })
     ];
   };
 in
