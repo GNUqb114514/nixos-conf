@@ -123,10 +123,15 @@
         imports = [ ];
         flake = {
           homeModules.qb =
-            { lib, ... }:
+            { lib, pkgs, ... }:
             {
               options.user.inputs = lib.mkOption {
                 description = "Inputs of my home-manager flake.";
+                internal = true;
+                readOnly = true;
+              };
+              options.user.inputs' = lib.mkOption {
+                description = "Inputs of my home-manager flake with system information pre-applied.";
                 internal = true;
                 readOnly = true;
               };
@@ -140,6 +145,7 @@
                 ./modules/default.nix
               ];
               config.user.inputs = inputs;
+              config.user.inputs' = withSystem pkgs.stdenv.hostPlatform.system ({ inputs', ... }: inputs');
             };
         };
         systems = import systems;

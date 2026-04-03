@@ -7,7 +7,7 @@
 }:
 let
   cfg = config.user.stylix;
-  userPkgs = config.user.inputs.packages.${pkgs.system};
+  userPkgs = config.user.inputs'.packages.packages;
 in
 {
   options.user.stylix = with lib; {

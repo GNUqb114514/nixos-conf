@@ -234,8 +234,8 @@
           "nixpkgs"
         ],
         "nvf": "nvf",
-        "oh-my-rime": "oh-my-rime",
         "org-hold": "org-hold",
+        "packages": "packages",
         "rust-overlay": "rust-overlay",
         "stasis": "stasis",
         "stylix": "stylix",
@@ -262,11 +262,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1774135471,
-        "narHash": "sha256-TVeIGOxnfSPM6JvkRkXHpJECnj1OG2dXkWMSA4elzzQ=",
+        "lastModified": 1774738535,
+        "narHash": "sha256-2jfBEZUC67IlnxO5KItFCAd7Oc+1TvyV/jQlR+2ykGQ=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "856b01ebd1de3f53c3929ce8082d9d67d799d816",
+        "rev": "769e07ef8f4cf7b1ec3b96ef015abec9bc6b1e2a",
         "type": "github"
       },
       "original": {
@@ -278,11 +278,11 @@
     "maple-font": {
       "flake": false,
       "locked": {
-        "lastModified": 1773882287,
-        "narHash": "sha256-PK8Ej6PYyBuTgLzt770V9c75+gank9AhlY/ncEMTnnU=",
+        "lastModified": 1774517655,
+        "narHash": "sha256-FEnty4h1geSkuyMXs9pL2LuWas4KoWtmBmS44Qchm4g=",
         "owner": "subframe7536",
         "repo": "maple-font",
-        "rev": "e6afb124f0f48c79bc4ba89eb4b2bf5df5a0fa77",
+        "rev": "8d03aedbb11739fc73ba046501063e5a21f54c0d",
         "type": "github"
       },
       "original": {
@@ -501,11 +501,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1774143323,
-        "narHash": "sha256-i6duo/80NQnAo0la1V5se5DlwBPUlDWMk0J9jmoXpHI=",
+        "lastModified": 1774846960,
+        "narHash": "sha256-Eas23LdMI0K/KBOjP+ks57A+7So8FfN7NaHjz99sKiA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "69804fe56d505bdcfcd3f2bb9661bebcb2a1d5ec",
+        "rev": "0f889b86a8d1ce7a87cc6efa538a8537cc00706f",
         "type": "github"
       },
       "original": {
@@ -573,27 +573,6 @@
         "type": "github"
       }
     },
-    "oh-my-rime": {
-      "inputs": {
-        "nixpkgs": [
-          "hm",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1773907967,
-        "narHash": "sha256-dRHHyTfamBPaUxjSpt7AoixfyAoQXsVq0Dfms4O4PFw=",
-        "owner": "erinayip",
-        "repo": "oh-my-rime-nix",
-        "rev": "7acf3e0735edb89bb6e67795ad1ff8379e2555ed",
-        "type": "github"
-      },
-      "original": {
-        "owner": "erinayip",
-        "repo": "oh-my-rime-nix",
-        "type": "github"
-      }
-    },
     "org-hold": {
       "flake": false,
       "locked": {
@@ -609,6 +588,33 @@
         "repo": "org-hold",
         "type": "github"
       }
+    },
+    "packages": {
+      "inputs": {
+        "flake-parts": [
+          "hm",
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "hm",
+          "nixpkgs"
+        ],
+        "systems": [
+          "hm",
+          "systems"
+        ]
+      },
+      "locked": {
+        "path": "../packages",
+        "type": "path"
+      },
+      "original": {
+        "path": "../packages",
+        "type": "path"
+      },
+      "parent": [
+        "hm"
+      ]
     },
     "root": {
       "inputs": {

@@ -31,7 +31,7 @@ in
     programs.emacs = {
       enable = true;
       package =
-        if cfg.neomacs then config.user.inputs.neomacs.packages.${pkgs.system}.default else pkgs.emacs-pgtk;
+        if cfg.neomacs then config.user.inputs'.neomacs.packages.default else pkgs.emacs-pgtk;
       extraPackages =
         epkgs:
         (
