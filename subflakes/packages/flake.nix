@@ -10,13 +10,35 @@
     };
   };
 
-  outputs = { nixpkgs, systems, flake-parts, ... }@inputs: flake-parts.lib.mkFlake { inherit inputs; } ({
-    config, withSystem, moduleWithSystem, ...
-  }@top: {
-    imports = [ ];
-    perSystem = { config, self', inputs', pkgs, system, ... }: {
-      packages = import ./default.nix { inherit pkgs; };
-    };
-    systems = import systems;
-  });
+  outputs =
+    {
+      nixpkgs,
+      systems,
+      flake-parts,
+      ...
+    }@inputs:
+    flake-parts.lib.mkFlake { inherit inputs; } (
+      {
+        config,
+        withSystem,
+        moduleWithSystem,
+        ...
+      }@top:
+      {
+        imports = [ ];
+        perSystem =
+          {
+            config,
+            self',
+            inputs',
+            pkgs,
+            system,
+            ...
+          }:
+          {
+            packages = import ./default.nix { inherit pkgs; };
+          };
+        systems = import systems;
+      }
+    );
 }
