@@ -6,6 +6,19 @@
 }:
 let
   cfg = config.user.emacs;
+  emacs =
+    if cfg.neomacs then
+      lib.warn "Neomacs is currently unfunctional."
+        config.user.inputs'.neomacs.packages.default.overrideAttrs
+        (
+          final: prev: {
+            meta = (prev.meta or { }) // {
+              platforms = [ pkgs.system ];
+            };
+          }
+        )
+    else
+      pkgs.emacs-pgtk;
 in
 {
   imports = [
@@ -30,8 +43,7 @@ in
   config = lib.mkIf cfg.enable {
     programs.emacs = {
       enable = true;
-      package =
-        if cfg.neomacs then config.user.inputs'.neomacs.packages.default else pkgs.emacs-pgtk;
+      package = emacs;
       extraPackages =
         epkgs:
         (
