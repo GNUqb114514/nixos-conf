@@ -65,6 +65,10 @@ in
 
     hardware.bluetooth.enable = true;
     services.blueman.enable = true;
+
+    zramSwap.enable = true;
+    zramSwap.memoryPercent = 30;
+    # zramSwap.memoryPercent = 300; # Only for building huge things
   };
 
   imports = [
