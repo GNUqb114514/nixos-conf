@@ -87,7 +87,7 @@
     };
 
     neomacs = {
-      url = "github:eval-exec/neomacs";
+      url = "github:eval-exec/neomacs/v0.0.2";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.crane.follows = "crane";
       inputs.rust-overlay.follows = "rust-overlay";
