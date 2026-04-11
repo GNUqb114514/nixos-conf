@@ -235,7 +235,9 @@
         ],
         "nvf": "nvf",
         "org-hold": "org-hold",
-        "packages": "packages",
+        "packages": [
+          "packages"
+        ],
         "rust-overlay": "rust-overlay",
         "stasis": "stasis",
         "stylix": "stylix",
@@ -246,11 +248,11 @@
         "xremap": "xremap"
       },
       "locked": {
-        "path": "./subflakes/hm",
+        "path": "./hm",
         "type": "path"
       },
       "original": {
-        "path": "./subflakes/hm",
+        "path": "./hm",
         "type": "path"
       },
       "parent": []
@@ -593,29 +595,24 @@
     "packages": {
       "inputs": {
         "flake-parts": [
-          "hm",
           "flake-parts"
         ],
         "nixpkgs": [
-          "hm",
           "nixpkgs"
         ],
         "systems": [
-          "hm",
           "systems"
         ]
       },
       "locked": {
-        "path": "../packages",
+        "path": "./packages",
         "type": "path"
       },
       "original": {
-        "path": "../packages",
+        "path": "./packages",
         "type": "path"
       },
-      "parent": [
-        "hm"
-      ]
+      "parent": []
     },
     "root": {
       "inputs": {
@@ -626,6 +623,7 @@
         "home-manager": "home-manager",
         "maple-font": "maple-font",
         "nixpkgs": "nixpkgs_2",
+        "packages": "packages",
         "systems": "systems",
         "watt": "watt"
       }

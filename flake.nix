@@ -42,17 +42,25 @@
 
     # Subflakes
     hm = {
-      url = "./subflakes/hm";
+      url = "./hm";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
       inputs.maple-font.follows = "maple-font";
       inputs.systems.follows = "systems";
       inputs.flake-parts.follows = "flake-parts";
+      inputs.packages.follows = "packages";
     };
 
     watt = {
       url = "github:NotAShelf/watt";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    packages = {
+      url = "./packages";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.systems.follows = "systems";
+      inputs.flake-parts.follows = "flake-parts";
     };
   };
 
