@@ -5,7 +5,7 @@ in
 {
   options.user.waybar = with lib; {
     enable = mkEnableOption "Waybar";
-    custom-css = mkEnableOption "self-made CSS for Waybar instead of Stylix-provided one";
+    customCss = mkEnableOption "self-made CSS for Waybar instead of Stylix-provided one";
     interval = mkOption {
       type = types.int;
       description = ''
@@ -80,7 +80,7 @@ in
           };
         };
       }
-      (lib.mkIf cfg.custom-css {
+      (lib.mkIf cfg.customCss {
         stylix.targets.waybar.addCss = false;
         programs.waybar.style = lib.mkAfter (builtins.readFile ./waybar.css);
       })

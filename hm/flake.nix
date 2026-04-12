@@ -106,6 +106,13 @@
       inputs.systems.follows = "systems";
       inputs.flake-parts.follows = "flake-parts";
     };
+
+    guiConfig = {
+      url = "./gui";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.systems.follows = "systems";
+      inputs.flake-parts.follows = "flake-parts";
+    };
   };
 
   outputs =
@@ -118,6 +125,7 @@
       neomacs,
       packages,
       emacsConfig,
+      guiConfig,
       ...
     }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } (
@@ -151,6 +159,7 @@
                 inputs.xremap.homeManagerModules.default
                 inputs.stasis.homeModules.default
                 inputs.emacsConfig.homeModules.default
+                inputs.guiConfig.homeModules.default
                 ./modules/default.nix
               ];
               config.user.inputs = inputs;

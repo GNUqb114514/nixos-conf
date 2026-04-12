@@ -5,11 +5,9 @@
     ./shell.nix
     ./programming
     ./terminal.nix
-    ./gui.nix
     ./nvim
     ./qutebrowser.nix
     ./ssh.nix
-    ./de
     ./helix.nix
     ./xremap.nix
     ./bluetooth.nix

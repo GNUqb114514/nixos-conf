@@ -6,33 +6,21 @@
 }:
 let
   cfg = config.user.gui;
+  proportion = value: { proportion = value; };
+  fixed = value: { fixed = value; };
 in
 {
-  options.user.gui = with lib; {
-    enable = mkEnableOption "GUI";
-
-    swaync = mkEnableOption "swaync";
-    mpv = mkEnableOption "mpv";
-
-    swayosd = mkEnableOption "swayosd";
-  };
-
   config = lib.mkIf cfg.enable {
     programs.niri.enable = true;
     programs.niri.package = pkgs.niri;
 
     programs.niri.settings = {
       layout = {
-        preset-column-widths =
-          let
-            proportion = value: { proportion = value; };
-            fixed = value: { fixed = value; };
-          in
-          [
-            (proportion (1. / 3.))
-            (proportion (1. / 2.))
-            (proportion (2. / 3.))
-          ];
+        preset-column-widths = [
+          (proportion (1. / 3.))
+          (proportion (1. / 2.))
+          (proportion (2. / 3.))
+        ];
 
         gaps = 8;
       };
@@ -46,16 +34,8 @@ in
             }
           ];
           open-floating = true;
-          default-window-height =
-            let
-              proportion = value: { proportion = value; };
-            in
-            proportion 0.4;
-          default-column-width =
-            let
-              proportion = value: { proportion = value; };
-            in
-            proportion 0.4;
+          default-window-height = proportion 0.4;
+          default-column-width = proportion 0.4;
           open-focused = false;
         }
       ];
@@ -81,7 +61,7 @@ in
             ];
           }
         ]
-        ++ lib.optionals config.user.gui.swayosd [
+        ++ [
           {
             command = [
               "systemctl"
@@ -209,11 +189,9 @@ in
             "Mod+V".action = toggle-window-floating;
             "Mod+Shift+V".action = switch-focus-between-floating-and-tiling;
 
-            "Print".action.screenshot = {
-              show-pointer = true;
-            };
-            "Ctrl+Print".action.screenshot-screen = [ ];
-            "Alt+Print".action.screenshot-window = [ ];
+            "Print".action.screenshot = { show-pointer = true; };
+            "Ctrl+Print".action.screenshot-screen = [];
+            "Alt+Print".action.screenshot-window = [];
 
             "Mod+Shift+E".action = quit;
 
@@ -224,10 +202,5 @@ in
           })
         ];
     };
-
-    programs.mpv.enable = cfg.mpv;
-    services.swaync.enable = cfg.swaync;
-
-    services.swayosd.enable = cfg.swayosd;
   };
 }

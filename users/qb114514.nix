@@ -102,9 +102,6 @@
     terminal = true;
     gui = {
       enable = true;
-      mpv = true;
-      swaync = true;
-      swayosd = true;
     };
 
     nvim = {
@@ -150,7 +147,7 @@
 
     waybar = {
       enable = true;
-      custom-css = true;
+      customCss = true;
     };
 
     emacs = {
