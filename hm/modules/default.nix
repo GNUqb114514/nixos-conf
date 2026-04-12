@@ -3,9 +3,9 @@
     ./stylix.nix
     ./im.nix
     ./shell.nix
-    ./programming
+    # ./programming
     ./terminal.nix
-    ./nvim
+    # ./nvim
     ./qutebrowser.nix
     ./ssh.nix
     ./helix.nix

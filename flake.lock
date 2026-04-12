@@ -285,12 +285,11 @@
           "maple-font"
         ],
         "neomacs": "neomacs",
-        "nerdicons-nvim": "nerdicons-nvim",
         "niri-flake": "niri-flake",
         "nixpkgs": [
           "nixpkgs"
         ],
-        "nvf": "nvf",
+        "nvimConfig": "nvimConfig",
         "org-hold": "org-hold_2",
         "packages": [
           "packages"
@@ -301,7 +300,6 @@
         "systems": [
           "systems"
         ],
-        "vim-barbaric": "vim-barbaric",
         "xremap": "xremap"
       },
       "locked": {
@@ -369,6 +367,7 @@
       "inputs": {
         "nixpkgs": [
           "hm",
+          "nvimConfig",
           "nvf",
           "nixpkgs"
         ]
@@ -606,25 +605,28 @@
         "flake-compat": "flake-compat",
         "flake-parts": [
           "hm",
+          "nvimConfig",
           "flake-parts"
         ],
         "mnw": "mnw",
         "ndg": "ndg",
         "nixpkgs": [
           "hm",
+          "nvimConfig",
           "nixpkgs"
         ],
         "systems": [
           "hm",
+          "nvimConfig",
           "systems"
         ]
       },
       "locked": {
-        "lastModified": 1773579076,
-        "narHash": "sha256-GRuK5zh0Z68YXIoTpHQW2CFdpZRhGJRxpYh4vPOqjt4=",
+        "lastModified": 1775892726,
+        "narHash": "sha256-1TK1pe33cEHNvGW41TP5xAzrbG1Gp7LfyFL6c3+xf+I=",
         "owner": "notashelf",
         "repo": "nvf",
-        "rev": "baf207654ca613173e9d4b5255dba52f8c0c5577",
+        "rev": "5ab359ee7dfd3fa09a5c6f863efaf810bb9a9436",
         "type": "github"
       },
       "original": {
@@ -632,6 +634,36 @@
         "repo": "nvf",
         "type": "github"
       }
+    },
+    "nvimConfig": {
+      "inputs": {
+        "flake-parts": [
+          "hm",
+          "flake-parts"
+        ],
+        "nerdicons-nvim": "nerdicons-nvim",
+        "nixpkgs": [
+          "hm",
+          "nixpkgs"
+        ],
+        "nvf": "nvf",
+        "systems": [
+          "hm",
+          "systems"
+        ],
+        "vim-barbaric": "vim-barbaric"
+      },
+      "locked": {
+        "path": "./nvim",
+        "type": "path"
+      },
+      "original": {
+        "path": "./nvim",
+        "type": "path"
+      },
+      "parent": [
+        "hm"
+      ]
     },
     "org-hold": {
       "flake": false,

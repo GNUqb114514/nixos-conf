@@ -32,31 +32,11 @@
       inputs.systems.follows = "systems";
     };
 
-    nvf = {
-      url = "github:notashelf/nvf";
-      # You can override the input nixpkgs to follow your system's
-      # instance of nixpkgs. This is safe to do as nvf does not depend
-      # on a binary cache.
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
-      inputs.systems.follows = "systems";
-    };
-
     # agenix = {
     #   url = "github:ryantm/agenix";
     #   inputs.darwin.follows = "";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
-
-    nerdicons-nvim = {
-      url = "github:nvimdev/nerdicons.nvim";
-      flake = false;
-    };
-
-    vim-barbaric = {
-      url = "github:rlue/vim-barbaric";
-      flake = false;
-    };
 
     xremap = {
       url = "github:xremap/nix-flake";
@@ -113,6 +93,13 @@
       inputs.systems.follows = "systems";
       inputs.flake-parts.follows = "flake-parts";
     };
+
+    nvimConfig = {
+      url = "./nvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.systems.follows = "systems";
+      inputs.flake-parts.follows = "flake-parts";
+    };
   };
 
   outputs =
@@ -126,6 +113,7 @@
       packages,
       emacsConfig,
       guiConfig,
+      nvimConfig,
       ...
     }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } (
@@ -154,12 +142,12 @@
               imports = [
                 inputs.niri-flake.homeModules.stylix
                 inputs.niri-flake.homeModules.niri
-                inputs.nvf.homeManagerModules.default
                 inputs.stylix.homeModules.stylix
                 inputs.xremap.homeManagerModules.default
                 inputs.stasis.homeModules.default
                 inputs.emacsConfig.homeModules.default
                 inputs.guiConfig.homeModules.default
+                inputs.nvimConfig.homeModules.default
                 ./modules/default.nix
               ];
               config.user.inputs = inputs;

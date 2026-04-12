@@ -6,7 +6,7 @@
 }:
 let
   cfg = config.user.nvim;
-  inputs = config.user.inputs;
+  inputs = config.user.nvim.inputs;
 in
 {
   options.user.nvim = with lib; {
