@@ -7,7 +7,7 @@
 let
   cfg = config.user.emacs;
   ulib = import ./lib.nix args;
-  inputs = config.user.inputs;
+  inputs = config.user.emacs.inputs;
 in
 {
   config = lib.mkIf cfg.enable (
@@ -70,7 +70,7 @@ in
       {
         programs.emacs.extraConfig = lib.mkBefore ";; -*- lexical-binding: t; -*-";
       }
-      (ulib.use-packages [
+      (ulib.usePackages [
         {
           name = "org-hold";
           package =

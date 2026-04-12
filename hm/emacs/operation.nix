@@ -10,7 +10,7 @@ let
 in
 {
   config = lib.mkIf cfg.enable (
-    ulib.use-packages [
+    ulib.usePackages [
       {
         name = "mwim";
         bind = [

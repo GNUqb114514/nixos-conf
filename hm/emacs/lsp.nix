@@ -7,12 +7,11 @@
 let
   cfg = config.user.emacs;
   ulib = import ./lib.nix args;
-  inputs = config.user.inputs;
 in
 {
   config = lib.mkIf cfg.enable (
     lib.mkMerge [
-      (ulib.use-packages [
+      (ulib.usePackages [
         {
           name = "rust-mode";
           initPhase = "(setopt rust-mode-treesitter-derive t)";

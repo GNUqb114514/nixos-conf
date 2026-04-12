@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
-rec {
-  use-package-bindSpec =
+let
+  usePackageBindSpec =
     {
       map ? null,
       ...
@@ -10,7 +10,7 @@ rec {
                          ${
                            lib.concatMapAttrsStringSep "" (key: val: if key == "map" then "" else "(\"${key}\" . ${val})") args
                          })'';
-  use-package =
+  usePackage =
     {
       name,
       package ? epkgs: epkgs."${name}",
@@ -55,14 +55,17 @@ rec {
               else
                 "; No custom"
             }
-            ${lib.concatMapStrings use-package-bindSpec bind}
+            ${lib.concatMapStrings usePackageBindSpec bind}
             ${if diminish != null then ":diminish ${diminish}" else ""}
             ${extraConfig})
         '';
       }
-      (use-packages requirements)
+      (usePackages requirements)
     ]);
 
-  use-packages =
-    list: lib.mkMerge (map (pkg: if builtins.isAttrs pkg then use-package pkg else { }) list);
+  usePackages =
+    list: lib.mkMerge (map (pkg: if builtins.isAttrs pkg then usePackage pkg else { }) list);
+in
+{
+  inherit usePackage usePackages;
 }

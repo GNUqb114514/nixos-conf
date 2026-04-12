@@ -99,6 +99,13 @@
       inputs.systems.follows = "systems";
       inputs.flake-parts.follows = "flake-parts";
     };
+
+    emacsConfig = {
+      url = "./emacs";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.systems.follows = "systems";
+      inputs.flake-parts.follows = "flake-parts";
+    };
   };
 
   outputs =
@@ -110,6 +117,7 @@
       stasis,
       neomacs,
       packages,
+      emacsConfig,
       ...
     }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } (
@@ -142,6 +150,7 @@
                 inputs.stylix.homeModules.stylix
                 inputs.xremap.homeManagerModules.default
                 inputs.stasis.homeModules.default
+                inputs.emacsConfig.homeModules.default
                 ./modules/default.nix
               ];
               config.user.inputs = inputs;

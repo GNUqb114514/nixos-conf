@@ -10,7 +10,7 @@ let
 in
 {
   config = lib.mkIf cfg.enable (
-    ulib.use-packages [
+    ulib.usePackages [
       {
         name = "vertico";
         configPhase = "(vertico-mode t)";
