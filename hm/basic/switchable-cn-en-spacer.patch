@@ -1,0 +1,160 @@
+From f39f6611ca6eca9d8acaa77c3bb6ef72461093dc Mon Sep 17 00:00:00 2001
+From: qb114514 <GNUqb114514@outlook.com>
+Date: Sun, 29 Mar 2026 11:24:48 +0800
+Subject: [PATCH] Make cn_en_spacer controllable by switches.
+
+---
+ double_pinyin.schema.yaml         | 3 +++
+ double_pinyin_abc.schema.yaml     | 3 +++
+ double_pinyin_flypy.schema.yaml   | 3 +++
+ double_pinyin_jiajia.schema.yaml  | 3 +++
+ double_pinyin_mspy.schema.yaml    | 3 +++
+ double_pinyin_sogou.schema.yaml   | 3 +++
+ double_pinyin_ziguang.schema.yaml | 3 +++
+ lua/cn_en_spacer.lua              | 2 +-
+ melt_eng.schema.yaml              | 3 +++
+ rime_ice.schema.yaml              | 3 +++
+ 10 files changed, 28 insertions(+), 1 deletion(-)
+
+diff --git a/double_pinyin.schema.yaml b/double_pinyin.schema.yaml
+index ec3be05..610ad9e 100644
+--- a/double_pinyin.schema.yaml
++++ b/double_pinyin.schema.yaml
+@@ -33,6 +33,9 @@ schema:
+ # states: 方案选单显示的名称。可以注释掉，仍可以通过快捷键切换。
+ # abbrev: 默认的缩写取 states 的第一个字符，abbrev 可自定义一个字符
+ switches:
++  - name: cn_en_space
++    states: [ 中 A, 中A ]
++    abbrev: [ 密, 疏 ]
+   - name: ascii_mode
+     states: [ 中, Ａ ]
+   - name: ascii_punct  # 中英标点
+diff --git a/double_pinyin_abc.schema.yaml b/double_pinyin_abc.schema.yaml
+index ffaccb9..4573eb1 100644
+--- a/double_pinyin_abc.schema.yaml
++++ b/double_pinyin_abc.schema.yaml
+@@ -33,6 +33,9 @@ schema:
+ # states: 方案选单显示的名称。可以注释掉，仍可以通过快捷键切换。
+ # abbrev: 默认的缩写取 states 的第一个字符，abbrev 可自定义一个字符
+ switches:
++  - name: cn_en_space
++    states: [ 中 A, 中A ]
++    abbrev: [ 密, 疏 ]
+   - name: ascii_mode
+     states: [ 中, Ａ ]
+   - name: ascii_punct  # 中英标点
+diff --git a/double_pinyin_flypy.schema.yaml b/double_pinyin_flypy.schema.yaml
+index 14e4004..be724fc 100644
+--- a/double_pinyin_flypy.schema.yaml
++++ b/double_pinyin_flypy.schema.yaml
+@@ -33,6 +33,9 @@ schema:
+ # states: 方案选单显示的名称。可以注释掉，仍可以通过快捷键切换。
+ # abbrev: 默认的缩写取 states 的第一个字符，abbrev 可自定义一个字符
+ switches:
++  - name: cn_en_space
++    states: [ 中 A, 中A ]
++    abbrev: [ 密, 疏 ]
+   - name: ascii_mode
+     states: [ 中, Ａ ]
+   - name: ascii_punct  # 中英标点
+diff --git a/double_pinyin_jiajia.schema.yaml b/double_pinyin_jiajia.schema.yaml
+index 3726126..0c5107e 100644
+--- a/double_pinyin_jiajia.schema.yaml
++++ b/double_pinyin_jiajia.schema.yaml
+@@ -33,6 +33,9 @@ schema:
+ # states: 方案选单显示的名称。可以注释掉，仍可以通过快捷键切换。
+ # abbrev: 默认的缩写取 states 的第一个字符，abbrev 可自定义一个字符
+ switches:
++  - name: cn_en_space
++    states: [ 中 A, 中A ]
++    abbrev: [ 密, 疏 ]
+   - name: ascii_mode
+     states: [ 中, Ａ ]
+   - name: ascii_punct  # 中英标点
+diff --git a/double_pinyin_mspy.schema.yaml b/double_pinyin_mspy.schema.yaml
+index 5958c37..0ff0cf3 100644
+--- a/double_pinyin_mspy.schema.yaml
++++ b/double_pinyin_mspy.schema.yaml
+@@ -33,6 +33,9 @@ schema:
+ # states: 方案选单显示的名称。可以注释掉，仍可以通过快捷键切换。
+ # abbrev: 默认的缩写取 states 的第一个字符，abbrev 可自定义一个字符
+ switches:
++  - name: cn_en_space
++    states: [ 中 A, 中A ]
++    abbrev: [ 密, 疏 ]
+   - name: ascii_mode
+     states: [ 中, Ａ ]
+   - name: ascii_punct  # 中英标点
+diff --git a/double_pinyin_sogou.schema.yaml b/double_pinyin_sogou.schema.yaml
+index b137189..c72dff3 100644
+--- a/double_pinyin_sogou.schema.yaml
++++ b/double_pinyin_sogou.schema.yaml
+@@ -33,6 +33,9 @@ schema:
+ # states: 方案选单显示的名称。可以注释掉，仍可以通过快捷键切换。
+ # abbrev: 默认的缩写取 states 的第一个字符，abbrev 可自定义一个字符
+ switches:
++  - name: cn_en_space
++    states: [ 中 A, 中A ]
++    abbrev: [ 密, 疏 ]
+   - name: ascii_mode
+     states: [ 中, Ａ ]
+   - name: ascii_punct  # 中英标点
+diff --git a/double_pinyin_ziguang.schema.yaml b/double_pinyin_ziguang.schema.yaml
+index b6c4db9..2695527 100644
+--- a/double_pinyin_ziguang.schema.yaml
++++ b/double_pinyin_ziguang.schema.yaml
+@@ -33,6 +33,9 @@ schema:
+ # states: 方案选单显示的名称。可以注释掉，仍可以通过快捷键切换。
+ # abbrev: 默认的缩写取 states 的第一个字符，abbrev 可自定义一个字符
+ switches:
++  - name: cn_en_space
++    states: [ 中 A, 中A ]
++    abbrev: [ 密, 疏 ]
+   - name: ascii_mode
+     states: [ 中, Ａ ]
+   - name: ascii_punct  # 中英标点
+diff --git a/lua/cn_en_spacer.lua b/lua/cn_en_spacer.lua
+index 37771a0..fe5803b 100644
+--- a/lua/cn_en_spacer.lua
++++ b/lua/cn_en_spacer.lua
+@@ -21,7 +21,7 @@ end
+ 
+ local function cn_en_spacer(input, env)
+     for cand in input:iter() do
+-        if is_mixed_cn_en_num(cand.text) then
++        if is_mixed_cn_en_num(cand.text) and env.engine.context:get_option("cn_en_space") then
+             cand = cand:to_shadow_candidate(cand.type, add_spaces(cand.text), cand.comment)
+         end
+         yield(cand)
+diff --git a/melt_eng.schema.yaml b/melt_eng.schema.yaml
+index ba6d4e1..3c11ed1 100644
+--- a/melt_eng.schema.yaml
++++ b/melt_eng.schema.yaml
+@@ -16,6 +16,9 @@ schema:
+   description: Easy English Nano，只包含少量常用词汇，方便中英文混合输入度方案调用。
+ 
+ switches:
++  - name: cn_en_space
++    states: [ 中 A, 中A ]
++    abbrev: [ 密, 疏 ]
+   - name: ascii_mode
+     reset: 0
+     states: [ASCII-OFF, ASCII-ON]
+diff --git a/rime_ice.schema.yaml b/rime_ice.schema.yaml
+index bbfcb2d..61669d8 100644
+--- a/rime_ice.schema.yaml
++++ b/rime_ice.schema.yaml
+@@ -22,6 +22,9 @@ schema:
+ # states: 方案选单显示的名称。可以注释掉，仍可以通过快捷键切换。
+ # abbrev: 默认的缩写取 states 的第一个字符，abbrev 可自定义一个字符
+ switches:
++  - name: cn_en_space
++    states: [ 中 A, 中A ]
++    abbrev: [ 密, 疏 ]
+   - name: ascii_mode
+     states: [ 中, Ａ ]
+   - name: ascii_punct  # 中英标点
+-- 
+2.53.0
+

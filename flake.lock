@@ -95,6 +95,34 @@
         "type": "github"
       }
     },
+    "basicConfig": {
+      "inputs": {
+        "flake-parts": [
+          "hm",
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "hm",
+          "nixpkgs"
+        ],
+        "packages": "packages",
+        "systems": [
+          "hm",
+          "systems"
+        ]
+      },
+      "locked": {
+        "path": "./basic",
+        "type": "path"
+      },
+      "original": {
+        "path": "./basic",
+        "type": "path"
+      },
+      "parent": [
+        "hm"
+      ]
+    },
     "crane": {
       "locked": {
         "lastModified": 1773189535,
@@ -272,6 +300,7 @@
     },
     "hm": {
       "inputs": {
+        "basicConfig": "basicConfig",
         "crane": "crane",
         "emacsConfig": "emacsConfig",
         "flake-parts": [
@@ -700,6 +729,37 @@
     "packages": {
       "inputs": {
         "flake-parts": [
+          "hm",
+          "basicConfig",
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "hm",
+          "basicConfig",
+          "nixpkgs"
+        ],
+        "systems": [
+          "hm",
+          "basicConfig",
+          "systems"
+        ]
+      },
+      "locked": {
+        "path": "../../packages",
+        "type": "path"
+      },
+      "original": {
+        "path": "../../packages",
+        "type": "path"
+      },
+      "parent": [
+        "hm",
+        "basicConfig"
+      ]
+    },
+    "packages_2": {
+      "inputs": {
+        "flake-parts": [
           "flake-parts"
         ],
         "nixpkgs": [
@@ -728,7 +788,7 @@
         "home-manager": "home-manager",
         "maple-font": "maple-font",
         "nixpkgs": "nixpkgs_2",
-        "packages": "packages",
+        "packages": "packages_2",
         "systems": "systems",
         "watt": "watt"
       }

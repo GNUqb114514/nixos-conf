@@ -73,13 +73,6 @@
       inputs.rust-overlay.follows = "rust-overlay";
     };
 
-    packages = {
-      url = "../packages";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.systems.follows = "systems";
-      inputs.flake-parts.follows = "flake-parts";
-    };
-
     emacsConfig = {
       url = "./emacs";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -100,7 +93,14 @@
       inputs.systems.follows = "systems";
       inputs.flake-parts.follows = "flake-parts";
     };
-  };
+
+    basicConfig = {
+      url = "./basic";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.systems.follows = "systems";
+      inputs.flake-parts.follows = "flake-parts";
+    };
+};
 
   outputs =
     {
@@ -114,6 +114,7 @@
       emacsConfig,
       guiConfig,
       nvimConfig,
+      basicConfig,
       ...
     }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } (
@@ -129,16 +130,6 @@
           homeModules.qb =
             { lib, pkgs, ... }:
             {
-              options.user.inputs = lib.mkOption {
-                description = "Inputs of my home-manager flake.";
-                internal = true;
-                readOnly = true;
-              };
-              options.user.inputs' = lib.mkOption {
-                description = "Inputs of my home-manager flake with system information pre-applied.";
-                internal = true;
-                readOnly = true;
-              };
               imports = [
                 inputs.niri-flake.homeModules.stylix
                 inputs.niri-flake.homeModules.niri
@@ -148,10 +139,9 @@
                 inputs.emacsConfig.homeModules.default
                 inputs.guiConfig.homeModules.default
                 inputs.nvimConfig.homeModules.default
-                ./modules/default.nix
+                inputs.basicConfig.homeModules.default
+                # ./modules/default.nix
               ];
-              config.user.inputs = inputs;
-              config.user.inputs' = withSystem pkgs.stdenv.hostPlatform.system ({ inputs', ... }: inputs');
             };
         };
         systems = import systems;
