@@ -25,16 +25,6 @@
       inputs.systems.follows = "systems";
     };
 
-    maple-font = {
-      url = "github:subframe7536/maple-font";
-      flake = false;
-    };
-
-    # org-hold = {
-    #   url = "github:GNUqb114514/org-hold";
-    #   flake = false;
-    # };
-
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -45,22 +35,13 @@
       url = "./hm";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
-      inputs.maple-font.follows = "maple-font";
       inputs.systems.follows = "systems";
       inputs.flake-parts.follows = "flake-parts";
-      inputs.packages.follows = "packages";
     };
 
     watt = {
       url = "github:NotAShelf/watt";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    packages = {
-      url = "./packages";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.systems.follows = "systems";
-      inputs.flake-parts.follows = "flake-parts";
     };
   };
 

@@ -8,6 +8,19 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.systems.follows = "systems";
+    };
+
+    xremap = {
+      url = "github:xremap/nix-flake";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     packages = {
       url = "../../packages";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -53,8 +66,11 @@
                   readOnly = true;
                 };
               };
-              
+
               imports = [
+                inputs.stylix.homeModules.stylix
+                inputs.xremap.homeManagerModules.default
+
                 ./stylix.nix
                 ./im.nix
                 ./shell.nix

@@ -7,6 +7,11 @@
     systems.url = "github:nix-systems/default";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
+
+    niri-flake = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -14,6 +19,7 @@
       nixpkgs,
       systems,
       flake-parts,
+      niri-flake,
       ...
     }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } (
@@ -38,6 +44,9 @@
               };
 
               imports = [
+                inputs.niri-flake.homeModules.stylix
+                inputs.niri-flake.homeModules.niri
+
                 ./de.nix
                 ./bar.nix
               ];
