@@ -37,21 +37,27 @@
       inputs.home-manager.follows = "home-manager";
       inputs.systems.follows = "systems";
       inputs.flake-parts.follows = "flake-parts";
+      inputs.packages.follows = "packages";
     };
 
     watt = {
       url = "github:NotAShelf/watt";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    packages = {
+      url = "./packages";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.systems.follows = "systems";
+      inputs.flake-parts.follows = "flake-parts";
+    };
   };
 
   outputs =
     {
       nixpkgs,
-      # nur,
       home-manager,
       agenix,
-      # fenix,
       flake-parts,
       systems,
       watt,
