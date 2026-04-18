@@ -51,20 +51,6 @@ in
                                              (todo   . " %i %-12:c")
                                              (tags   . " %i %-12:c")
                                              (search . " %i %-12:c")))
-
-          (setopt org-capture-templates
-                  '(("p" "OI 题目" entry (file+olp+datetree "~/org/todo.org" "OI" "题目")
-                     "* 未提交 [#B] OI 题目 %(let* ((title (read-string \"题目在洛谷中的标题 [P1001 A+B Problem]\" nil nil \"P1001 A+B Problem\")) (link (replace-regexp-in-string \"\\\\([^ ]+\\\\) \\\\(.*\\\\)\" \"[[https://www.luogu.com.cn/problem/\\\\1][\\\\&]]\" \"P1001 A+B Problem\" t))) link)
-          :Created: %U
-          DEADLINE: %(org-read-date nil nil nil \"截止时间\" nil \"+3d\")
-          %?"
-                     :empty-lines 0)
-                    ("e" "OI 比赛" entry (file+olp+datetree "~/org/todo.org" "OI" "比赛")
-                     "* 未开始 [#B] OI 比赛 [[%^{比赛网址}][%^{比赛名}]]
-          :Created: %U
-          SCHEDULED: %(org-read-date t nil nil \"比赛开始时间\" nil \"+1w 14:00\")--%(org-read-date t nil nil \"比赛结束时间\" nil \"+1w 17:00\")
-          %?"
-                     :empty-lines 0)))
         '';
       }
       {
