@@ -1,3 +1,4 @@
+# -*- separedit-default-mode: emacs-lisp-mode -*-
 {
   pkgs,
   lib,
