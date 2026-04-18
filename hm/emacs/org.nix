@@ -30,6 +30,7 @@ in
               (list (nth 4 lst) (nth 3 lst) (nth 5 lst))))
 
           (add-hook 'org-mode-hook 'visual-line-mode)
+          (setopt word-wrap-by-category t)
 
           (setopt org-read-date-force-compatible-dates nil)
 
