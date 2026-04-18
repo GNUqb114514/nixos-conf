@@ -37,6 +37,7 @@ in
           (setopt org-todo-keywords '((sequence "未开始" "进行中" "等待订正(!)" "|" "已订正(!@)") ; 比赛
                                       (sequence "未提交" "UNAC(!@)" "AC(!)" "|" "已完成(!@)")     ; 题目
                                       ))
+
           (setopt org-todo-keyword-faces `(("未提交"   . (:foreground ,(plist-get base16-stylix-theme-colors :base09)))
                                            ("UNAC"     . (:foreground ,(plist-get base16-stylix-theme-colors :base08)))
                                            ("AC"       . (:foreground ,(plist-get base16-stylix-theme-colors :base0D)))
@@ -62,7 +63,6 @@ in
           name = "org-hold";
           package =
             epkgs:
-            with epkgs;
             epkgs.trivialBuild {
               pname = "org-hold";
               version = "0.1.0";
@@ -99,7 +99,8 @@ in
                                        (lambda () (org-hold-decode-time-mdy (org-current-time)))
                                        (org-hold-locator-olp-in
                                         '("OI" "比赛")
-                                        (org-hold-locator-file "~/org/todo.org"))))))'';
+                                        (org-hold-locator-file "~/org/todo.org"))))))
+          '';
         }
       ])
     ]
