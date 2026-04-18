@@ -72,7 +72,9 @@ in
             (bind-key "C-c h o p" (org-hold-template
                                      (lambda ()
                                        (let* ((title (read-string "题目在洛谷中的标题（如 P1001 A+B Problem）："))
-                                              (link (replace-regexp-in-string "\\([^ ]+\\)\\( .*\\)?" "[[https://www.luogu.com.cn/problem/\\1][\\&]]" title t))
+                                              (link (replace-regexp-in-string
+                                                     (rx (group (+ (not " "))) (opt " " (* nonl)))
+                                                     "[[https://www.luogu.com.cn/problem/\\1][\\&]]" title t))
                                               (deadline (org-read-date nil nil nil "截止时间" nil "+3d"))
                                               (creation (format-time-string "[%Y-%m-%d %a %H:%M]" (org-current-time))))
                                          (format "* 未提交 [#B] OI 题目 %s\n:Created: %s\nDEADLINE: <%s>\n"
