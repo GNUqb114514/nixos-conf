@@ -57,6 +57,7 @@
                 ./operation.nix
                 ./org.nix
                 ./roam.nix
+                ./speed.nix
               ];
 
               config = lib.mkIf config.user.emacs.enable {
@@ -75,12 +76,27 @@
                       ++ (lib.concatMap (x: x epkgs) config.user.emacs.extraPackages)
                     );
                   extraConfig = ''
-                    (set-fontset-font t 'han (font-spec :family "Dream Han Sans CN"))
+                    ;; Set Chinese font
+                    (run-with-idle-timer 0.1 nil
+                           #'set-fontset-font t 'han
+                           (font-spec :family "Dream Han Sans CN"))
+
+                    (setopt word-wrap-by-category t)
                     (setopt confirm-kill-emacs #'yes-or-no-p)
-                    (electric-pair-mode t)
+                    (setopt display-line-numbers-type 'relative)
+
+                    (add-hook 'after-init-hook #'column-number-mode)
+                    (add-hook 'after-init-hook #'global-display-line-numbers-mode)
+
+                    (add-hook 'prog-mode-hook #'electric-pair-mode)
                     (add-hook 'prog-mode-hook #'show-paren-mode)
-                    (column-number-mode t)
-                    (global-auto-revert-mode t)
+                    (add-hook 'prog-mode-hook #'hs-minor-mode)
+
+                    (setopt auto-revert-avoid-polling t)	; Avoid polling; might lead to
+                                                            ; correctness problem with network filesystems
+                    (setopt auto-revert-interval 5)
+                    (add-hook 'after-init-hook #'global-auto-revert-mode)
+
                     (setopt make-backup-files nil)
                     (setopt auto-save-default nil)
                     (setopt byte-compile-auto-compile nil)
@@ -88,16 +104,13 @@
                     (setopt create-lockfiles nil)
                     (setopt recentf-save-file nil)
                     (setopt load-prefer-newer t)
-                    (add-hook 'prog-mode-hook #'hs-minor-mode)
-                    (global-display-line-numbers-mode 1)
                     (tool-bar-mode -1)
                     (when (display-graphic-p) (toggle-scroll-bar -1))
-                    (setopt display-line-numbers-type 'relative)
                     (setopt frame-resize-pixelwise t)
 
                     (use-package good-scroll
                       :if window-system
-                      :config (good-scroll-mode))
+                      :hook (after-init . good-scroll-mode))
 
                     (add-hook 'rust-mode-hook
                               (lambda () (setq indent-tabs-mode nil)))

@@ -7,16 +7,16 @@ let cfg = config.user.emacs; ulib = import ./lib.nix args; inputs = config.user.
       (ulib.usePackages [
         {
           name = "org-roam";
+          defer = true;
           custom = {
             org-roam-directory = ''(file-truename "~/org/zettelkasten")'';
-
           };
           bind = [{
             "C-c n l" = "#'org-roam-buffer-toggle";
             "C-c n f" = "#'org-roam-node-find";
             "C-c n i" = "#'org-roam-node-insert";
           }];
-          configPhase = ''(org-roam-setup)'';
+          configPhase = ''(org-roam-db-autosync-mode)'';
         }
       ])
     ]

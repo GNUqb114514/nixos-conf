@@ -14,53 +14,56 @@ in
   config = lib.mkIf cfg.enable (
     lib.mkMerge [
       {
-        programs.emacs.extraConfig = ''
-          (setopt org-agenda-files '("~/org"))
-          (setopt org-log-done 'time)
-          (setopt org-return-follows-link t)
-          (add-to-list 'auto-mode-alist '("\\\\.org\\\\'" . org-mode))
-          (add-hook 'org-mode-hook 'org-indent-mode)
-
-          (define-key global-map (kbd "C-c l") 'org-store-link)
-          (define-key global-map (kbd "C-c a") 'org-agenda)
-
-          (defun decode-time-mdy (time)
-            "Decode timestamp time to (MONTH DAY YEAR)."
-            (let ((lst (decode-time time)))
-              (list (nth 4 lst) (nth 3 lst) (nth 5 lst))))
-
-          (add-hook 'org-mode-hook 'visual-line-mode)
-          (setopt word-wrap-by-category t)
-
-          (setopt org-read-date-force-compatible-dates nil)
-
-          (setopt org-todo-keywords '((sequence "未开始" "进行中" "等待订正(!)" "|" "已订正(!@)") ; 比赛
-                                      (sequence "未提交" "UNAC(!@)" "AC(!)" "|" "已完成(!@)")     ; 题目
-                                      ))
-
-          (setopt org-todo-keyword-faces `(("未提交"   . (:foreground ,(plist-get base16-stylix-theme-colors :base09)))
-                                           ("UNAC"     . (:foreground ,(plist-get base16-stylix-theme-colors :base08)))
-                                           ("AC"       . (:foreground ,(plist-get base16-stylix-theme-colors :base0D)))
-                                           ("已完成"   . (:foreground ,(plist-get base16-stylix-theme-colors :base0B)))
-                                           ("未开始"   . (:foreground ,(plist-get base16-stylix-theme-colors :base05)))
-                                           ("进行中"   . (:foreground ,(plist-get base16-stylix-theme-colors :base0D)))
-                                           ("等待订正" . (:foreground ,(plist-get base16-stylix-theme-colors :base0A)))
-                                           ("已订正"   . (:foreground ,(plist-get base16-stylix-theme-colors :base0B)))
-                                           ))
-
-          (setopt org-agenda-time-grid '((daily today require-timed remove-match) (630 730 1200 1330 1800 1900 2200) " · " "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄"))
-          (setopt org-agenda-prefix-format '((agenda . " %i %-12:c%?-8t% s")
-                                             (todo   . " %i %-12:c")
-                                             (tags   . " %i %-12:c")
-                                             (search . " %i %-12:c")))
-        '';
-      }
-      {
         programs.emacs.extraConfig = lib.mkBefore ";; -*- lexical-binding: t; -*-";
       }
       (ulib.usePackages [
         {
+          name = "org";
+          custom = {
+            org-agenda-files = '''("~/org")'';
+            org-log-done = "'time";
+            org-return-follows-line = "t";
+            org-read-date-force-compatible-dates = "nil";
+            org-todo-keywords = ''
+              '((sequence "未开始" "进行中" "等待订正(!)" "|" "已订正(!@)") ; 比赛
+                (sequence "未提交" "UNAC(!@)" "AC(!)" "|" "已完成(!@)"))    ; 题目
+            '';
+            org-todo-keyword-faces = ''
+              `(("未提交"   . (:foreground ,(plist-get base16-stylix-theme-colors :base09)))
+                ("UNAC"     . (:foreground ,(plist-get base16-stylix-theme-colors :base08)))
+                ("AC"       . (:foreground ,(plist-get base16-stylix-theme-colors :base0D)))
+                ("已完成"   . (:foreground ,(plist-get base16-stylix-theme-colors :base0B)))
+                ("未开始"   . (:foreground ,(plist-get base16-stylix-theme-colors :base05)))
+                ("进行中"   . (:foreground ,(plist-get base16-stylix-theme-colors :base0D)))
+                ("等待订正" . (:foreground ,(plist-get base16-stylix-theme-colors :base0A)))
+                ("已订正"   . (:foreground ,(plist-get base16-stylix-theme-colors :base0B))))
+            '';
+            org-agenda-time-grid = ''
+              '((daily today require-timed remove-match)
+                (630 730 1200 1330 1800 1900 2200)
+                " · " "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄")
+            '';
+            org-agenda-prefix-format = ''
+              '((agenda . " %i %-12:c%?-8t% s")
+                (todo   . " %i %-12:c")
+                (tags   . " %i %-12:c")
+                (search . " %i %-12:c"))
+            '';
+          };
+          bind = [{
+            "C-c l" = "#'org-store-link";
+            "C-c a" = "#'org-agenda";
+          }];
+
+          extraConfig = ''
+            :hook ((org-mode . org-indent-mode)
+                   (org-mode . visual-line-mode))
+            :mode "\\\\.org\\\\'"
+          '';
+        }
+        {
           name = "org-hold";
+          requirements = [ "org" ];
           package =
             epkgs:
             epkgs.trivialBuild {

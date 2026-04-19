@@ -13,7 +13,10 @@ in
     ulib.usePackages [
       {
         name = "vertico";
-        configPhase = "(vertico-mode t)";
+        requirements = [ "orderless" ];
+        extraConfig = ''
+          :hook (after-init . vertico-mode)
+        '';
       }
       {
         name = "orderless";
@@ -24,23 +27,27 @@ in
       }
       {
         name = "marginalia";
-        demand = true;
         requirements = [ "vertico" ];
+        extraConfig = ''
+          :hook (after-init . marginalia-mode)
+        '';
         configPhase = ''
           (mapc (lambda (x)
                   (setcdr x (remq 'builtin (cdr x))))
                 marginalia-annotators)
-          (marginalia-mode t)
         '';
-        extraConfig = ''
-          :bind (:map minibuffer-local-map
-                 ("M-A" . marginalia-cycle))
-        '';
+        bind = [
+          {
+            map = "minibuffer-local-map";
+            "M-A" = "marginalia-cycle";
+          }
+        ];
       }
-      {
-        name = "diminish";
-        configPhase = "(diminish 'hs-minor-mode)";
-      }
+      # {
+      #   name = "diminish";
+      #   demand = true;
+      #   configPhase = "(diminish 'hs-minor-mode)";
+      # }
       {
         name = "helpful";
         bind = [
