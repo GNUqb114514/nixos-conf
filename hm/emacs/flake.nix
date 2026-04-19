@@ -56,6 +56,7 @@
                 ./lsp.nix
                 ./operation.nix
                 ./org.nix
+                ./roam.nix
               ];
 
               config = lib.mkIf config.user.emacs.enable {
