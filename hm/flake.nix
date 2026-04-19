@@ -21,7 +21,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.systems.follows = "systems";
       inputs.flake-parts.follows = "flake-parts";
-      inputs.packages.follows = "packages";
     };
 
     guiConfig = {
@@ -29,7 +28,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.systems.follows = "systems";
       inputs.flake-parts.follows = "flake-parts";
-      inputs.packages.follows = "packages";
     };
 
     nvimConfig = {
@@ -37,7 +35,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.systems.follows = "systems";
       inputs.flake-parts.follows = "flake-parts";
-      inputs.packages.follows = "packages";
     };
 
     basicConfig = {
