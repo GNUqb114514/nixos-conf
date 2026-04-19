@@ -612,11 +612,11 @@
     "org-hold": {
       "flake": false,
       "locked": {
-        "lastModified": 1772860864,
-        "narHash": "sha256-2QNlSvqMgJxeJB1sVvXr9Bwxo7gBcHw8lVvqygNj9Sc=",
+        "lastModified": 1776558271,
+        "narHash": "sha256-RrtuVJgIftIAEfDGTFYD16TaKogUPaHtkeE8ztfzD28=",
         "owner": "GNUqb114514",
         "repo": "org-hold",
-        "rev": "34b8925b30edec52660d0fb9fd9b1c64067d9b05",
+        "rev": "dd3a1cc51114d6529b6b7c5fa67bee22d9d5e04b",
         "type": "github"
       },
       "original": {
