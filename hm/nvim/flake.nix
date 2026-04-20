@@ -89,7 +89,7 @@
                   home.packages = with pkgs; [ wl-clipboard ];
 
                   programs.neovim.enable = true;
-                  programs.neovim.defaultEditor = true;
+                  # programs.neovim.defaultEditor = true;
 
                   programs.nvf.enable = true;
 

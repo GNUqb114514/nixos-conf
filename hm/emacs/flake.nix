@@ -63,6 +63,12 @@
               config = lib.mkIf config.user.emacs.enable {
                 user.emacs.inputs = inputs;
 
+                services.emacs = {
+                  client.enable = true;
+                  enable = true;
+                  defaultEditor = true;
+                };
+
                 programs.emacs = {
                   enable = true;
                   package = pkgs.emacs-pgtk;

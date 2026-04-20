@@ -12,6 +12,12 @@ in
   config = lib.mkIf cfg.enable (
     ulib.usePackages [
       {
+        name = "envrc";
+        extraConfig = ''
+          :hook (after-init . envrc-global-mode)
+        '';
+      }
+      {
         name = "vertico";
         requirements = [ "orderless" ];
         extraConfig = ''
