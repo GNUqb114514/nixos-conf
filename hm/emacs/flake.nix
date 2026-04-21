@@ -82,10 +82,10 @@
                       ++ (lib.concatMap (x: x epkgs) config.user.emacs.extraPackages)
                     );
                   extraConfig = ''
-                    ;; Set Chinese font
-                    (run-with-idle-timer 0.1 nil
-                           #'set-fontset-font t 'han
-                           (font-spec :family "Dream Han Sans CN"))
+                    (defun my-set-font (&optional frame)
+                      "Set the current font."
+                      (set-fontset-font (not frame) 'han (font-spec :family "Dream Han Sans CN") frame))
+                    (add-hook 'after-make-frame-functions #'my-set-font) ; Set Chinese font
 
                     (setopt word-wrap-by-category t)
                     (setopt confirm-kill-emacs #'yes-or-no-p)
