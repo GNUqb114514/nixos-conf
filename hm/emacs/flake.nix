@@ -98,8 +98,7 @@
                     (add-hook 'prog-mode-hook #'show-paren-mode)
                     (add-hook 'prog-mode-hook #'hs-minor-mode)
 
-                    (setopt auto-revert-avoid-polling t)	; Avoid polling; might lead to
-                                                            ; correctness problem with network filesystems
+                    (setopt auto-revert-avoid-polling t)	; Might lead to correctness problem with remote filesystems
                     (setopt auto-revert-interval 5)
                     (add-hook 'after-init-hook #'global-auto-revert-mode)
 
