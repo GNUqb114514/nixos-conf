@@ -108,7 +108,6 @@
                     (setopt load-prefer-newer t)
                     (setopt create-lockfiles nil)
                     (setopt recentf-save-file nil)
-                    (setopt load-prefer-newer t)
                     (tool-bar-mode -1)
                     (scroll-bar-mode -1)
                     (setopt frame-resize-pixelwise t)
