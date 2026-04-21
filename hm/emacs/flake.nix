@@ -97,6 +97,7 @@
                     (add-hook 'prog-mode-hook #'electric-pair-mode)
                     (add-hook 'prog-mode-hook #'show-paren-mode)
                     (add-hook 'prog-mode-hook #'hs-minor-mode)
+                    (add-hook 'prog-mode-hook #'kill-ring-deindent-mode)
 
                     (setopt auto-revert-avoid-polling t)	; Might lead to correctness problem with remote filesystems
                     (setopt auto-revert-interval 5)
