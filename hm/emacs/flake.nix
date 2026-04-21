@@ -111,7 +111,7 @@
                     (setopt recentf-save-file nil)
                     (setopt load-prefer-newer t)
                     (tool-bar-mode -1)
-                    (when (display-graphic-p) (toggle-scroll-bar -1))
+                    (scroll-bar-mode -1)
                     (setopt frame-resize-pixelwise t)
 
                     (use-package good-scroll
