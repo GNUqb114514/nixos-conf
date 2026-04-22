@@ -58,7 +58,11 @@ in
 
     services.watt.enable = true;
 
-    services.logind.settings.Login.HandleLidSwitch = "ignore";
+    services.logind.settings.Login = {
+      HandleLidSwitch = "ignore";
+      HandleLidSwitchExternalPower = "lock";
+      IdleAction = "lock";
+    };
 
     users.groups.input.members = [ "qb114514" ];
     users.groups.video.members = [ "qb114514" ];

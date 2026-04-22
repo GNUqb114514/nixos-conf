@@ -49,6 +49,7 @@
 
                 ./de.nix
                 ./bar.nix
+                ./idle.nix
               ];
 
               config = {
