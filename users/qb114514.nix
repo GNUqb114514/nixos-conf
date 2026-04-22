@@ -73,12 +73,12 @@
     };
     shell = {
       enable = true;
-      neogitAlias = true;
+      #neogitAlias = true;
       autosuggestion = true;
       starship = true;
       fzf = true;
       fzf-tab = true;
-      vi-mode = true;
+      # vi-mode = true;
       utilities = {
         archive = true;
         monitors = true;
