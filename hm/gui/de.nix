@@ -11,6 +11,9 @@ let
 in
 {
   config = lib.mkIf cfg.enable {
+    home.packages = with pkgs; [
+      xwayland-satellite
+    ];
     programs.niri.enable = true;
     programs.niri.package = pkgs.niri;
 
