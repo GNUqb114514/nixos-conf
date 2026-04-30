@@ -1,4 +1,4 @@
-{ config, lib, ... }: let
+{ pkgs, config, lib, ... }: let
   cfg = config.user.idle;
 in {
   options.user.idle = with lib; {
@@ -21,18 +21,18 @@ in {
   };
   
   config = lib.mkIf cfg.enable {
-    services.swayidle = {
+    services.swayidle = let swaylock = lib.getExe pkgs.swaylock; in {
       enable = true;
       extraArgs = [ "-w" "idlehint" (builtins.toString cfg.idleTime) ];
-      events = { lock = "swaylock -f"; };
+      events = { lock = "${swaylock} -f"; before-sleep = "${swaylock} -f"; };
       timeouts = [
         {
           timeout = cfg.lockTime;
-          command = "swaylock -f";
+          command = "${swaylock} -f";
         }
         {
           timeout = cfg.sleepTime;
-          command = "systemctl hybrid-sleep";
+          command = "${pkgs.systemd}/bin/systemctl hybrid-sleep";
         }
       ];
     };

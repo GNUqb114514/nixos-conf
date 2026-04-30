@@ -60,8 +60,8 @@ in
 
     services.logind.settings.Login = {
       HandleLidSwitch = "ignore";
-      HandleLidSwitchExternalPower = "lock";
-      IdleAction = "lock";
+      HandleLidSwitchExternalPower = "ignore";
+      IdleAction = "ignore";
     };
 
     users.groups.input.members = [ "qb114514" ];
