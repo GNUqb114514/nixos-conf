@@ -119,6 +119,10 @@
 
                     (add-hook 'rust-mode-hook
                               (lambda () (setq indent-tabs-mode nil)))
+
+                    (setopt split-height-threshold 40)
+                    (setopt split-width-threshold 100)
+
                   '';
                 };
               };
